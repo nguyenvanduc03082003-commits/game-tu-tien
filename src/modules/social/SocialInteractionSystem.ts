@@ -1,3 +1,4 @@
+import { socialEventTime } from './SocialEventTime.ts';
 import { performConversation } from './SocialConversationService.ts';
 import { claimRescueLife, pruneRescueEvidence, RescueResult } from './RescueEvidenceService.ts';
 import { getSocialCooldownRemainingDays, performSocialInteraction, performCombatSocialInteraction } from './SocialInteractionService.ts';
@@ -61,7 +62,6 @@ export class SocialInteractionSystem implements System {
     this.timer = 0;
     updateBondConflicts(world);
 
-    const currentDay = world.calendarDayFloorAtTick();
     const calendarDay = world.calendarDaysAtTick();
     for (const entity of world.query([SocialRelationshipComponent])) {
       world.getComponent(entity, SocialRelationshipComponent)!.pruneExpiredCooldowns(calendarDay);
@@ -90,7 +90,7 @@ export class SocialInteractionSystem implements System {
 
           if (!posB || !nameBComp || !relB || !memB) continue;
           if (Math.hypot(posA.x - posB.x, posA.y - posB.y) > 55) continue;
-          this.handleProximityEncounter(entA, entB, nameA, nameBComp.name, relA, relB, memA, memB, currentDay);
+          this.handleProximityEncounter(entA, entB, nameA, nameBComp.name, relA, relB, memA, memB);
         }
       }
     } else {
@@ -112,7 +112,7 @@ export class SocialInteractionSystem implements System {
           const dist = Math.hypot(posA.x - posB.x, posA.y - posB.y);
           if (dist > 55) continue; // Ngoài cự ly giao lưu trực tiếp
 
-          this.handleProximityEncounter(entA, entB, nameA, nameB, relA, relB, memA, memB, currentDay);
+          this.handleProximityEncounter(entA, entB, nameA, nameB, relA, relB, memA, memB);
         }
       }
     }
@@ -129,8 +129,7 @@ export class SocialInteractionSystem implements System {
     relA: SocialRelationshipComponent,
     relB: SocialRelationshipComponent,
     memA: MemoryComponent,
-    memB: MemoryComponent,
-    currentDay: number
+    memB: MemoryComponent
   ): void {
     if (!isLivingSocialParticipant(this.world, entA) || !isLivingSocialParticipant(this.world, entB)) return;
     const recordAtoB = relA.getRelationship(entB);
@@ -162,12 +161,12 @@ export class SocialInteractionSystem implements System {
         if (!inventory.consumePill('hoi_xuan_dan')) return false;
         const hp = this.world.getComponent(healing.receiver, HealthComponent)!;
         hp.current = Math.min(hp.max, hp.current + 60);
-        healing.giverRel.adjustScores(healing.receiver, healing.receiverName, 15, 20, 0);
-        healing.receiverRel.adjustScores(healing.giver, healing.giverName, 40, 30, 15);
+        healing.giverRel.adjustScores(healing.receiver, healing.receiverName, 15, 20, 0, socialEventTime(this.world));
+        healing.receiverRel.adjustScores(healing.giver, healing.giverName, 40, 30, 15, socialEventTime(this.world));
         healing.giverRel.updateOrdinaryLabel(healing.receiver);
         healing.receiverRel.updateOrdinaryLabel(healing.giver);
-        healing.giverMem.addMemory('helped', `Đã trao tặng Hồi Xuân Đan cứu chữa thương thế cho ${healing.receiverName}`, 3, 20, healing.receiver, healing.receiverName, currentDay);
-        healing.receiverMem.addMemory('helped', `Được ${healing.giverName} kịp thời tặng đan dược cứu chữa!`, 4, 80, healing.giver, healing.giverName, currentDay);
+        healing.giverMem.addMemory('helped', `Đã trao tặng Hồi Xuân Đan cứu chữa thương thế cho ${healing.receiverName}`, 3, 20, healing.receiver, healing.receiverName, socialEventTime(this.world));
+        healing.receiverMem.addMemory('helped', `Được ${healing.giverName} kịp thời tặng đan dược cứu chữa!`, 4, 80, healing.giver, healing.giverName, socialEventTime(this.world));
         return true;
       });
       if (result.status === 'performed') {
@@ -185,8 +184,8 @@ export class SocialInteractionSystem implements System {
       if (eligibility.status === 'eligible') {
         const result = attemptCompanionBond(this.world, affinityA >= affinityB ? entA : entB, affinityA >= affinityB ? entB : entA);
         if (result.status === 'created') {
-          memA.addMemory('became_companions', `Cùng ${nameB} dưới vòm trời thề nguyện kết bái Đạo Lữ, sinh tử bên nhau!`, 5, 100, entB, nameB, currentDay);
-          memB.addMemory('became_companions', `Cùng ${nameA} dưới vòm trời thề nguyện kết bái Đạo Lữ, sinh tử bên nhau!`, 5, 100, entA, nameA, currentDay);
+          memA.addMemory('became_companions', `Cùng ${nameB} dưới vòm trời thề nguyện kết bái Đạo Lữ, sinh tử bên nhau!`, 5, 100, entB, nameB, socialEventTime(this.world));
+          memB.addMemory('became_companions', `Cùng ${nameA} dưới vòm trời thề nguyện kết bái Đạo Lữ, sinh tử bên nhau!`, 5, 100, entA, nameA, socialEventTime(this.world));
 
           this.eventBus.emit('chronicle:entry', {
             category: 'social',
@@ -252,8 +251,8 @@ export class SocialInteractionSystem implements System {
           const discipleName = disciple === entA ? nameA : nameB;
           const masterMemory = master === entA ? memA : memB;
           const discipleMemory = disciple === entA ? memA : memB;
-          masterMemory.addMemory('became_disciples', `Thu nhận [${discipleName}] làm môn hạ Đồ Đệ`, 4, 60, disciple, discipleName, currentDay);
-          discipleMemory.addMemory('became_disciples', `Chính thức bái [${masterName}] làm Sư Tôn!`, 5, 90, master, masterName, currentDay);
+          masterMemory.addMemory('became_disciples', `Thu nhận [${discipleName}] làm môn hạ Đồ Đệ`, 4, 60, disciple, discipleName, socialEventTime(this.world));
+          discipleMemory.addMemory('became_disciples', `Chính thức bái [${masterName}] làm Sư Tôn!`, 5, 90, master, masterName, socialEventTime(this.world));
           this.eventBus.emit('chronicle:entry', { category: 'social', message: `👑 [Sư Đồ Truyền Thừa] [${discipleName}] đã bái [${masterName}] làm Sư Tôn!`, importance: 'medium' });
           this.eventBus.emit('social:speech', { entityId: disciple, text: `Dập Đầu Bái ${masterName} Làm Sư Tôn 🙏`, color: '#ffd700' });
           return;
@@ -264,8 +263,8 @@ export class SocialInteractionSystem implements System {
     // Kết nghĩa được thử sau đạo lữ/sư đồ; dùng cùng khóa bondAttempt.
     const sworn = attemptSwornBond(this.world, entA, entB);
     if (sworn.status === 'created') {
-      memA.addMemory('helped', `Cùng ${nameB} kết nghĩa kim lan, nguyện tương trợ trên đường tu hành`, 4, 70, entB, nameB, currentDay);
-      memB.addMemory('helped', `Cùng ${nameA} kết nghĩa kim lan, nguyện tương trợ trên đường tu hành`, 4, 70, entA, nameA, currentDay);
+      memA.addMemory('helped', `Cùng ${nameB} kết nghĩa kim lan, nguyện tương trợ trên đường tu hành`, 4, 70, entB, nameB, socialEventTime(this.world));
+      memB.addMemory('helped', `Cùng ${nameA} kết nghĩa kim lan, nguyện tương trợ trên đường tu hành`, 4, 70, entA, nameA, socialEventTime(this.world));
       this.eventBus.emit('chronicle:entry', {
         category: 'social', message: `⚔️ [Kim Lan Kết Nghĩa] [${nameA}] và [${nameB}] đã kết nghĩa tri kỷ!`, importance: 'medium',
       });
@@ -309,7 +308,7 @@ export class SocialInteractionSystem implements System {
     world: ECSWorld,
     attackerEnt: number,
     targetEnt: number,
-    currentDay: number = world.calendarDayFloorAtTick()
+    _currentDay: number = world.calendarDayFloorAtTick()
   ): void {
     if (
       world.hasComponent(attackerEnt, AnimalComponent) ||
@@ -333,7 +332,7 @@ export class SocialInteractionSystem implements System {
     if (targetMem) {
       performCombatSocialInteraction(world, targetEnt, attackerEnt, 'combatMemory', () => {
         targetMem.addMemory('attacked', `Bị [${attackerName}] bất ngờ tập kích xuất chiêu hãm hại!`,
-          4, -80, attackerEnt, attackerName, currentDay);
+          4, -80, attackerEnt, attackerName, socialEventTime(world));
         return true;
       }, true);
     }
@@ -358,7 +357,7 @@ export class SocialInteractionSystem implements System {
           const allyMem = world.getComponent(allyEnt, MemoryComponent)!;
           performCombatSocialInteraction(world, allyEnt, attackerEnt, 'combatMemory', () => {
             allyMem.addMemory('attacked', `Tận mắt chứng kiến [${attackerName}] ra tay đả thương [${targetName}]!`,
-              4, -70, attackerEnt, attackerName, currentDay);
+              4, -70, attackerEnt, attackerName, socialEventTime(world));
             return true;
           });
         }

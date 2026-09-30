@@ -1,3 +1,5 @@
+import { recordSocialTelemetry } from './SocialSimulationTelemetry.ts';
+import { socialEventTime } from './SocialEventTime.ts';
 import { EventBus } from '../../core/EventBus.ts';
 import { ECSWorld } from '../../ecs/World.ts';
 import { SOCIAL_CONFIG } from '../../config/social.config.ts';
@@ -26,8 +28,9 @@ function nextEpisode(world: ECSWorld, a: number, b: number): string {
 function formBond(world: ECSWorld, a: number, b: number, typeA: RelationshipType, typeB: RelationshipType,
   evaluate: () => BondEligibility,
   bonusA: [number, number, number] | null, bonusB: [number, number, number] | null, useCooldown = true): RelationshipChangeResult {
+  recordSocialTelemetry(world, 'bond', 'attempted', a, b, typeA);
   const result = evaluate();
-  if (result.status !== 'eligible') return result;
+  if (result.status !== 'eligible') { recordSocialTelemetry(world, 'bond', result.status, a, b, result.status === 'rejected' ? result.reason : typeA); return result; }
   if (useCooldown && getSocialCooldownRemainingDays(world, a, b, 'bondAttempt') > 0)
     return { status: 'rejected', reason: 'cooldown_active', reasons: ['cooldown_active'] };
   const left = world.getComponent(a, SocialRelationshipComponent)!;
@@ -51,11 +54,12 @@ function formBond(world: ECSWorld, a: number, b: number, typeA: RelationshipType
     [left, b, nameB, bonusA], [right, a, nameA, bonusB],
   ] as const) {
     if (!bonus) continue;
-    const record = relations.adjustScores(target, name, ...bonus);
+    const record = relations.adjustScores(target, name, ...bonus, socialEventTime(world));
     record.lastInteractionDay = world.calendarDayFloorAtTick();
     record.lastInteractionTick = world.getCurrentTick();
   }
   if (useCooldown) startSocialCooldown(world, a, b, 'bondAttempt');
+  recordSocialTelemetry(world, 'bond', 'created', a, b, typeA);
   return { status: 'created' };
 }
 
@@ -120,10 +124,11 @@ function endBond(world: ECSWorld, a: number, b: number, typeA: RelationshipType,
     const betrayed = reason === 'betrayal' && owner === betrayalVictim;
     memory.addMemory(betrayed ? 'betrayed' : 'bond_ended',
       `${SocialRelationshipComponent.getRelationBadge(owner === a ? typeA : typeB)} với [${targetName}] đã kết thúc: ${reason === 'betrayal' ? 'phản bội' : 'mâu thuẫn kéo dài'}.`,
-      4, -60, target, targetName, endedAtDay);
+      4, -60, target, targetName, socialEventTime(world));
   }
   EventBus.getInstance().emit('chronicle:entry', { category: 'social', importance: 'medium',
     message: `Ràng buộc giữa [${recordB.targetName}] và [${recordA.targetName}] đã kết thúc vì ${reason === 'betrayal' ? 'phản bội' : 'mâu thuẫn'}.` });
+  recordSocialTelemetry(world, 'bond', 'ended', a, b, reason);
   return { status: 'ended' };
 }
 
@@ -183,7 +188,7 @@ export function recordHostility(world: ECSWorld, observer: number, attacker: num
     throw new RangeError('Điểm thay đổi xung đột phải là số hữu hạn.');
   return performCombatSocialInteraction(world, observer, attacker, channel, () => {
     const relations = world.getComponent(observer, SocialRelationshipComponent)!;
-    const record = relations.adjustScores(attacker, attackerName, affinityDelta, trustDelta, respectDelta);
+    const record = relations.adjustScores(attacker, attackerName, affinityDelta, trustDelta, respectDelta, socialEventTime(world));
     record.lastInteractionDay = world.calendarDayFloorAtTick();
     record.lastInteractionTick = world.getCurrentTick();
     if (!record.bond && !isProtectedRelationship(record.relationType)) record.relationType = 'enemy';

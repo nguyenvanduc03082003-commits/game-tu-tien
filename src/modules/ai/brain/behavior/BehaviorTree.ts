@@ -1,3 +1,4 @@
+import { maintainSocialAssistance, setCombatIntent } from '../../../combat/CombatIntentService.ts';
 import { performConversation } from '../../../social/SocialConversationService.ts';
 import { ECSWorld } from '../../../../ecs/World.ts';
 import { WorldMap } from '../../../world/WorldMap.ts';
@@ -486,6 +487,7 @@ export class BehaviorTreeExecutor {
     worldMap: WorldMap,
     dt: number
   ): BTNodeStatus {
+    if (maintainSocialAssistance(world, entity)) return 'failure';
     const targetId = step.targetEntityId;
     if (targetId === undefined || targetId === null) return 'failure';
 
@@ -508,7 +510,12 @@ export class BehaviorTreeExecutor {
 
     // Kích hoạt mục tiêu chiến đấu để đồng bộ với CombatSystem
     if (stats) {
-      stats.targetEntityId = targetId;
+      const planner = world.getComponent(entity, AIPlannerComponent);
+      if (planner?.currentPlanGoal === 'OBEY_DECREE') {
+        setCombatIntent(world, entity, targetId, 'god_decree');
+      } else if (stats.targetEntityId !== targetId || !stats.combatIntent) {
+        setCombatIntent(world, entity, targetId, 'autonomous');
+      }
     }
 
     // Nếu đối phương ở ngoài tầm đánh -> Di chuyển lại gần qua bộ tìm đường A* chung

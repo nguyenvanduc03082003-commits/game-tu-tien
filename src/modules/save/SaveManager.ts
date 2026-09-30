@@ -1,3 +1,5 @@
+import { validateCombatIntentSave } from '../combat/CombatIntentService.ts';
+import { resetSocialTelemetry } from '../social/SocialSimulationTelemetry.ts';
 import { serializeSocialSave, validateSocialSave } from '../social/SocialSaveCodec.ts';
 import { ResidentPersonalityComponent } from '../ai/brain/ResidentPreferences.ts';
 import { calculatePlantGrowth } from '../world/TerrainEnvironment.ts';
@@ -425,6 +427,8 @@ export class SaveManager {
         attackRange: stats.attackRange,
         isHostile: stats.isHostile,
         buffDamageMultiplier: stats.buffDamageMultiplier,
+        targetEntityId: stats.targetEntityId,
+        combatIntent: stats.combatIntent ? { ...stats.combatIntent } : null,
         buffTimer: stats.buffTimer
       };
 
@@ -948,6 +952,7 @@ export class SaveManager {
       validateSerializedAnimalComponents(ent.id, ent.components);
       validateProfessionSave(ent.id, ent.components);
       validateSocialSave(ent.id, ent.components);
+      validateCombatIntentSave(ent.id, ent.components);
 
       const chest = ent.components.treasureChest;
       if (chest !== undefined) {
@@ -1428,6 +1433,8 @@ export class SaveManager {
             c.stats.attackRange,
             c.stats.isHostile ?? false
           );
+          st.targetEntityId = c.stats.targetEntityId ?? null;
+          st.combatIntent = c.stats.combatIntent ? { ...c.stats.combatIntent } : null;
           const rawBuffMult = c.stats.buffDamageMultiplier;
           const rawBuffTimer = c.stats.buffTimer;
           st.buffDamageMultiplier = (typeof rawBuffMult === 'number' && Number.isFinite(rawBuffMult) && rawBuffMult >= 0)
@@ -1793,6 +1800,7 @@ export class SaveManager {
       engine.world?.clearEntities();
       engine.spatialGrid?.clear();
       engine.tribulationSystem?.clear();
+      resetSocialTelemetry(engine.world);
       engine.threeTierAISystem?.reset();
       engine.cultivationSystem?.reset();
       engine.diplomacySystem?.clear();

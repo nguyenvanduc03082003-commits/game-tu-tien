@@ -1,3 +1,4 @@
+import { SocialEventTime } from './SocialEventTime.ts';
 import { SOCIAL_CONFIG } from '../../config/social.config.ts';
 import { TimeManager } from '../../core/TimeManager.ts';
 import { Component } from '../../ecs/Component.ts';
@@ -112,7 +113,7 @@ export class SocialRelationshipComponent implements Component {
     return record;
   }
 
-  public adjustScores(targetId: number, targetName: string, affinityDelta = 0, trustDelta = 0, respectDelta = 0): RelationshipRecord {
+  public adjustScores(targetId: number, targetName: string, affinityDelta = 0, trustDelta = 0, respectDelta = 0, time?: SocialEventTime): RelationshipRecord {
     if (![affinityDelta, trustDelta, respectDelta].every(Number.isFinite))
       throw new RangeError('Điểm thay đổi quan hệ phải là số hữu hạn.');
     const record = this.ensureRelationship(targetId, targetName);
@@ -125,8 +126,8 @@ export class SocialRelationshipComponent implements Component {
       delete record.bond.conflictSinceDay;
     record.interactionsCount++;
     record.lastInteractionTime = Date.now();
-    record.lastInteractionDay = TimeManager.getInstance().getDate().totalDays;
-    record.lastInteractionTick = TimeManager.getInstance().getTotalTicks();
+    record.lastInteractionDay = time?.day ?? TimeManager.getInstance().getDate().totalDays;
+    record.lastInteractionTick = time?.tick ?? TimeManager.getInstance().getTotalTicks();
     return record;
   }
 
@@ -231,7 +232,7 @@ export class MemoryComponent implements Component {
     emotionalValence: number = 0,
     targetEntityId?: number,
     targetName?: string,
-    currentDay: number = TimeManager.getInstance().getDate().totalDays
+    currentDay: number | SocialEventTime = TimeManager.getInstance().getDate().totalDays
   ): MemoryRecord {
     const memory: MemoryRecord = {
       id: `mem_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
@@ -241,7 +242,7 @@ export class MemoryComponent implements Component {
       emotionalValence: Math.max(-100, Math.min(100, emotionalValence)),
       importance: Math.max(1, Math.min(5, importance)),
       timestamp: Date.now(),
-      day: currentDay,
+      day: typeof currentDay === 'number' ? currentDay : currentDay.day,
       description,
       // Thời gian phai mờ: Cấp 5 là vĩnh hằng (999999s), cấp 1-4 tỷ lệ theo tầm quan trọng
       decayTimer: importance === 5 ? 999999 : importance * 300

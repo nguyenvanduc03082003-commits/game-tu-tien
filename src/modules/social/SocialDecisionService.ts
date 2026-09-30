@@ -78,7 +78,7 @@ export type SocialAssistanceEvaluation =
   | { readonly status: 'rejected'; readonly reason: SocialAssistanceRejectionReason };
 
 /** Chỉ đánh giá hỗ trợ tự nguyện; không đặt target, đổi bond, thưởng hoặc tiêu RNG. */
-export function evaluateSocialAssistance(world: ECSWorld, helper: number, ally: number): SocialAssistanceEvaluation {
+export function evaluateSocialAssistance(world: ECSWorld, helper: number, ally: number, maintaining = false): SocialAssistanceEvaluation {
   const reject = (reason: SocialAssistanceRejectionReason): SocialAssistanceEvaluation => ({ status: 'rejected', reason });
   const hp = world.getComponent(helper, HealthComponent);
   const allyHp = world.getComponent(ally, HealthComponent);
@@ -95,7 +95,7 @@ export function evaluateSocialAssistance(world: ECSWorld, helper: number, ally: 
   if (!Number.isFinite(record.affinity) || record.affinity < config.minAffinity) return reject('insufficient_affinity');
   if (!Number.isFinite(record.trust) || record.trust < config.minTrust) return reject('insufficient_trust');
   if (hp.current / hp.max <= config.fleeHealthRatio) return reject('self_preservation');
-  if (combat.targetEntityId !== null) return reject('already_engaged');
+  if (!maintaining && combat.targetEntityId !== null) return reject('already_engaged');
   const enemy = world.getComponent(ally, CombatStatsComponent)?.targetEntityId;
   const enemyHp = enemy != null ? world.getComponent(enemy, HealthComponent) : null;
   if (enemy == null || enemy === helper || enemy === ally || !enemyHp || enemyHp.isDead ||

@@ -1,3 +1,5 @@
+import { maintainSocialAssistance, setCombatIntent } from '../../../combat/CombatIntentService.ts';
+import { recordSocialTelemetry } from '../../../social/SocialSimulationTelemetry.ts';
 import { residentPreferences } from '../ResidentPreferences.ts';
 import { ECSWorld } from '../../../../ecs/World.ts';
 import { WorldMap } from '../../../world/WorldMap.ts';
@@ -105,6 +107,7 @@ export class StrategicGoalEvaluator {
     // =========================================================================
     // 2. TỰ VỆ & HUYẾT CHIẾN HOẶC BỎ CHẠY THOÁT HIỂM (COMBAT / FLEE)
     // =========================================================================
+    maintainSocialAssistance(world, entity);
     if (combat && combat.targetEntityId !== null) {
       const targetHp = world.getComponent(combat.targetEntityId, HealthComponent);
       if (targetHp && !targetHp.isDead && Number.isFinite(targetHp.current) && targetHp.current > 0 &&
@@ -125,8 +128,10 @@ export class StrategicGoalEvaluator {
       if (relComp && pos) {
         for (const rel of relComp.relationships.values()) {
           const assistance = evaluateSocialAssistance(world, entity, rel.targetEntityId);
+          recordSocialTelemetry(world, 'assistance', assistance.status, entity, rel.targetEntityId, assistance.status === 'rejected' ? assistance.reason : undefined);
           if (assistance.status === 'eligible' && combat) {
-            combat.targetEntityId = assistance.enemyId;
+            setCombatIntent(world, entity, assistance.enemyId, 'social_assistance', rel.targetEntityId);
+            recordSocialTelemetry(world, 'assistance', 'chosen', entity, rel.targetEntityId);
             scores.COMBAT_DEFENSE = 94;
             break;
           }

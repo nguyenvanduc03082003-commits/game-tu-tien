@@ -1,3 +1,4 @@
+import { resetSocialTelemetry } from '../modules/social/SocialSimulationTelemetry.ts';
 import { ReproductionSystem, ChildcareSystem } from '../modules/beings/ReproductionSystem.ts';
 import { LifeStageSystem } from '../modules/beings/LifeStageSystem.ts';
 import { ECSWorld } from '../ecs/World.ts';
@@ -653,6 +654,7 @@ export class Engine {
     if (this.growthSystem) this.growthSystem.reset(this.world);
     if (this.professionSystem) this.professionSystem.reset();
     EncounterTracker.clear(this.world);
+    resetSocialTelemetry(this.world);
 
     // 3. Đặt lại bộ đếm khởi tạo thế lực
     FactionFactory.reset();

@@ -1,3 +1,5 @@
+import { recordSocialTelemetry } from './SocialSimulationTelemetry.ts';
+import { socialEventTime } from './SocialEventTime.ts';
 import { SOCIAL_CONFIG } from '../../config/social.config.ts';
 import { ECSWorld } from '../../ecs/World.ts';
 import { EventBus } from '../../core/EventBus.ts';
@@ -6,7 +8,7 @@ import { CombatStatsComponent } from '../combat/CombatComponents.ts';
 import { readResidentPreferences } from '../ai/brain/ResidentPreferences.ts';
 import { isLivingSocialParticipant } from './RelationshipRules.ts';
 import { MemoryComponent, SocialRelationshipComponent } from './SocialComponents.ts';
-import { getSocialCooldownRemainingDays, performSocialInteraction } from './SocialInteractionService.ts';
+import { getSocialCooldownRemainingDays, performSocialInteraction } from './SocialInteractionGate.ts';
 
 export type ConversationContext = 'casual' | 'cultivation' | 'community';
 export type ConversationOutcome = 'warm' | 'neutral' | 'awkward';
@@ -144,7 +146,7 @@ export function readConversationSnapshot(world: ECSWorld, a: number, b: number,
 }
 
 /** Một commit đồng bộ; cooldown được chốt trước lời thoại, skipped không có side effect. */
-export function performConversation(world: ECSWorld, a: number, b: number,
+function commitConversation(world: ECSWorld, a: number, b: number,
   context: ConversationContext = 'casual'): ConversationResult {
   const eligibility = evaluateConversation(readConversationSnapshot(world, a, b, context));
   if (eligibility.status === 'skipped') return eligibility;
@@ -153,7 +155,7 @@ export function performConversation(world: ECSWorld, a: number, b: number,
     for (const [side, target] of [[evaluation.a, b], [evaluation.b, a]] as const) {
       const name = world.getComponent(target, NameComponent)?.name ?? 'Cư dân';
       const relations = world.getComponent(side.entityId, SocialRelationshipComponent)!;
-      const record = relations.adjustScores(target, name, side.delta.affinity, side.delta.trust, side.delta.respect);
+      const record = relations.adjustScores(target, name, side.delta.affinity, side.delta.trust, side.delta.respect, socialEventTime(world));
       record.lastInteractionDay = world.calendarDayFloorAtTick();
       record.lastInteractionTick = world.getCurrentTick();
       relations.updateOrdinaryLabel(target);
@@ -163,7 +165,7 @@ export function performConversation(world: ECSWorld, a: number, b: number,
       const feeling = side.outcome === 'warm' ? 'hợp chuyện, cảm thấy gần gũi hơn' : side.outcome === 'awkward' ? 'có phần ngượng ngùng' : 'bình dị';
       memory.addMemory('chatted', `Cùng [${name}] ${activity}; cuộc gặp ${feeling}.`,
         SOCIAL_CONFIG.conversation.memory.importance, SOCIAL_CONFIG.conversation.memory.emotion[side.outcome],
-        target, name, world.calendarDaysAtTick());
+        target, name, socialEventTime(world));
     }
     return true;
   });
@@ -176,4 +178,12 @@ export function performConversation(world: ECSWorld, a: number, b: number,
   EventBus.getInstance().emit('social:speech', { entityId: a, text,
     color: evaluation.outcome === 'awkward' ? '#9ca3af' : '#7dd3fc' });
   return { status: 'completed', evaluation };
+}
+
+export function performConversation(world: ECSWorld, a: number, b: number, context: ConversationContext = 'casual'): ConversationResult {
+  recordSocialTelemetry(world, 'conversation', 'attempted', a, b, context);
+  const result = commitConversation(world, a, b, context);
+  recordSocialTelemetry(world, 'conversation', result.status, a, b,
+    result.status === 'completed' ? result.evaluation.outcome : result.reason);
+  return result;
 }

@@ -1,3 +1,5 @@
+import { recordSocialTelemetry } from './SocialSimulationTelemetry.ts';
+import { socialEventTime } from './SocialEventTime.ts';
 import { EventBus } from '../../core/EventBus.ts';
 import { SOCIAL_CONFIG } from '../../config/social.config.ts';
 import { ECSWorld } from '../../ecs/World.ts';
@@ -69,7 +71,7 @@ function otherThreatRemains(world: ECSWorld, victim: number, eliminated: number)
 export type RescueResult = { status: 'awarded' } | { status: 'rejected'; reason: string };
 /** Requires a resolved evidence episode, never awards simply from two entity IDs. */
 export function claimRescueLife(world: ECSWorld, rescuer: number, victim: number, episodeId: string): RescueResult {
-  const reject = (reason: string): RescueResult => ({ status: 'rejected', reason });
+  const reject = (reason: string): RescueResult => { recordSocialTelemetry(world, 'rescue', 'rejected', rescuer, victim, reason); return { status: 'rejected', reason }; };
   if (rescuer === victim || !isLivingSocialParticipant(world, rescuer) || !isLivingSocialParticipant(world, victim)) return reject('participant_unavailable');
   pruneRescueEvidence(world, victim);
   const social = world.getComponent(victim, SocialRelationshipComponent)!;
@@ -87,7 +89,7 @@ export function claimRescueLife(world: ECSWorld, rescuer: number, victim: number
   const victimName = world.getComponent(victim, NameComponent)?.name ?? 'Cư dân';
   e.claimed = true;
   startSocialCooldown(world, victim, rescuer, 'rescueLife', SOCIAL_CONFIG.rescue.cooldownDays);
-  const record = social.adjustScores(rescuer, name, 70, 60, 40);
+  const record = social.adjustScores(rescuer, name, 70, 60, 40, socialEventTime(world));
   record.lastInteractionDay = world.calendarDayFloorAtTick(); record.lastInteractionTick = world.getCurrentTick();
   social.updateOrdinaryLabel(rescuer);
   for (const [owner, type, description, importance, emotion, target, targetName] of [
@@ -96,12 +98,13 @@ export function claimRescueLife(world: ECSWorld, rescuer: number, victim: number
   ] as const) {
     let memory = world.getComponent(owner, MemoryComponent);
     if (!memory) { memory = new MemoryComponent(); world.addComponent(owner, memory); }
-    memory.addMemory(type, description, importance, emotion, target, targetName, world.calendarDaysAtTick());
+    memory.addMemory(type, description, importance, emotion, target, targetName, socialEventTime(world));
   }
   EventBus.getInstance().emit('chronicle:entry', { category: 'social', importance: 'medium',
     message: `✨ [${name}] đã trảm sát kẻ đe dọa, cứu [${victimName}] khỏi nguy hiểm tính mạng.` });
   EventBus.getInstance().emit('social:speech', { entityId: victim,
     text: `Đa tạ ${name} đã cứu mạng!`, color: '#38d9a9' });
+  recordSocialTelemetry(world, 'rescue', 'awarded', rescuer, victim);
   return { status: 'awarded' };
 }
 
@@ -113,6 +116,7 @@ export function resolveRescueKill(world: ECSWorld, rescuer: number, threat: numb
     if (candidate.victim === rescuer || candidate.victim === threat || rescuer === threat) continue;
     const e: RescueEvidence | undefined = world.getComponent(candidate.victim, SocialRelationshipComponent)?.rescueEvidence.find(item => item.episodeId === candidate.episodeId);
     if (!e || e.threatEntityId !== threat || e.resolvedAtDay !== undefined || e.claimed) continue;
+    recordSocialTelemetry(world, 'rescue', 'resolved', rescuer, candidate.victim);
     e.resolvedAtDay = world.calendarDaysAtTick(); e.resolvedAtTick = world.getCurrentTick(); e.rescuerId = rescuer;
     claimRescueLife(world, rescuer, candidate.victim, e.episodeId);
   }

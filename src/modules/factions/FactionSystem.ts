@@ -1,3 +1,4 @@
+import { isActiveBondBetween } from '../social/RelationshipRules.ts';
 import { performConversation } from '../social/SocialConversationService.ts';
 import { System } from '../../ecs/System.ts';
 import { ECSWorld } from '../../ecs/World.ts';
@@ -528,8 +529,8 @@ export class FactionSystem implements System {
             (rel.affinity >= FACTION_PROGRESSION_CONFIG.hamlet.minPairAffinity ||
               rel.relationType === 'kin_parent' ||
               rel.relationType === 'kin_child' ||
-              rel.relationType === 'dao_companion' ||
-              rel.relationType === 'sworn_brother')
+              isActiveBondBetween(world, cluster[i], cluster[j], 'dao_companion') ||
+              isActiveBondBetween(world, cluster[i], cluster[j], 'sworn_brother'))
           ) {
             hasBond = true;
             break;

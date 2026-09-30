@@ -1,3 +1,4 @@
+import { maintainSocialAssistance, registerSelfDefense, setCombatIntent } from './CombatIntentService.ts';
 import { captureRescueCandidates, recordRescueThreat, resolveRescueKill } from '../social/RescueEvidenceService.ts';
 import { RESIDENT_STARVATION_THRESHOLD } from '../beings/BeingComponents.ts';
 import { System } from '../../ecs/System.ts';
@@ -82,6 +83,7 @@ export class CombatSystem implements System {
 
       if (hp.isDead || realm?.isBreakingThrough) continue;
 
+      if (maintainSocialAssistance(world, ent)) continue;
       // Cập nhật cooldown
       if (stats && stats.currentCooldown > 0) {
         stats.currentCooldown -= dt;
@@ -89,7 +91,7 @@ export class CombatSystem implements System {
 
       // Đồng bộ mục tiêu săn mồi cho động vật ở trạng thái hunt
       if (animalBrain && animalBrain.state === 'hunt' && animalBrain.targetEntityId !== null && stats) {
-        stats.targetEntityId = animalBrain.targetEntityId;
+        setCombatIntent(world, ent, animalBrain.targetEntityId, 'autonomous');
       }
 
       // 1. TÌM MỤC TIÊU (Yêu tộc đói săn động vật hoặc Ma tộc tìm địch lân cận)
@@ -100,7 +102,7 @@ export class CombatSystem implements System {
         if (isPredator) {
           targetId = this.findNearbyTarget(world, ent, pos, 90, race?.raceId, diplomacy);
           if (stats && targetId !== null) {
-            stats.targetEntityId = targetId;
+            setCombatIntent(world, ent, targetId, 'autonomous');
           }
         }
       }
@@ -433,6 +435,7 @@ export class CombatSystem implements System {
     handleBondBetrayal(world, attackerId, targetId, Math.min(targetHp.current, finalDmg));
     targetHp.current = Math.max(0, targetHp.current - finalDmg);
     recordRescueThreat(world, targetId, attackerId);
+    registerSelfDefense(world, targetId, attackerId);
 
     // Nếu mục tiêu là động vật còn sống, đánh dấu mối đe dọa để AI động vật có thể chạy trốn / phản ứng
     const targetAnimalBrain = world.getComponent(targetId, AnimalBrainComponent);

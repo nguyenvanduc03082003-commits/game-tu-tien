@@ -1,3 +1,5 @@
+import { recordSocialTelemetry } from './SocialSimulationTelemetry.ts';
+import { socialEventTime } from './SocialEventTime.ts';
 import { ECSWorld } from '../../ecs/World.ts';
 import { HealthComponent } from '../beings/BeingComponents.ts';
 import { CorpseComponent } from '../beings/DeathComponents.ts';
@@ -65,13 +67,14 @@ export function processSocialDeath(world: ECSWorld, deceased: number, corpse: Co
   endBondsForDeath(world, deceased);
   // Commit before callbacks so reentrant event handling cannot duplicate this episode.
   corpse.socialDeathProcessed = true;
+  recordSocialTelemetry(world, 'death', 'processed', deceased);
   const tick = world.getCurrentTick();
-  const day = world.calendarDaysAtTick();
   for (const { entity, closeKin } of recipients) {
     let memory = world.getComponent(entity, MemoryComponent);
     if (!memory) { memory = new MemoryComponent(); world.addComponent(entity, memory); }
     const reasonText = closeKin ? `Mất người thân chí cốt [${corpse.deceasedName}]` : `Mất tri kỷ bằng hữu [${corpse.deceasedName}]`;
-    memory.addMemory('bereavement', reasonText, 5, -80, deceased, corpse.deceasedName, day);
+    memory.addMemory('bereavement', reasonText, 5, -80, deceased, corpse.deceasedName, socialEventTime(world));
+    recordSocialTelemetry(world, 'bereavement', 'recorded', entity, deceased);
     emitGrowthEvent({ world, eventId: `bereavement:${entity}:deceased:${deceased}`, entityId: entity,
       kind: 'bereavement', tick, familyKey: `bereavement:${deceased}`,
       milestoneKey: `bereavement:${entity}:${deceased}`, difficulty: 1.0,

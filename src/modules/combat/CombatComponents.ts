@@ -240,6 +240,15 @@ export class EquipmentComponent implements Component {
   }
 }
 
+export interface CombatIntent {
+  schemaVersion: 1;
+  source: 'autonomous' | 'self_defense' | 'social_assistance' | 'god_decree';
+  enemyId: number;
+  startedAtDay: number;
+  allyId?: number;
+  bondEpisodeId?: string;
+}
+
 export class CombatStatsComponent implements Component {
   public baseAtk: number = 10;
   public defense: number = 0;
@@ -250,7 +259,13 @@ export class CombatStatsComponent implements Component {
   public dodgeRate: number = 0.05;   // Tỷ lệ né đòn
   public attackRange: number = 22;
   public currentCooldown: number = 0;
-  public targetEntityId: number | null = null;
+  private _combatTarget: number | null = null;
+  public combatIntent: CombatIntent | null = null;
+  public get targetEntityId(): number | null { return this._combatTarget; }
+  public set targetEntityId(value: number | null) {
+    if (value !== this._combatTarget || value === null) this.combatIntent = null;
+    this._combatTarget = value;
+  }
   public isHostile: boolean = false; // Có chủ động tấn công không
   public buffDamageMultiplier: number = 1.0;
   public buffTimer: number = 0;
