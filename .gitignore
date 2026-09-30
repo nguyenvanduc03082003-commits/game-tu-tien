@@ -1,0 +1,8 @@
+node_modules/
+dist/
+baseline-test.log
+*.log
+scratch/*.cjs
+.env
+.env.*
+!.env.example

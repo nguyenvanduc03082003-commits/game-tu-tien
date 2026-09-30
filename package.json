@@ -1,0 +1,18 @@
+{
+  "name": "game-tu-tien-simulator",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "node tests/run.mjs && node tests/appearance-catalog.mjs",
+    "assets:check": "node scripts/appearance-catalog.mjs",
+    "assets:template": "node scripts/appearance-template.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
+  }
+}
