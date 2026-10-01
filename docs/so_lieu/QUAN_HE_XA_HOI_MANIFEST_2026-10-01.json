@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-01",
+  "socialGroups": 17,
+  "controlledRuns": 18,
+  "integrationRuns": 3,
+  "validation": {
+    "assetsExit": 0,
+    "testExit": 0,
+    "buildExit": 0
+  },
+  "hashes": [
+    {
+      "path": "src/modules/save/SaveManager.ts",
+      "sha256": "AC34443EEE9B342D617CC5A364FCD03F29C31531286811EE91B704AFBCEB0B3A"
+    },
+    {
+      "path": "src/modules/ai/brain/goals/StrategicGoal.ts",
+      "sha256": "52D3B9E5576CF713DC5F40108DE47639FFAAD5F69968F5AD590FD2A82FF370B6"
+    },
+    {
+      "path": "src/modules/combat/ProjectileSystem.ts",
+      "sha256": "B9EFA01BD8F38336FE03C315A958F684DED9404E19311F1194E3D1AB9DEAB3C3"
+    },
+    {
+      "path": "tests/social-fixture.ts",
+      "sha256": "C89159F444AAB4B228C4E0FC0B4DC61B434AEE7E4EEBE6B5C9A2C2E6D712C5FE"
+    },
+    {
+      "path": "tests/social-phase5-regression.ts",
+      "sha256": "10671D93F2E3A769FF10D919EA28D9E885108A4D2158699334631DE151225EB4"
+    },
+    {
+      "path": "tests/social-baseline.ts",
+      "sha256": "A8C4B1A1420ABD12F1A9F03F6C9B7FFDAEA230097107D967851DBC575B69A6EB"
+    },
+    {
+      "path": "tests/social-integration-baseline.ts",
+      "sha256": "C940138CDB5BD876CDDC8ED69D6E337EFCAB334C9292D7F4BDB49C1C50CFCEA6"
+    },
+    {
+      "path": "tests/run-social.mjs",
+      "sha256": "D7E6B72A40D8944FEF257CE374737F08DDAC0239C8DB6B926CB5D85A94864B53"
+    },
+    {
+      "path": "tests/run.mjs",
+      "sha256": "17FC47AD901DA6F70949908F38C67E1F6CB85287E9A9AF955C81905AFD054793"
+    },
+    {
+      "path": "docs/so_lieu/QUAN_HE_XA_HOI_BASELINE_2026-10-01.json",
+      "sha256": "FACFE2600D1B1874D0AE97DB4C7BEDAC7D8C7D328AE42C4FF21E8D41BD2EC351"
+    },
+    {
+      "path": "docs/so_lieu/QUAN_HE_XA_HOI_INTEGRATION_2026-10-01.json",
+      "sha256": "D74FAF3D040CE7CAA73F847D3CED9AC514B86F35618AFBDEABD0B9957C50D5D9"
+    },
+    {
+      "path": "docs/so_lieu/QUAN_HE_XA_HOI_TONG_HOP_2026-10-01.csv",
+      "sha256": "60B2D3E415D8DC3E4961719C3D678FCDCCD2AADEF5C8D6E042CAE2BE9339AEA3"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { recordSocialTelemetry } from './SocialSimulationTelemetry.ts';
+import { clearSocialFamiliarity } from './SocialFamiliarityService.ts';
 import { socialEventTime } from './SocialEventTime.ts';
 import { EventBus } from '../../core/EventBus.ts';
 import { ECSWorld } from '../../ecs/World.ts';
@@ -31,8 +32,10 @@ function formBond(world: ECSWorld, a: number, b: number, typeA: RelationshipType
   recordSocialTelemetry(world, 'bond', 'attempted', a, b, typeA);
   const result = evaluate();
   if (result.status !== 'eligible') { recordSocialTelemetry(world, 'bond', result.status, a, b, result.status === 'rejected' ? result.reason : typeA); return result; }
-  if (useCooldown && getSocialCooldownRemainingDays(world, a, b, 'bondAttempt') > 0)
+  if (useCooldown && getSocialCooldownRemainingDays(world, a, b, 'bondAttempt') > 0) {
+    recordSocialTelemetry(world, 'bond', 'rejected', a, b, 'cooldown_active');
     return { status: 'rejected', reason: 'cooldown_active', reasons: ['cooldown_active'] };
+  }
   const left = world.getComponent(a, SocialRelationshipComponent)!;
   const right = world.getComponent(b, SocialRelationshipComponent)!;
   const nameA = world.getComponent(a, NameComponent)?.name ?? 'Cư dân';
@@ -54,9 +57,7 @@ function formBond(world: ECSWorld, a: number, b: number, typeA: RelationshipType
     [left, b, nameB, bonusA], [right, a, nameA, bonusB],
   ] as const) {
     if (!bonus) continue;
-    const record = relations.adjustScores(target, name, ...bonus, socialEventTime(world));
-    record.lastInteractionDay = world.calendarDayFloorAtTick();
-    record.lastInteractionTick = world.getCurrentTick();
+    relations.adjustScores(target, name, ...bonus, socialEventTime(world));
   }
   if (useCooldown) startSocialCooldown(world, a, b, 'bondAttempt');
   recordSocialTelemetry(world, 'bond', 'created', a, b, typeA);
@@ -111,6 +112,7 @@ function endBond(world: ECSWorld, a: number, b: number, typeA: RelationshipType,
     return { status: 'rejected', reason: 'participant_unavailable' };
   if (!isActiveBondBetween(world, a, b, typeA)) return { status: 'rejected', reason: 'existing_bond_conflict' };
   const episodeId = recordA.bond?.episodeId ?? nextEpisode(world, a, b);
+  clearSocialFamiliarity(world, a, b);
   const endedAtDay = world.calendarDaysAtTick();
   recordA.bond = { schemaVersion: 1, episodeId, status: 'ended',
     ...(recordA.bond?.formedAtDay !== undefined ? { formedAtDay: recordA.bond.formedAtDay } : {}), endedAtDay, endReason: reason };
@@ -150,15 +152,17 @@ export type BondAttemptResult = RelationshipChangeResult | { status: 'not_formed
 /** Một lần thử đủ điều kiện ghi khóa dù RNG không thành công; từ chối không tiêu RNG. */
 function attemptBond(world: ECSWorld, a: number, b: number, evaluate: () => BondEligibility,
   form: () => RelationshipChangeResult, chance: number): BondAttemptResult {
+  recordSocialTelemetry(world, 'bond_proposal', 'attempted', a, b);
   const eligibility = evaluate();
-  if (eligibility.status !== 'eligible') return eligibility;
+  if (eligibility.status !== 'eligible') { recordSocialTelemetry(world, 'bond_proposal', eligibility.status, a, b, eligibility.status === 'rejected' ? eligibility.reason : undefined); return eligibility; }
   let outcome: BondAttemptResult = { status: 'not_formed' };
   const interaction = performSocialInteraction(world, a, b, 'bondAttempt', () => {
-    if (Math.random() >= chance) return true;
+    if (Math.random() >= chance) { recordSocialTelemetry(world, 'bond_proposal', 'not_formed', a, b); return true; }
     outcome = form();
     return outcome.status === 'created';
   });
   if (interaction.status === 'skipped' && interaction.reason === 'interaction_failed') return outcome;
+  if (interaction.status === 'skipped') recordSocialTelemetry(world, 'bond_proposal', 'rejected', a, b, interaction.reason);
   if (interaction.status === 'skipped') return {
     status: 'rejected', reason: interaction.reason === 'cooldown_active' ? 'cooldown_active' : 'participant_unavailable',
   };
@@ -189,8 +193,6 @@ export function recordHostility(world: ECSWorld, observer: number, attacker: num
   return performCombatSocialInteraction(world, observer, attacker, channel, () => {
     const relations = world.getComponent(observer, SocialRelationshipComponent)!;
     const record = relations.adjustScores(attacker, attackerName, affinityDelta, trustDelta, respectDelta, socialEventTime(world));
-    record.lastInteractionDay = world.calendarDayFloorAtTick();
-    record.lastInteractionTick = world.getCurrentTick();
     if (!record.bond && !isProtectedRelationship(record.relationType)) record.relationType = 'enemy';
     return true;
   }, channel === 'attackedScores');
@@ -200,6 +202,7 @@ export function recordHostility(world: ECSWorld, observer: number, attacker: num
 /** Called only after a hit is confirmed, before HP is reduced, including lethal hits. */
 export function handleBondBetrayal(world: ECSWorld, attacker: number, victim: number, damage: number): BondEndResult | null {
   if (!Number.isFinite(damage) || damage <= 0) return null;
+  clearSocialFamiliarity(world, attacker, victim);
   const type = world.getComponent(attacker, SocialRelationshipComponent)?.getRelationship(victim)?.relationType;
   if (!type || !['dao_companion', 'master', 'disciple', 'sworn_brother'].includes(type) ||
       !isActiveBondBetween(world, attacker, victim, type)) return null;

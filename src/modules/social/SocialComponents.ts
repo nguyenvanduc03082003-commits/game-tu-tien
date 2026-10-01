@@ -38,6 +38,14 @@ export interface RelationshipRecord {
   lastInteractionTick?: number;
   specialBondDate?: string;    // Ngày thề nguyền (kết đạo lữ, bái sư, kết nghĩa)
   bond?: RelationshipBondState;
+  familiarity?: SocialFamiliarityProgress;
+}
+
+export interface SocialFamiliarityProgress {
+  schemaVersion: 1;
+  neutralCount: number;
+  lastQualifiedDay: number;
+  lastQualifiedTick: number;
 }
 
 export type BondEndReason = 'death' | 'betrayal' | 'estrangement';
@@ -52,7 +60,8 @@ export interface RelationshipBondState {
 }
 
 export function cloneRelationshipRecord(record: RelationshipRecord): RelationshipRecord {
-  return { ...record, ...(record.bond ? { bond: { ...record.bond } } : {}) };
+  return { ...record, ...(record.bond ? { bond: { ...record.bond } } : {}),
+    ...(record.familiarity ? { familiarity: { ...record.familiarity } } : {}) };
 }
 
 export interface RescueEvidence {
@@ -89,7 +98,9 @@ export class SocialRelationshipComponent implements Component {
 
   public archiveEndedBond(record: RelationshipRecord): void {
     if (record.bond?.status !== 'ended' || this.bondHistory.some(entry => entry.bond?.episodeId === record.bond?.episodeId)) return;
-    this.bondHistory.unshift(cloneRelationshipRecord(record));
+    const historical = cloneRelationshipRecord(record);
+    delete historical.familiarity;
+    this.bondHistory.unshift(historical);
     this.bondHistory.length = Math.min(this.bondHistory.length, SOCIAL_CONFIG.lifecycle.maxHistory);
   }
 
@@ -121,6 +132,8 @@ export class SocialRelationshipComponent implements Component {
     record.affinity = Math.max(-100, Math.min(100, record.affinity + affinityDelta));
     record.trust = Math.max(0, Math.min(100, record.trust + trustDelta));
     record.respect = Math.max(0, Math.min(100, record.respect + respectDelta));
+    if (record.affinity < SOCIAL_CONFIG.familiarity.minMutualAffinity || record.trust >= SOCIAL_CONFIG.familiarity.maxTrust)
+      delete record.familiarity;
     // Reset immediately on recovery, even when it occurs between lifecycle scans.
     if (record.bond && (record.affinity > SOCIAL_CONFIG.lifecycle.conflictAffinity || record.trust > SOCIAL_CONFIG.lifecycle.conflictTrust))
       delete record.bond.conflictSinceDay;

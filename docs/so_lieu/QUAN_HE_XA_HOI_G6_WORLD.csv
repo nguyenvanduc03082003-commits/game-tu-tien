@@ -1,0 +1,13 @@
+archetype,seed,days,startingResidents,livingOriginal,firstFriendDay,firstBondDay,directedFriends,mutualFriendPairs,activeBondPairs,isolatedLiving,factions,buildings,familiarityRewardedSides
+mortal_human,11,360,30,29,75,173,476,182,50,0,1,10,3801
+yao_common,11,360,30,30,Chưa quan sát,Chưa quan sát,0,0,0,0,0,0,8
+mortal_demon,11,360,30,30,Chưa quan sát,Chưa quan sát,0,0,0,0,0,0,6
+mixed,11,180,90,17,1,Chưa quan sát,2,0,0,0,0,0,0
+mortal_human,22,360,30,30,71,108,522,201,44,0,1,10,4447
+yao_common,22,360,30,30,Chưa quan sát,Chưa quan sát,0,0,0,0,0,0,4
+mortal_demon,22,360,30,30,Chưa quan sát,Chưa quan sát,0,0,0,0,0,0,6
+mixed,22,180,90,20,1,Chưa quan sát,2,0,0,0,0,0,0
+mortal_human,33,360,30,26,66,136,212,100,43,0,2,15,2227
+yao_common,33,360,30,30,Chưa quan sát,Chưa quan sát,0,0,0,0,1,3,8
+mortal_demon,33,360,30,30,262,Chưa quan sát,2,0,0,0,1,3,8
+mixed,33,180,90,14,1,Chưa quan sát,5,0,0,0,0,0,0

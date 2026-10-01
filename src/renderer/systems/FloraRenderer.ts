@@ -2,7 +2,7 @@ import { ECSWorld } from '../../ecs/World.ts';
 import { ViewportCamera } from '../ViewportCamera.ts';
 import { PositionComponent } from '../../modules/beings/BeingComponents.ts';
 import { PlantComponent } from '../../modules/flora/PlantComponents.ts';
-import { PLANT_DEFINITIONS } from '../../config/plants.config.ts';
+import { PLANT_DEFINITIONS, type PlantDefinition } from '../../config/plants.config.ts';
 import { AssetManager } from '../assets/AssetManager.ts';
 import { WorldMap } from '../../modules/world/WorldMap.ts';
 import { PlantFactory } from '../../modules/flora/PlantFactory.ts';
@@ -65,7 +65,7 @@ export class FloraRenderer {
     sx: number,
     sy: number,
     plant: PlantComponent,
-    def: any,
+    def: PlantDefinition,
     zoom: number,
     isWinter: boolean
   ): void {

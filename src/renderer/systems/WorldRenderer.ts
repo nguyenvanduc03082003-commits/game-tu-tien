@@ -1,6 +1,6 @@
 import { WorldMap } from '../../modules/world/WorldMap.ts';
 import { ViewportCamera } from '../ViewportCamera.ts';
-import { TERRAIN_CONFIGS, TerrainType } from '../../config/terrains.config.ts';
+import { TERRAIN_CONFIGS, TerrainType, type TerrainProperties } from '../../config/terrains.config.ts';
 import { AssetManager } from '../assets/AssetManager.ts';
 
 export class WorldRenderer {
@@ -83,7 +83,7 @@ export class WorldRenderer {
     size: number,
     terrain: TerrainType,
     variant: number,
-    config: any
+    config: TerrainProperties
   ): void {
     const p = Math.max(1, Math.floor(size / 8)); // 1 đơn vị pixel tương đối
 

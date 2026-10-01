@@ -1,4 +1,5 @@
 import { recordSocialTelemetry } from './SocialSimulationTelemetry.ts';
+import { clearSocialFamiliarity } from './SocialFamiliarityService.ts';
 import { socialEventTime } from './SocialEventTime.ts';
 import { ECSWorld } from '../../ecs/World.ts';
 import { HealthComponent } from '../beings/BeingComponents.ts';
@@ -22,6 +23,7 @@ export function endBondsForDeath(world: ECSWorld, deceased: number): void {
   const now = world.calendarDaysAtTick();
   for (const other of pairs) {
     if (other === deceased) continue;
+    clearSocialFamiliarity(world, deceased, other);
     const otherSocial = world.getComponent(other, SocialRelationshipComponent);
     const records: [SocialRelationshipComponent, RelationshipRecord][] = [];
     const a = deadSocial?.getRelationship(other);
@@ -29,6 +31,7 @@ export function endBondsForDeath(world: ECSWorld, deceased: number): void {
     if (a && deadSocial && BOND_TYPES.has(a.relationType) && a.bond?.status !== 'ended') records.push([deadSocial, a]);
     if (b && otherSocial && BOND_TYPES.has(b.relationType) && b.bond?.status !== 'ended') records.push([otherSocial, b]);
     if (!records.length) continue;
+    recordSocialTelemetry(world, 'bond', 'ended', deceased, other, 'death');
     // Assign legacy records a stable ID without changing existing explicit episode IDs.
     let legacyId: string | undefined;
     if (records.some(([, record]) => !record.bond)) {

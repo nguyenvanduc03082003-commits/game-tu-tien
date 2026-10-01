@@ -227,6 +227,8 @@ test('Step 3: Kingdom progression enforces 90 total residents and Sect founding 
   // 1. Kiểm tra Sect founding: cần 1 founder + 49 followers = 50 thành viên
   const founder = BeingFactory.spawnFromArchetype(world, 'mortal_human', 150, 150);
   const fRealm = world.getComponent(founder, RealmComponent)!;
+  // A natural spawn no longer guarantees an awakened spiritual root.
+  world.addComponent(founder, new SpiritualRootComponent(true, 'true', 'Tam Căn', ['kim'], 70));
   fRealm.stageIndex = 2; // Trúc Cơ
   fRealm.combatPower = 350;
   const fTech = new CultivationTechniqueComponent('tech_1', 'Thái Sơ Quyết', 2, 'kim', 'Bản môn công pháp', 'tong_mon', 'Thái Sơ Môn', 'nhap_mon', 0);

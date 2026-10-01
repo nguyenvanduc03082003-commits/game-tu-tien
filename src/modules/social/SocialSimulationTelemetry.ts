@@ -2,6 +2,7 @@ import { ECSWorld } from '../../ecs/World.ts';
 import { socialEventTime, SocialEventTime } from './SocialEventTime.ts';
 export interface SocialSimulationSample extends SocialEventTime {
   category: string; result: string; actor: number; target?: number; detail?: string;
+  planRevision?: number;
 }
 interface TelemetryState { enabled: boolean; counters: Map<string, number>; samples: SocialSimulationSample[]; lastTick: number; }
 const states = new WeakMap<ECSWorld, TelemetryState>();
@@ -13,14 +14,24 @@ function state(world: ECSWorld): TelemetryState {
 }
 export function setSocialTelemetryEnabled(world: ECSWorld, enabled: boolean): void { state(world).enabled = enabled; }
 export function resetSocialTelemetry(world: ECSWorld): void { states.delete(world); }
-export function recordSocialTelemetry(world: ECSWorld, category: string, result: string, actor: number, target?: number, detail?: string): void {
+/** Aggregate instrumentation: does not create samples or evaluate gameplay again. */
+export function incrementSocialCounter(world: ECSWorld, category: string, result: string, amount = 1): void {
+  const value = states.get(world);
+  if (!value?.enabled || !Number.isSafeInteger(amount) || amount <= 0) return;
+  state(world);
+  const key = `${category}:${result}:`;
+  if (value.counters.has(key) || value.counters.size < 128)
+    value.counters.set(key, (value.counters.get(key) ?? 0) + amount);
+}
+export function recordSocialTelemetry(world: ECSWorld, category: string, result: string, actor: number, target?: number, detail?: string, planRevision?: number): void {
   const value = states.get(world);
   if (!value?.enabled) return;
   state(world);
   const key = `${category}:${result}:${detail ?? ''}`;
   // Counter keys must remain bounded even if a future caller supplies arbitrary detail.
   if (value.counters.has(key) || value.counters.size < 128) value.counters.set(key, (value.counters.get(key) ?? 0) + 1);
-  value.samples.unshift({ ...socialEventTime(world), category, result, actor, target, detail });
+  value.samples.unshift({ ...socialEventTime(world), category, result, actor, target, detail,
+    ...(planRevision !== undefined ? { planRevision } : {}) });
   if (value.samples.length > 200) value.samples.length = 200;
 }
 /** Readonly snapshot; inspecting never enables telemetry or creates state. */

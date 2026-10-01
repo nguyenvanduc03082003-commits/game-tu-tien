@@ -1,0 +1,4207 @@
+{
+  "schemaVersion": 1,
+  "scope": "Headless Engine system graph, registration/constructors copied; controlled plain map and food. No rendering, input, Engine event handlers, initial fauna or browser scheduling. All systems present; animal systems have no initial animals.",
+  "tickPerDay": 400,
+  "secondsPerDayAt1x": 20,
+  "map": {
+    "width": 64,
+    "height": 64,
+    "elevation": 0.3,
+    "riverColumn": 10,
+    "matureFoodPlants": 80
+  },
+  "runs": [
+    {
+      "seed": 1100,
+      "archetypes": {
+        "mortal_human": 30
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 30,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 2399.9999999999654,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 2399.9999999999654
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 30
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 685.2499999999245,
+        "SECLUDED_CULTIVATION": 341.85000000004345,
+        "LABOUR_WORK": 966.0999999996691,
+        "WANDER_SERENDIPITY": 107.19999999999605,
+        "SOCIAL_RECREATE": 299.60000000003384
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 1980.9375,
+      "systemUpdateMs": {
+        "QiSystem": 21.069900000002235,
+        "ProfessionSystem": 5.476499999998396,
+        "WeatherSystem": 49.05679999999256,
+        "TribulationSystem": 2.492800000000443,
+        "DisasterSystem": 1.3870999999949163,
+        "DerivedStatsSystem": 17.005899999991925,
+        "MentalStateSystem": 23.92810000000236,
+        "ThreeTierAISystem": 777.4690000000028,
+        "ChildcareSystem": 3.015299999992294,
+        "NeedsSystem": 58.576999999991585,
+        "AnimalLifecycleSystem": 2.6478000000061,
+        "AnimalAISystem": 1.5037000000006628,
+        "LifeStageSystem": 14.43470000000434,
+        "AnimalMovementSystem": 113.43000000000075,
+        "SpiritualRootSystem": 3.051799999997911,
+        "AlchemySystem": 110.19789999999557,
+        "CultivationSystem": 29.842600000000402,
+        "CorpseAndGraveSystem": 7.479899999994814,
+        "PlantGrowthSystem": 51.03580000000102,
+        "DiplomacySystem": 2.9333999999998923,
+        "CombatSystem": 48.10610000000179,
+        "AnimalCarcassSystem": 2.713799999990897,
+        "FactionSystem": 126.21149999999989,
+        "AnimalReproductionSystem": 2.0624999999977263,
+        "BuildingSystem": 1.5991000000121858,
+        "SocialInteractionSystem": 77.69530000000896,
+        "ReproductionSystem": 24.40220000000636,
+        "ProjectileSystem": 1.6978000000021893,
+        "AnimationSystem": 20.04260000000022,
+        "GrowthSystem": 20.49199999999928
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 1.1187860833333316,
+        "p50": 0.793999999999869,
+        "p95": 2.3514999999999873,
+        "p99": 6.638299999999845
+      },
+      "memory": {
+        "rss": 319950848,
+        "heapTotal": 220860416,
+        "heapUsed": 50064376,
+        "external": 2176502,
+        "arrayBuffers": 159995
+      }
+    },
+    {
+      "seed": 1101,
+      "archetypes": {
+        "mortal_human": 30
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 30,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 2399.9999999999654,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 2399.9999999999654
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 30
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 713.8499999998985,
+        "LABOUR_WORK": 1009.9999999996292,
+        "SECLUDED_CULTIVATION": 196.95000000001053,
+        "WANDER_SERENDIPITY": 162.40000000000268,
+        "SOCIAL_RECREATE": 316.80000000003776
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 2558.8084,
+      "systemUpdateMs": {
+        "QiSystem": 23.361799999986943,
+        "ProfessionSystem": 9.659100000003491,
+        "WeatherSystem": 71.76920000000428,
+        "TribulationSystem": 2.4277000000083717,
+        "DisasterSystem": 1.8278999999938605,
+        "DerivedStatsSystem": 23.003800000024057,
+        "MentalStateSystem": 30.920899999997346,
+        "ThreeTierAISystem": 981.7283000000189,
+        "ChildcareSystem": 4.162999999991371,
+        "NeedsSystem": 109.05409999999392,
+        "AnimalLifecycleSystem": 3.0950999999849955,
+        "AnimalAISystem": 1.776400000007925,
+        "LifeStageSystem": 18.70169999999507,
+        "AnimalMovementSystem": 124.18759999998838,
+        "SpiritualRootSystem": 4.080800000016097,
+        "AlchemySystem": 108.1015999999936,
+        "CultivationSystem": 33.06720000000405,
+        "CorpseAndGraveSystem": 11.57900000000609,
+        "PlantGrowthSystem": 69.09389999997893,
+        "DiplomacySystem": 3.3038000000024113,
+        "CombatSystem": 65.49929999998858,
+        "AnimalCarcassSystem": 3.6541999999826658,
+        "FactionSystem": 213.06529999999293,
+        "AnimalReproductionSystem": 1.3961999999983163,
+        "BuildingSystem": 1.486799999989671,
+        "SocialInteractionSystem": 105.80170000002727,
+        "ReproductionSystem": 32.8596000000025,
+        "ProjectileSystem": 1.661700000014207,
+        "AnimationSystem": 26.46369999998933,
+        "GrowthSystem": 26.627299999995557
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 1.4619197500000025,
+        "p50": 1.1688999999996668,
+        "p95": 2.9778000000005704,
+        "p99": 7.70220000000063
+      },
+      "memory": {
+        "rss": 320495616,
+        "heapTotal": 222171136,
+        "heapUsed": 73015752,
+        "external": 2192926,
+        "arrayBuffers": 176379
+      }
+    },
+    {
+      "seed": 1102,
+      "archetypes": {
+        "mortal_human": 30
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 30,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 2399.9999999999654,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 2399.9999999999654
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 30
+      },
+      "residentSimulationSecondsByGoal": {
+        "SECLUDED_CULTIVATION": 168.00000000000395,
+        "LABOUR_WORK": 1108.14999999954,
+        "SURVIVE_VITAL": 722.2499999998909,
+        "WANDER_SERENDIPITY": 82.39999999999746,
+        "SOCIAL_RECREATE": 319.2000000000383
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 2405.6841999999997,
+      "systemUpdateMs": {
+        "QiSystem": 21.60320000001593,
+        "ProfessionSystem": 6.084300000005896,
+        "WeatherSystem": 70.46560000002592,
+        "TribulationSystem": 2.650300000002062,
+        "DisasterSystem": 2.757499999970605,
+        "DerivedStatsSystem": 19.27959999999439,
+        "MentalStateSystem": 23.986699999994016,
+        "ThreeTierAISystem": 922.4722999999958,
+        "ChildcareSystem": 3.3087000000141416,
+        "NeedsSystem": 72.08419999999478,
+        "AnimalLifecycleSystem": 3.5219000000079177,
+        "AnimalAISystem": 1.706200000014178,
+        "LifeStageSystem": 17.117199999984223,
+        "AnimalMovementSystem": 121.30269999998382,
+        "SpiritualRootSystem": 3.8503999999948064,
+        "AlchemySystem": 102.65589999998429,
+        "CultivationSystem": 25.696799999993345,
+        "CorpseAndGraveSystem": 5.711099999989528,
+        "PlantGrowthSystem": 68.29620000000341,
+        "DiplomacySystem": 3.9934999999977663,
+        "CombatSystem": 60.38170000000355,
+        "AnimalCarcassSystem": 4.578400000012152,
+        "FactionSystem": 218.789700000003,
+        "AnimalReproductionSystem": 2.1636999999946056,
+        "BuildingSystem": 1.574399999986781,
+        "SocialInteractionSystem": 98.78409999999985,
+        "ReproductionSystem": 29.129399999984344,
+        "ProjectileSystem": 1.4986999999864565,
+        "AnimationSystem": 26.676800000005642,
+        "GrowthSystem": 25.010499999995773
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 1.4329696666666685,
+        "p50": 1.143000000000029,
+        "p95": 2.686200000000099,
+        "p99": 9.127900000000409
+      },
+      "memory": {
+        "rss": 322887680,
+        "heapTotal": 222433280,
+        "heapUsed": 72179728,
+        "external": 2209310,
+        "arrayBuffers": 192763
+      }
+    },
+    {
+      "seed": 1100,
+      "archetypes": {
+        "mortal_human": 30
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 30,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 2399.9999999999654,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 2399.9999999999654
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 30
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 685.2499999999245,
+        "SECLUDED_CULTIVATION": 341.85000000004345,
+        "LABOUR_WORK": 966.0999999996691,
+        "WANDER_SERENDIPITY": 107.19999999999605,
+        "SOCIAL_RECREATE": 299.60000000003384
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 1779,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 1779,
+        "conversation:attempted:casual": 101,
+        "conversation:completed:neutral": 405,
+        "conversation_side:neutral:casual": 185,
+        "community_scan:input_pairs:": 89895,
+        "community_scan:unique_near_pairs:": 1009,
+        "community_scan:commit_calls:": 330,
+        "conversation:attempted:community": 330,
+        "conversation_side:neutral:community": 605,
+        "community_scan:filtered_cooldown:": 679,
+        "community_scan:excluded_non_near_pairs:": 72537,
+        "community_scan:duplicate_near_pairs:": 16349,
+        "conversation:completed:awkward": 26,
+        "conversation_side:awkward:casual": 17,
+        "conversation_side:awkward:community": 55,
+        "social_plan:started:conversation": 121,
+        "social_plan:failed:unsafe": 1,
+        "social_plan:failed:cooldown_active": 23,
+        "social_plan:started:rest": 3,
+        "social_plan:interrupted:goal_changed": 95,
+        "social_plan:failed:out_of_range": 5
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 2177.0995000000003,
+      "systemUpdateMs": {
+        "QiSystem": 22.52730000005795,
+        "ProfessionSystem": 5.091600000032486,
+        "WeatherSystem": 71.00209999997423,
+        "TribulationSystem": 2.7395000000451546,
+        "DisasterSystem": 1.6600999999755004,
+        "DerivedStatsSystem": 18.821299999937764,
+        "MentalStateSystem": 22.58969999998226,
+        "ThreeTierAISystem": 789.7529000000486,
+        "ChildcareSystem": 2.941900000028909,
+        "NeedsSystem": 71.51839999998265,
+        "AnimalLifecycleSystem": 3.2009000000125525,
+        "AnimalAISystem": 1.7187999999587191,
+        "LifeStageSystem": 16.860499999986132,
+        "AnimalMovementSystem": 121.83480000003328,
+        "SpiritualRootSystem": 4.053700000094977,
+        "AlchemySystem": 91.77340000002005,
+        "CultivationSystem": 28.289100000032704,
+        "CorpseAndGraveSystem": 5.1766000000443455,
+        "PlantGrowthSystem": 63.5582000000104,
+        "DiplomacySystem": 3.850899999963076,
+        "CombatSystem": 55.116999999987456,
+        "AnimalCarcassSystem": 3.1802000000316184,
+        "FactionSystem": 170.46529999999257,
+        "AnimalReproductionSystem": 1.222799999961353,
+        "BuildingSystem": 1.3337000000083208,
+        "SocialInteractionSystem": 107.72839999997996,
+        "ReproductionSystem": 24.398199999983262,
+        "ProjectileSystem": 1.3342000000156986,
+        "AnimationSystem": 26.44910000001073,
+        "GrowthSystem": 21.464999999981956
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 1.3222158333333436,
+        "p50": 1.0480999999999767,
+        "p95": 2.6409999999996217,
+        "p99": 6.2031000000006316
+      },
+      "memory": {
+        "rss": 321146880,
+        "heapTotal": 222957568,
+        "heapUsed": 86505464,
+        "external": 2225694,
+        "arrayBuffers": 209147
+      }
+    },
+    {
+      "seed": 1101,
+      "archetypes": {
+        "mortal_human": 30
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 30,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 2399.9999999999654,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 2399.9999999999654
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 30
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 713.8499999998985,
+        "LABOUR_WORK": 1009.9999999996292,
+        "SECLUDED_CULTIVATION": 196.95000000001053,
+        "WANDER_SERENDIPITY": 162.40000000000268,
+        "SOCIAL_RECREATE": 316.80000000003776
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 2429,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 2429,
+        "conversation:attempted:casual": 122,
+        "conversation:completed:neutral": 503,
+        "conversation_side:neutral:casual": 219,
+        "community_scan:input_pairs:": 133026,
+        "community_scan:unique_near_pairs:": 1426,
+        "community_scan:commit_calls:": 411,
+        "conversation:attempted:community": 411,
+        "conversation_side:neutral:community": 754,
+        "community_scan:filtered_cooldown:": 1015,
+        "community_scan:excluded_non_near_pairs:": 103869,
+        "community_scan:duplicate_near_pairs:": 27731,
+        "conversation_side:awkward:casual": 25,
+        "conversation:completed:awkward": 30,
+        "conversation_side:awkward:community": 68,
+        "social_plan:started:conversation": 126,
+        "social_plan:failed:cooldown_active": 23,
+        "social_plan:interrupted:goal_changed": 103,
+        "social_plan:failed:out_of_range": 3,
+        "social_plan:started:rest": 3
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 2297.714899999999,
+      "systemUpdateMs": {
+        "QiSystem": 22.969799999960742,
+        "ProfessionSystem": 6.871800000000803,
+        "WeatherSystem": 71.55080000003,
+        "TribulationSystem": 2.3474000000369415,
+        "DisasterSystem": 1.7792999999310268,
+        "DerivedStatsSystem": 19.24330000001646,
+        "MentalStateSystem": 23.252999999996973,
+        "ThreeTierAISystem": 831.341900000034,
+        "ChildcareSystem": 3.2175000000170257,
+        "NeedsSystem": 72.11599999999817,
+        "AnimalLifecycleSystem": 3.609500000011394,
+        "AnimalAISystem": 1.6745999999857304,
+        "LifeStageSystem": 17.395199999962642,
+        "AnimalMovementSystem": 120.53120000001036,
+        "SpiritualRootSystem": 4.249199999989287,
+        "AlchemySystem": 93.78689999999915,
+        "CultivationSystem": 21.716500000009546,
+        "CorpseAndGraveSystem": 5.273100000038539,
+        "PlantGrowthSystem": 65.48960000000807,
+        "DiplomacySystem": 4.612699999999677,
+        "CombatSystem": 58.97820000005777,
+        "AnimalCarcassSystem": 3.4404000000140513,
+        "FactionSystem": 211.92230000001837,
+        "AnimalReproductionSystem": 1.4282999999595631,
+        "BuildingSystem": 1.6163999999880616,
+        "SocialInteractionSystem": 127.94420000000173,
+        "ReproductionSystem": 25.570700000023862,
+        "ProjectileSystem": 1.4927999999708845,
+        "AnimationSystem": 26.37500000000182,
+        "GrowthSystem": 21.058800000026167
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 1.4006007499999744,
+        "p50": 1.1059999999997672,
+        "p95": 2.73070000000007,
+        "p99": 7.6784999999999854
+      },
+      "memory": {
+        "rss": 320843776,
+        "heapTotal": 223219712,
+        "heapUsed": 113097912,
+        "external": 2242078,
+        "arrayBuffers": 225531
+      }
+    },
+    {
+      "seed": 1102,
+      "archetypes": {
+        "mortal_human": 30
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 30,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 2399.9999999999654,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 2399.9999999999654
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 30
+      },
+      "residentSimulationSecondsByGoal": {
+        "SECLUDED_CULTIVATION": 168.00000000000395,
+        "LABOUR_WORK": 1108.14999999954,
+        "SURVIVE_VITAL": 722.2499999998909,
+        "WANDER_SERENDIPITY": 82.39999999999746,
+        "SOCIAL_RECREATE": 319.2000000000383
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 2534,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 2534,
+        "conversation:attempted:casual": 115,
+        "conversation:completed:neutral": 495,
+        "conversation_side:neutral:casual": 208,
+        "community_scan:input_pairs:": 153833,
+        "community_scan:unique_near_pairs:": 1507,
+        "community_scan:commit_calls:": 445,
+        "conversation:attempted:community": 445,
+        "conversation_side:neutral:community": 756,
+        "community_scan:filtered_cooldown:": 1062,
+        "conversation_side:awkward:community": 134,
+        "conversation:completed:awkward": 65,
+        "community_scan:excluded_non_near_pairs:": 121400,
+        "community_scan:duplicate_near_pairs:": 30926,
+        "conversation_side:awkward:casual": 22,
+        "social_plan:started:conversation": 123,
+        "social_plan:started:rest": 4,
+        "social_plan:failed:cooldown_active": 19,
+        "social_plan:interrupted:goal_changed": 106,
+        "social_plan:failed:out_of_range": 2
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 2225.9976000000006,
+      "systemUpdateMs": {
+        "QiSystem": 22.311300000008487,
+        "ProfessionSystem": 6.113900000043941,
+        "WeatherSystem": 71.7329999999638,
+        "TribulationSystem": 2.0254999999706342,
+        "DisasterSystem": 1.9556999999877007,
+        "DerivedStatsSystem": 19.379199999995762,
+        "MentalStateSystem": 22.913899999990463,
+        "ThreeTierAISystem": 804.9376999999531,
+        "ChildcareSystem": 2.8665999999739142,
+        "NeedsSystem": 68.57330000002185,
+        "AnimalLifecycleSystem": 3.380199999994147,
+        "AnimalAISystem": 1.5926000000326894,
+        "LifeStageSystem": 16.47240000000056,
+        "AnimalMovementSystem": 122.69740000003185,
+        "SpiritualRootSystem": 3.4490999998943153,
+        "AlchemySystem": 90.53139999993437,
+        "CultivationSystem": 18.492399999990084,
+        "CorpseAndGraveSystem": 5.209200000008423,
+        "PlantGrowthSystem": 62.549199999961274,
+        "DiplomacySystem": 4.16050000002906,
+        "CombatSystem": 55.992499999940264,
+        "AnimalCarcassSystem": 3.2829999999758,
+        "FactionSystem": 219.13720000001558,
+        "AnimalReproductionSystem": 1.2795999999962078,
+        "BuildingSystem": 1.3730999999952473,
+        "SocialInteractionSystem": 118.79400000003261,
+        "ReproductionSystem": 25.08479999995143,
+        "ProjectileSystem": 1.3545000000340224,
+        "AnimationSystem": 25.72159999997166,
+        "GrowthSystem": 19.301400000022113
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 1.3714421666666552,
+        "p50": 1.0784999999996217,
+        "p95": 2.7651999999998225,
+        "p99": 8.633800000001429
+      },
+      "memory": {
+        "rss": 324304896,
+        "heapTotal": 223219712,
+        "heapUsed": 88054952,
+        "external": 2258462,
+        "arrayBuffers": 241915
+      }
+    },
+    {
+      "seed": 1100,
+      "archetypes": {
+        "mortal_human": 100
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 100,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 8000.000000020338,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 8000.000000020338
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 100
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 2295.3499999995847,
+        "SECLUDED_CULTIVATION": 1096.1499999995508,
+        "LABOUR_WORK": 3187.700000002831,
+        "WANDER_SERENDIPITY": 399.2000000000565,
+        "SOCIAL_RECREATE": 1021.5999999996186
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 100,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 7185.813099999999,
+      "systemUpdateMs": {
+        "QiSystem": 22.666500000046653,
+        "ProfessionSystem": 11.820499999961612,
+        "WeatherSystem": 67.35620000010022,
+        "TribulationSystem": 3.3352000000122644,
+        "DisasterSystem": 2.7689000000682427,
+        "DerivedStatsSystem": 54.834399999977904,
+        "MentalStateSystem": 69.30380000001605,
+        "ThreeTierAISystem": 2453.6930000000248,
+        "ChildcareSystem": 5.608499999983906,
+        "NeedsSystem": 232.2194000000818,
+        "AnimalLifecycleSystem": 3.9615999999005,
+        "AnimalAISystem": 1.7788000000109605,
+        "LifeStageSystem": 47.881100000053266,
+        "AnimalMovementSystem": 195.8681000000979,
+        "SpiritualRootSystem": 7.097600000000966,
+        "AlchemySystem": 311.813600000085,
+        "CultivationSystem": 83.62570000003325,
+        "CorpseAndGraveSystem": 11.904299999951036,
+        "PlantGrowthSystem": 67.45409999996991,
+        "DiplomacySystem": 5.681899999955931,
+        "CombatSystem": 161.6768000000593,
+        "AnimalCarcassSystem": 3.3389999998798885,
+        "FactionSystem": 2057.466800000053,
+        "AnimalReproductionSystem": 1.7917000001725683,
+        "BuildingSystem": 1.9188000000358443,
+        "SocialInteractionSystem": 415.42799999994895,
+        "ReproductionSystem": 68.77529999994658,
+        "ProjectileSystem": 3.2260999999452906,
+        "AnimationSystem": 72.61399999994683,
+        "GrowthSystem": 57.0686999999416
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 4.246753999999976,
+        "p50": 2.7597999999998137,
+        "p95": 6.860499999998865,
+        "p99": 59.66519999999946
+      },
+      "memory": {
+        "rss": 322850816,
+        "heapTotal": 223744000,
+        "heapUsed": 130419472,
+        "external": 2274846,
+        "arrayBuffers": 258299
+      }
+    },
+    {
+      "seed": 1101,
+      "archetypes": {
+        "mortal_human": 100
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 100,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 8000.000000020338,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 8000.000000020338
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 100
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 2252.3499999994283,
+        "LABOUR_WORK": 3027.5500000022485,
+        "SECLUDED_CULTIVATION": 1248.4999999994122,
+        "WANDER_SERENDIPITY": 481.6000000000752,
+        "SOCIAL_RECREATE": 989.9999999996473
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 100,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 8096.284,
+      "systemUpdateMs": {
+        "QiSystem": 24.281299999965995,
+        "ProfessionSystem": 12.773800000017218,
+        "WeatherSystem": 73.03280000011,
+        "TribulationSystem": 3.9349000000656815,
+        "DisasterSystem": 3.658599999780563,
+        "DerivedStatsSystem": 57.623899999871355,
+        "MentalStateSystem": 86.59589999993477,
+        "ThreeTierAISystem": 2456.999399999997,
+        "ChildcareSystem": 5.728799999826151,
+        "NeedsSystem": 227.7703999999103,
+        "AnimalLifecycleSystem": 2.8433000000441098,
+        "AnimalAISystem": 1.1130999999259075,
+        "LifeStageSystem": 49.437600000048405,
+        "AnimalMovementSystem": 203.68869999995877,
+        "SpiritualRootSystem": 7.674499999942782,
+        "AlchemySystem": 314.146499999988,
+        "CultivationSystem": 95.84589999997479,
+        "CorpseAndGraveSystem": 13.897699999968609,
+        "PlantGrowthSystem": 70.93680000003587,
+        "DiplomacySystem": 2.747800000011921,
+        "CombatSystem": 161.7403000000486,
+        "AnimalCarcassSystem": 2.1916000000164786,
+        "FactionSystem": 2781.02280000009,
+        "AnimalReproductionSystem": 1.8669999999074207,
+        "BuildingSystem": 1.6607999999650929,
+        "SocialInteractionSystem": 506.45629999994344,
+        "ReproductionSystem": 74.18630000008488,
+        "ProjectileSystem": 1.8649000000405067,
+        "AnimationSystem": 77.25190000011207,
+        "GrowthSystem": 61.28040000009787
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 5.067533333333304,
+        "p50": 2.8731000000007043,
+        "p95": 8.779600000001665,
+        "p99": 87.40160000000105
+      },
+      "memory": {
+        "rss": 324800512,
+        "heapTotal": 224268288,
+        "heapUsed": 124775976,
+        "external": 2291230,
+        "arrayBuffers": 274683
+      }
+    },
+    {
+      "seed": 1102,
+      "archetypes": {
+        "mortal_human": 100
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 100,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 8000.000000020338,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 8000.000000020338
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 100
+      },
+      "residentSimulationSecondsByGoal": {
+        "SECLUDED_CULTIVATION": 1315.3499999993514,
+        "LABOUR_WORK": 3273.3000000031425,
+        "SURVIVE_VITAL": 2222.54999999932,
+        "WANDER_SERENDIPITY": 230.40000000001814,
+        "SOCIAL_RECREATE": 958.3999999996761
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 100,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 7978.281000000003,
+      "systemUpdateMs": {
+        "QiSystem": 22.610799999980372,
+        "ProfessionSystem": 11.029300000001967,
+        "WeatherSystem": 66.54790000020148,
+        "TribulationSystem": 3.427799999975832,
+        "DisasterSystem": 2.899499999861291,
+        "DerivedStatsSystem": 54.62000000007538,
+        "MentalStateSystem": 68.04600000014034,
+        "ThreeTierAISystem": 2407.3291000001263,
+        "ChildcareSystem": 5.304800000056275,
+        "NeedsSystem": 217.55910000007134,
+        "AnimalLifecycleSystem": 2.981799999892246,
+        "AnimalAISystem": 1.0227999999624444,
+        "LifeStageSystem": 48.70309999987512,
+        "AnimalMovementSystem": 195.08410000008007,
+        "SpiritualRootSystem": 7.202400000169291,
+        "AlchemySystem": 297.04030000000057,
+        "CultivationSystem": 90.65690000010363,
+        "CorpseAndGraveSystem": 11.591599999912432,
+        "PlantGrowthSystem": 67.41530000000057,
+        "DiplomacySystem": 1.8336999999082764,
+        "CombatSystem": 160.19629999993776,
+        "AnimalCarcassSystem": 1.852100000171049,
+        "FactionSystem": 2840.9647000000186,
+        "AnimalReproductionSystem": 1.6849000002039247,
+        "BuildingSystem": 1.5441999999166,
+        "SocialInteractionSystem": 507.7667000000438,
+        "ReproductionSystem": 69.29609999991953,
+        "ProjectileSystem": 1.7774999999892316,
+        "AnimationSystem": 72.099899999841,
+        "GrowthSystem": 59.24710000009509
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 5.007065416666759,
+        "p50": 2.7629999999990105,
+        "p95": 7.228499999997439,
+        "p99": 105.07939999999508
+      },
+      "memory": {
+        "rss": 324046848,
+        "heapTotal": 228462592,
+        "heapUsed": 143552240,
+        "external": 2307614,
+        "arrayBuffers": 291067
+      }
+    },
+    {
+      "seed": 1100,
+      "archetypes": {
+        "mortal_human": 100
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 100,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 8000.000000020338,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 8000.000000020338
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 100
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 2295.3499999995847,
+        "SECLUDED_CULTIVATION": 1096.1499999995508,
+        "LABOUR_WORK": 3187.700000002831,
+        "WANDER_SERENDIPITY": 399.2000000000565,
+        "SOCIAL_RECREATE": 1021.5999999996186
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 100,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 12915,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 12915,
+        "conversation:attempted:casual": 726,
+        "conversation:completed:neutral": 2888,
+        "conversation_side:neutral:casual": 1244,
+        "community_scan:input_pairs:": 2699244,
+        "community_scan:unique_near_pairs:": 7435,
+        "community_scan:commit_calls:": 2521,
+        "conversation:attempted:community": 2521,
+        "conversation_side:neutral:community": 4278,
+        "community_scan:filtered_cooldown:": 4914,
+        "conversation_side:awkward:community": 750,
+        "conversation:completed:awkward": 349,
+        "community_scan:excluded_non_near_pairs:": 2313626,
+        "community_scan:duplicate_near_pairs:": 378183,
+        "conversation_side:awkward:casual": 202,
+        "conversation:skipped:unsafe": 10,
+        "social_plan:started:conversation": 434,
+        "social_plan:failed:cooldown_active": 80,
+        "social_plan:interrupted:goal_changed": 347,
+        "social_plan:failed:out_of_range": 10,
+        "social_plan:started:rest": 3
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 7589.301999999996,
+      "systemUpdateMs": {
+        "QiSystem": 22.739599999869824,
+        "ProfessionSystem": 11.062200000014855,
+        "WeatherSystem": 74.5807000001223,
+        "TribulationSystem": 4.150100000129896,
+        "DisasterSystem": 2.999799999903189,
+        "DerivedStatsSystem": 53.91640000013285,
+        "MentalStateSystem": 75.11250000003929,
+        "ThreeTierAISystem": 2542.012600000293,
+        "ChildcareSystem": 5.530899999888788,
+        "NeedsSystem": 243.35930000009103,
+        "AnimalLifecycleSystem": 2.8299999999144347,
+        "AnimalAISystem": 1.0940999998128973,
+        "LifeStageSystem": 47.53130000014062,
+        "AnimalMovementSystem": 212.20590000024822,
+        "SpiritualRootSystem": 7.590400000102818,
+        "AlchemySystem": 322.4696000000549,
+        "CultivationSystem": 75.56699999983539,
+        "CorpseAndGraveSystem": 18.37459999973362,
+        "PlantGrowthSystem": 69.87980000003154,
+        "DiplomacySystem": 2.022699999928591,
+        "CombatSystem": 157.40020000012737,
+        "AnimalCarcassSystem": 2.0630999998393236,
+        "FactionSystem": 2163.72799999993,
+        "AnimalReproductionSystem": 1.7168999997375067,
+        "BuildingSystem": 1.7467999999207677,
+        "SocialInteractionSystem": 541.5848999999871,
+        "ReproductionSystem": 72.90179999979591,
+        "ProjectileSystem": 1.8765000000275904,
+        "AnimationSystem": 87.11909999978525,
+        "GrowthSystem": 59.80539999977918
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 4.596593916666607,
+        "p50": 2.8289999999979045,
+        "p95": 10.230600000002596,
+        "p99": 61.37129999999888
+      },
+      "memory": {
+        "rss": 324005888,
+        "heapTotal": 239210496,
+        "heapUsed": 124296800,
+        "external": 2323998,
+        "arrayBuffers": 307451
+      }
+    },
+    {
+      "seed": 1101,
+      "archetypes": {
+        "mortal_human": 100
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 100,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 8000.000000020338,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 8000.000000020338
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 100
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 2252.3499999994283,
+        "LABOUR_WORK": 3027.5500000022485,
+        "SECLUDED_CULTIVATION": 1248.4999999994122,
+        "WANDER_SERENDIPITY": 481.6000000000752,
+        "SOCIAL_RECREATE": 989.9999999996473
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 100,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 15141,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 15141,
+        "conversation:attempted:casual": 739,
+        "conversation:completed:neutral": 3332,
+        "conversation_side:neutral:casual": 1313,
+        "community_scan:input_pairs:": 3429108,
+        "community_scan:unique_near_pairs:": 8732,
+        "community_scan:commit_calls:": 2956,
+        "conversation:attempted:community": 2956,
+        "conversation_side:neutral:community": 5033,
+        "community_scan:filtered_cooldown:": 5776,
+        "conversation_side:awkward:community": 859,
+        "conversation:completed:awkward": 351,
+        "community_scan:excluded_non_near_pairs:": 2924290,
+        "community_scan:duplicate_near_pairs:": 496086,
+        "conversation_side:awkward:casual": 161,
+        "conversation:skipped:unsafe": 12,
+        "social_plan:started:conversation": 398,
+        "social_plan:started:rest": 10,
+        "social_plan:failed:cooldown_active": 51,
+        "social_plan:failed:out_of_range": 25,
+        "social_plan:interrupted:goal_changed": 330,
+        "social_plan:failed:unsafe": 2
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 8008.095400000006,
+      "systemUpdateMs": {
+        "QiSystem": 23.09310000012192,
+        "ProfessionSystem": 10.683100000052946,
+        "WeatherSystem": 69.36910000001808,
+        "TribulationSystem": 4.923600000089209,
+        "DisasterSystem": 2.925999999984924,
+        "DerivedStatsSystem": 56.890799999986484,
+        "MentalStateSystem": 73.20599999973638,
+        "ThreeTierAISystem": 2337.3108999999313,
+        "ChildcareSystem": 5.460099999982049,
+        "NeedsSystem": 215.75759999998263,
+        "AnimalLifecycleSystem": 2.602500000015425,
+        "AnimalAISystem": 1.2347000000081607,
+        "LifeStageSystem": 49.50569999995787,
+        "AnimalMovementSystem": 200.791599999764,
+        "SpiritualRootSystem": 8.880799999962619,
+        "AlchemySystem": 291.8257999998168,
+        "CultivationSystem": 87.98190000004979,
+        "CorpseAndGraveSystem": 11.641599999915343,
+        "PlantGrowthSystem": 69.69840000032127,
+        "DiplomacySystem": 2.0260000000416767,
+        "CombatSystem": 153.96249999993597,
+        "AnimalCarcassSystem": 2.1624999998894054,
+        "FactionSystem": 2804.8420999998198,
+        "AnimalReproductionSystem": 1.6646999999356922,
+        "BuildingSystem": 2.9716999997981475,
+        "SocialInteractionSystem": 628.5058000001954,
+        "ReproductionSystem": 71.53900000005524,
+        "ProjectileSystem": 1.6758999999801745,
+        "AnimationSystem": 72.69360000014422,
+        "GrowthSystem": 53.497199999997974
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 4.776132749999985,
+        "p50": 2.6137999999991735,
+        "p95": 6.751299999996263,
+        "p99": 83.26610000000073
+      },
+      "memory": {
+        "rss": 325873664,
+        "heapTotal": 250220544,
+        "heapUsed": 134466184,
+        "external": 2340382,
+        "arrayBuffers": 323835
+      }
+    },
+    {
+      "seed": 1102,
+      "archetypes": {
+        "mortal_human": 100
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 100,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 8000.000000020338,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 8000.000000020338
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 100
+      },
+      "residentSimulationSecondsByGoal": {
+        "SECLUDED_CULTIVATION": 1315.3499999993514,
+        "LABOUR_WORK": 3273.3000000031425,
+        "SURVIVE_VITAL": 2222.54999999932,
+        "WANDER_SERENDIPITY": 230.40000000001814,
+        "SOCIAL_RECREATE": 958.3999999996761
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 100,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 16359,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 16359,
+        "conversation:attempted:casual": 808,
+        "conversation:completed:neutral": 3262,
+        "conversation_side:neutral:casual": 1400,
+        "community_scan:input_pairs:": 3779486,
+        "community_scan:unique_near_pairs:": 9522,
+        "community_scan:commit_calls:": 3137,
+        "conversation:attempted:community": 3137,
+        "conversation_side:neutral:community": 5083,
+        "community_scan:filtered_cooldown:": 6385,
+        "conversation_side:awkward:community": 1179,
+        "conversation:completed:awkward": 675,
+        "community_scan:excluded_non_near_pairs:": 3202163,
+        "community_scan:duplicate_near_pairs:": 567801,
+        "conversation_side:awkward:casual": 210,
+        "conversation:skipped:unsafe": 9,
+        "social_plan:started:conversation": 407,
+        "social_plan:failed:unsafe": 3,
+        "social_plan:failed:cooldown_active": 72,
+        "social_plan:interrupted:goal_changed": 312,
+        "social_plan:failed:out_of_range": 22,
+        "social_plan:started:rest": 2,
+        "conversation:attempted:cultivation": 1,
+        "conversation_side:neutral:cultivation": 2
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 8417.871899999998,
+      "systemUpdateMs": {
+        "QiSystem": 23.29109999992943,
+        "ProfessionSystem": 11.123999999894295,
+        "WeatherSystem": 68.86839999989752,
+        "TribulationSystem": 4.936599999993632,
+        "DisasterSystem": 2.981199999943783,
+        "DerivedStatsSystem": 54.63359999999375,
+        "MentalStateSystem": 68.21339999991324,
+        "ThreeTierAISystem": 2439.5056000000186,
+        "ChildcareSystem": 5.417199999828881,
+        "NeedsSystem": 224.8886999998358,
+        "AnimalLifecycleSystem": 4.130399999965448,
+        "AnimalAISystem": 1.084499999997206,
+        "LifeStageSystem": 48.33469999996305,
+        "AnimalMovementSystem": 199.11170000001584,
+        "SpiritualRootSystem": 7.175999999970372,
+        "AlchemySystem": 309.37389999998413,
+        "CultivationSystem": 88.49340000026132,
+        "CorpseAndGraveSystem": 12.190899999950489,
+        "PlantGrowthSystem": 70.49440000001778,
+        "DiplomacySystem": 1.855499999866879,
+        "CombatSystem": 157.4181999999637,
+        "AnimalCarcassSystem": 1.8487000000095577,
+        "FactionSystem": 3025.4050000000498,
+        "AnimalReproductionSystem": 1.6005000000586733,
+        "BuildingSystem": 2.0553999999319785,
+        "SocialInteractionSystem": 695.163499999835,
+        "ReproductionSystem": 69.35639999996056,
+        "ProjectileSystem": 1.6048000000519096,
+        "AnimationSystem": 73.13080000000627,
+        "GrowthSystem": 61.96690000010858
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 5.309767999999846,
+        "p50": 2.7805999999982305,
+        "p95": 8.080999999998312,
+        "p99": 111.41249999999854
+      },
+      "memory": {
+        "rss": 325877760,
+        "heapTotal": 261492736,
+        "heapUsed": 174091384,
+        "external": 2356766,
+        "arrayBuffers": 340219
+      }
+    },
+    {
+      "seed": 1100,
+      "archetypes": {
+        "mortal_human": 300
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 300,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 23999.999999791,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 23999.999999791
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 300
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 6874.600000016244,
+        "SECLUDED_CULTIVATION": 3218.450000002943,
+        "LABOUR_WORK": 9650.149999999818,
+        "WANDER_SERENDIPITY": 1227.1999999994316,
+        "SOCIAL_RECREATE": 3021.600000002227,
+        "REFLECT_RECOVER": 0.8000000000000002,
+        "BREAKTHROUGH": 7.199999999999982
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 300,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 37788.5354,
+      "systemUpdateMs": {
+        "QiSystem": 23.98040000021865,
+        "ProfessionSystem": 24.763399999792455,
+        "WeatherSystem": 67.72580000020389,
+        "TribulationSystem": 6.7758000003232155,
+        "DisasterSystem": 3.647600000258535,
+        "DerivedStatsSystem": 156.52220000007947,
+        "MentalStateSystem": 204.88759999981266,
+        "ThreeTierAISystem": 8653.47440000037,
+        "ChildcareSystem": 11.817499999830034,
+        "NeedsSystem": 754.2312000002421,
+        "AnimalLifecycleSystem": 3.7995999999548076,
+        "AnimalAISystem": 1.5531999997765524,
+        "LifeStageSystem": 131.13040000002366,
+        "AnimalMovementSystem": 486.97060000045167,
+        "SpiritualRootSystem": 16.813499999858323,
+        "AlchemySystem": 1016.8784000000887,
+        "CultivationSystem": 246.37780000006023,
+        "CorpseAndGraveSystem": 29.799600000100327,
+        "PlantGrowthSystem": 76.88889999974344,
+        "DiplomacySystem": 2.7240999998466577,
+        "CombatSystem": 447.74389999971027,
+        "AnimalCarcassSystem": 2.661800000263611,
+        "FactionSystem": 20163.90490000014,
+        "AnimalReproductionSystem": 2.309100000260514,
+        "BuildingSystem": 1.6925000000483124,
+        "SocialInteractionSystem": 2998.1134999998612,
+        "ReproductionSystem": 191.67189999984112,
+        "ProjectileSystem": 2.8616999999940163,
+        "AnimationSystem": 222.91610000001674,
+        "GrowthSystem": 133.87290000007488
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 23.605765166666774,
+        "p50": 8.725300000005518,
+        "p95": 27.193800000008196,
+        "p99": 713.3361999999906
+      },
+      "memory": {
+        "rss": 377778176,
+        "heapTotal": 321261568,
+        "heapUsed": 79380752,
+        "external": 2175253,
+        "arrayBuffers": 159995
+      }
+    },
+    {
+      "seed": 1101,
+      "archetypes": {
+        "mortal_human": 300
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 300,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 23999.999999791,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 23999.999999791
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 300
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 6855.550000016175,
+        "LABOUR_WORK": 9689.79999999924,
+        "SECLUDED_CULTIVATION": 3278.2500000031605,
+        "WANDER_SERENDIPITY": 1151.9999999995,
+        "SOCIAL_RECREATE": 3024.400000002237
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 300,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 35960.801600000006,
+      "systemUpdateMs": {
+        "QiSystem": 29.05210000037914,
+        "ProfessionSystem": 26.842099999805214,
+        "WeatherSystem": 74.18810000087251,
+        "TribulationSystem": 6.959800000156974,
+        "DisasterSystem": 4.075899999414105,
+        "DerivedStatsSystem": 159.4338000008429,
+        "MentalStateSystem": 245.98950000081095,
+        "ThreeTierAISystem": 8845.289800000057,
+        "ChildcareSystem": 11.753099999914411,
+        "NeedsSystem": 818.1120999997365,
+        "AnimalLifecycleSystem": 4.12120000043069,
+        "AnimalAISystem": 1.3812000001780689,
+        "LifeStageSystem": 132.47960000048624,
+        "AnimalMovementSystem": 487.09610000034445,
+        "SpiritualRootSystem": 16.98360000026878,
+        "AlchemySystem": 1065.1673000000592,
+        "CultivationSystem": 265.9753999998211,
+        "CorpseAndGraveSystem": 29.81430000026012,
+        "PlantGrowthSystem": 100.13650000019697,
+        "DiplomacySystem": 2.9032000005536247,
+        "CombatSystem": 461.33709999980056,
+        "AnimalCarcassSystem": 2.742199999571312,
+        "FactionSystem": 17913.85139999984,
+        "AnimalReproductionSystem": 2.5476000002236106,
+        "BuildingSystem": 1.7722999997495208,
+        "SocialInteractionSystem": 2800.2906000000366,
+        "ReproductionSystem": 208.68299999984447,
+        "ProjectileSystem": 2.7541999999666587,
+        "AnimationSystem": 223.3252000004286,
+        "GrowthSystem": 145.36540000000969
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 22.136506250000274,
+        "p50": 8.91359999999986,
+        "p95": 32.703999999997905,
+        "p99": 617.0342999999993
+      },
+      "memory": {
+        "rss": 381562880,
+        "heapTotal": 316805120,
+        "heapUsed": 74709072,
+        "external": 2175253,
+        "arrayBuffers": 159995
+      }
+    },
+    {
+      "seed": 1102,
+      "archetypes": {
+        "mortal_human": 300
+      },
+      "days": 4,
+      "telemetry": false,
+      "benchmark": true,
+      "startingResidents": 300,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 23999.999999791,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 23999.999999791
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 300
+      },
+      "residentSimulationSecondsByGoal": {
+        "SECLUDED_CULTIVATION": 3379.9500000035305,
+        "LABOUR_WORK": 9846.099999996966,
+        "SURVIVE_VITAL": 6799.150000015969,
+        "WANDER_SERENDIPITY": 992.7999999996448,
+        "SOCIAL_RECREATE": 2982.0000000020827
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 300,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {},
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 37318.633700000006,
+      "systemUpdateMs": {
+        "QiSystem": 29.36120000036317,
+        "ProfessionSystem": 26.10840000049211,
+        "WeatherSystem": 73.82179999983055,
+        "TribulationSystem": 6.455299999477575,
+        "DisasterSystem": 4.210199999419274,
+        "DerivedStatsSystem": 163.00379999974393,
+        "MentalStateSystem": 208.85369999991963,
+        "ThreeTierAISystem": 8654.877200000687,
+        "ChildcareSystem": 11.86480000076699,
+        "NeedsSystem": 832.1151999998547,
+        "AnimalLifecycleSystem": 3.981399999378482,
+        "AnimalAISystem": 1.6331999997491948,
+        "LifeStageSystem": 134.63220000034198,
+        "AnimalMovementSystem": 498.3815000000468,
+        "SpiritualRootSystem": 16.988800000341143,
+        "AlchemySystem": 1070.7608999997901,
+        "CultivationSystem": 277.4582999999111,
+        "CorpseAndGraveSystem": 30.3831999997783,
+        "PlantGrowthSystem": 87.90419999932055,
+        "DiplomacySystem": 2.7425999986880925,
+        "CombatSystem": 462.3576999993529,
+        "AnimalCarcassSystem": 2.81220000013127,
+        "FactionSystem": 19399.22189999913,
+        "AnimalReproductionSystem": 2.385500001226319,
+        "BuildingSystem": 1.7375000000174623,
+        "SocialInteractionSystem": 2942.546000000817,
+        "ReproductionSystem": 203.11679999963962,
+        "ProjectileSystem": 2.599300000234507,
+        "AnimationSystem": 205.50089999980992,
+        "GrowthSystem": 149.29930000004242
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 23.42865625000008,
+        "p50": 8.58520000000135,
+        "p95": 27.94419999999809,
+        "p99": 711.7360000000044
+      },
+      "memory": {
+        "rss": 383827968,
+        "heapTotal": 321785856,
+        "heapUsed": 105193256,
+        "external": 2175253,
+        "arrayBuffers": 159995
+      }
+    },
+    {
+      "seed": 1100,
+      "archetypes": {
+        "mortal_human": 300
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 300,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 23999.999999791,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 23999.999999791
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 300
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 6874.600000016244,
+        "SECLUDED_CULTIVATION": 3218.450000002943,
+        "LABOUR_WORK": 9650.149999999818,
+        "WANDER_SERENDIPITY": 1227.1999999994316,
+        "SOCIAL_RECREATE": 3021.600000002227,
+        "REFLECT_RECOVER": 0.8000000000000002,
+        "BREAKTHROUGH": 7.199999999999982
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 300,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 65210,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 65210,
+        "conversation:attempted:casual": 3533,
+        "conversation:completed:neutral": 14127,
+        "conversation_side:neutral:casual": 6007,
+        "community_scan:input_pairs:": 32652361,
+        "community_scan:unique_near_pairs:": 38183,
+        "community_scan:filtered_cooldown:": 25220,
+        "community_scan:commit_calls:": 12963,
+        "conversation:attempted:community": 12963,
+        "conversation_side:neutral:community": 21513,
+        "conversation:completed:awkward": 2269,
+        "conversation_side:awkward:community": 4251,
+        "community_scan:excluded_non_near_pairs:": 29043843,
+        "community_scan:duplicate_near_pairs:": 3570335,
+        "conversation_side:awkward:casual": 1019,
+        "conversation:skipped:unsafe": 101,
+        "social_plan:started:conversation": 1284,
+        "social_plan:failed:unsafe": 11,
+        "social_plan:started:rest": 6,
+        "social_plan:failed:out_of_range": 57,
+        "social_plan:failed:cooldown_active": 204,
+        "social_plan:interrupted:goal_changed": 1018,
+        "conversation:attempted:cultivation": 1,
+        "conversation_side:neutral:cultivation": 2
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 40635.0894,
+      "systemUpdateMs": {
+        "QiSystem": 29.46409999980824,
+        "ProfessionSystem": 27.612799999245908,
+        "WeatherSystem": 74.68739999955869,
+        "TribulationSystem": 7.423200000426732,
+        "DisasterSystem": 4.314199999818811,
+        "DerivedStatsSystem": 157.97720000092522,
+        "MentalStateSystem": 223.74650000050315,
+        "ThreeTierAISystem": 8840.286400000186,
+        "ChildcareSystem": 11.895099999848753,
+        "NeedsSystem": 776.8959999993676,
+        "AnimalLifecycleSystem": 4.016899999900488,
+        "AnimalAISystem": 1.3865000008081552,
+        "LifeStageSystem": 141.9177000002237,
+        "AnimalMovementSystem": 494.7638999992341,
+        "SpiritualRootSystem": 17.46739999964484,
+        "AlchemySystem": 1081.765399999218,
+        "CultivationSystem": 266.12750000023516,
+        "CorpseAndGraveSystem": 30.105100000160746,
+        "PlantGrowthSystem": 86.98939999999129,
+        "DiplomacySystem": 2.723500000225613,
+        "CombatSystem": 457.30409999992116,
+        "AnimalCarcassSystem": 2.867699998925673,
+        "FactionSystem": 21551.633900000772,
+        "AnimalReproductionSystem": 2.4612000001070555,
+        "BuildingSystem": 1.7386000002443325,
+        "SocialInteractionSystem": 4016.469699998939,
+        "ReproductionSystem": 198.90979999993579,
+        "ProjectileSystem": 2.6629000001121312,
+        "AnimationSystem": 205.091500000417,
+        "GrowthSystem": 135.29890000016894
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 25.05741841666648,
+        "p50": 8.736700000008568,
+        "p95": 26.8295999999973,
+        "p99": 758.2786999999953
+      },
+      "memory": {
+        "rss": 384909312,
+        "heapTotal": 320999424,
+        "heapUsed": 78177232,
+        "external": 2175253,
+        "arrayBuffers": 159995
+      }
+    },
+    {
+      "seed": 1101,
+      "archetypes": {
+        "mortal_human": 300
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 300,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 23999.999999791,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 23999.999999791
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 300
+      },
+      "residentSimulationSecondsByGoal": {
+        "SURVIVE_VITAL": 6855.550000016175,
+        "LABOUR_WORK": 9689.79999999924,
+        "SECLUDED_CULTIVATION": 3278.2500000031605,
+        "WANDER_SERENDIPITY": 1151.9999999995,
+        "SOCIAL_RECREATE": 3024.400000002237
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 300,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 60664,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 60664,
+        "conversation:attempted:casual": 3163,
+        "conversation:completed:neutral": 13259,
+        "conversation_side:neutral:casual": 5240,
+        "community_scan:input_pairs:": 27394866,
+        "community_scan:unique_near_pairs:": 35245,
+        "community_scan:filtered_cooldown:": 23015,
+        "community_scan:commit_calls:": 12230,
+        "conversation:attempted:community": 12230,
+        "conversation_side:neutral:community": 19938,
+        "community_scan:excluded_non_near_pairs:": 24345843,
+        "community_scan:duplicate_near_pairs:": 3013778,
+        "conversation_side:awkward:community": 4364,
+        "conversation:completed:awkward": 2028,
+        "conversation_side:awkward:casual": 1028,
+        "conversation:skipped:unsafe": 108,
+        "social_plan:started:conversation": 1264,
+        "social_plan:failed:unsafe": 13,
+        "social_plan:started:rest": 9,
+        "social_plan:failed:out_of_range": 55,
+        "social_plan:failed:cooldown_active": 181,
+        "social_plan:interrupted:goal_changed": 1024,
+        "conversation:attempted:cultivation": 2,
+        "conversation_side:neutral:cultivation": 4
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 36945.60879999999,
+      "systemUpdateMs": {
+        "QiSystem": 29.260100000392413,
+        "ProfessionSystem": 28.519599999825004,
+        "WeatherSystem": 76.69130000018049,
+        "TribulationSystem": 6.53480000043055,
+        "DisasterSystem": 3.954500000050757,
+        "DerivedStatsSystem": 163.59619999982533,
+        "MentalStateSystem": 246.45990000016172,
+        "ThreeTierAISystem": 8540.4828999991,
+        "ChildcareSystem": 11.567599999980303,
+        "NeedsSystem": 827.7045000003418,
+        "AnimalLifecycleSystem": 4.206999999762047,
+        "AnimalAISystem": 1.3853999995044433,
+        "LifeStageSystem": 141.69010000064736,
+        "AnimalMovementSystem": 499.74100000038743,
+        "SpiritualRootSystem": 16.702699999383185,
+        "AlchemySystem": 1065.1018000005279,
+        "CultivationSystem": 263.1790000004985,
+        "CorpseAndGraveSystem": 29.92639999993844,
+        "PlantGrowthSystem": 88.85900000025867,
+        "DiplomacySystem": 2.5271999994292855,
+        "CombatSystem": 472.75310000011814,
+        "AnimalCarcassSystem": 3.419199999771081,
+        "FactionSystem": 18565.06150000033,
+        "AnimalReproductionSystem": 2.395000000251457,
+        "BuildingSystem": 1.7623999998322688,
+        "SocialInteractionSystem": 3430.323800000071,
+        "ReproductionSystem": 212.2334000004921,
+        "ProjectileSystem": 2.658799999713665,
+        "AnimationSystem": 214.43369999955758,
+        "GrowthSystem": 122.84969999984605
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 22.666263000000303,
+        "p50": 8.809500000003027,
+        "p95": 29.789600000018254,
+        "p99": 602.126099999994
+      },
+      "memory": {
+        "rss": 385863680,
+        "heapTotal": 320999424,
+        "heapUsed": 74391408,
+        "external": 2175253,
+        "arrayBuffers": 159995
+      }
+    },
+    {
+      "seed": 1102,
+      "archetypes": {
+        "mortal_human": 300
+      },
+      "days": 4,
+      "telemetry": true,
+      "benchmark": true,
+      "startingResidents": 300,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "residentSimulationSeconds": 23999.999999791,
+      "cohortSecondsByArchetype": {
+        "mortal_human": 23999.999999791
+      },
+      "deaths": [],
+      "livingByArchetype": {
+        "mortal_human": 300
+      },
+      "residentSimulationSecondsByGoal": {
+        "SECLUDED_CULTIVATION": 3379.9500000035305,
+        "LABOUR_WORK": 9846.099999996966,
+        "SURVIVE_VITAL": 6799.150000015969,
+        "WANDER_SERENDIPITY": 992.7999999996448,
+        "SOCIAL_RECREATE": 2982.0000000020827
+      },
+      "snapshots": [
+        {
+          "day": 4,
+          "living": 300,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "mutualFriendPairs": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 62902,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 62902,
+        "conversation:attempted:casual": 3498,
+        "conversation:completed:neutral": 13770,
+        "conversation_side:neutral:casual": 5870,
+        "community_scan:input_pairs:": 30119821,
+        "community_scan:unique_near_pairs:": 36666,
+        "community_scan:filtered_cooldown:": 23925,
+        "community_scan:commit_calls:": 12741,
+        "conversation:attempted:community": 12741,
+        "conversation_side:neutral:community": 20621,
+        "community_scan:excluded_non_near_pairs:": 26848886,
+        "community_scan:duplicate_near_pairs:": 3234269,
+        "conversation_side:awkward:community": 4651,
+        "conversation:completed:awkward": 2338,
+        "conversation_side:awkward:casual": 1064,
+        "conversation:skipped:unsafe": 136,
+        "social_plan:started:conversation": 1246,
+        "social_plan:started:rest": 5,
+        "social_plan:failed:unsafe": 8,
+        "social_plan:failed:cooldown_active": 187,
+        "social_plan:failed:out_of_range": 56,
+        "social_plan:interrupted:goal_changed": 1000,
+        "conversation:attempted:cultivation": 5,
+        "conversation_side:neutral:cultivation": 8,
+        "conversation_side:awkward:cultivation": 2
+      },
+      "systems": [
+        {
+          "name": "QiSystem",
+          "priority": 10
+        },
+        {
+          "name": "ProfessionSystem",
+          "priority": 11
+        },
+        {
+          "name": "WeatherSystem",
+          "priority": 15
+        },
+        {
+          "name": "TribulationSystem",
+          "priority": 16
+        },
+        {
+          "name": "DisasterSystem",
+          "priority": 18
+        },
+        {
+          "name": "DerivedStatsSystem",
+          "priority": 18
+        },
+        {
+          "name": "MentalStateSystem",
+          "priority": 18.5
+        },
+        {
+          "name": "ThreeTierAISystem",
+          "priority": 19
+        },
+        {
+          "name": "ChildcareSystem",
+          "priority": 21
+        },
+        {
+          "name": "NeedsSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalLifecycleSystem",
+          "priority": 22
+        },
+        {
+          "name": "AnimalAISystem",
+          "priority": 23
+        },
+        {
+          "name": "LifeStageSystem",
+          "priority": 23
+        },
+        {
+          "name": "AnimalMovementSystem",
+          "priority": 24
+        },
+        {
+          "name": "SpiritualRootSystem",
+          "priority": 24
+        },
+        {
+          "name": "AlchemySystem",
+          "priority": 24
+        },
+        {
+          "name": "CultivationSystem",
+          "priority": 25
+        },
+        {
+          "name": "CorpseAndGraveSystem",
+          "priority": 25
+        },
+        {
+          "name": "PlantGrowthSystem",
+          "priority": 30
+        },
+        {
+          "name": "DiplomacySystem",
+          "priority": 31
+        },
+        {
+          "name": "CombatSystem",
+          "priority": 32
+        },
+        {
+          "name": "AnimalCarcassSystem",
+          "priority": 33
+        },
+        {
+          "name": "FactionSystem",
+          "priority": 33
+        },
+        {
+          "name": "AnimalReproductionSystem",
+          "priority": 34
+        },
+        {
+          "name": "BuildingSystem",
+          "priority": 34
+        },
+        {
+          "name": "SocialInteractionSystem",
+          "priority": 34
+        },
+        {
+          "name": "ReproductionSystem",
+          "priority": 35
+        },
+        {
+          "name": "ProjectileSystem",
+          "priority": 35
+        },
+        {
+          "name": "AnimationSystem",
+          "priority": 80
+        },
+        {
+          "name": "GrowthSystem",
+          "priority": 90
+        }
+      ],
+      "executionMs": 38517.793400000024,
+      "systemUpdateMs": {
+        "QiSystem": 29.06959999911487,
+        "ProfessionSystem": 25.82690000103321,
+        "WeatherSystem": 73.81299999938346,
+        "TribulationSystem": 6.503099999681581,
+        "DisasterSystem": 4.06899999914458,
+        "DerivedStatsSystem": 170.87790000089444,
+        "MentalStateSystem": 200.38689999858616,
+        "ThreeTierAISystem": 8688.279699999723,
+        "ChildcareSystem": 11.412000000244007,
+        "NeedsSystem": 773.3124999996508,
+        "AnimalLifecycleSystem": 3.8793999995687045,
+        "AnimalAISystem": 1.3547000007820316,
+        "LifeStageSystem": 134.59849999990547,
+        "AnimalMovementSystem": 496.2707000001101,
+        "SpiritualRootSystem": 17.322999999218155,
+        "AlchemySystem": 992.3242000017199,
+        "CultivationSystem": 264.9886000009719,
+        "CorpseAndGraveSystem": 30.735899999795947,
+        "PlantGrowthSystem": 83.26900000113528,
+        "DiplomacySystem": 2.4565999974147417,
+        "CombatSystem": 451.07720000023255,
+        "AnimalCarcassSystem": 2.832399999955669,
+        "FactionSystem": 20095.472099998326,
+        "AnimalReproductionSystem": 2.3627000006381422,
+        "BuildingSystem": 1.7608000004547648,
+        "SocialInteractionSystem": 3637.87619999866,
+        "ReproductionSystem": 213.89380000147503,
+        "ProjectileSystem": 2.6419000000460073,
+        "AnimationSystem": 223.72000000090338,
+        "GrowthSystem": 119.96659999998519
+      },
+      "tickTiming": {
+        "warmupTicks": 400,
+        "samples": 1200,
+        "mean": 23.918517999999896,
+        "p50": 8.61040000000503,
+        "p95": 27.193999999959487,
+        "p99": 704.6145999999717
+      },
+      "memory": {
+        "rss": 385359872,
+        "heapTotal": 318377984,
+        "heapUsed": 89555640,
+        "external": 2175253,
+        "arrayBuffers": 159995
+      }
+    }
+  ],
+  "evidence": {
+    "generatedAt": "2026-10-01T02:33:37.316Z",
+    "nodeVersion": "v24.19.0",
+    "configHash": "51d0ef610529edd7df961b9ab693b00e8aa54f2d87dee7b71cb33bb6362ee803",
+    "sourceHashes": {
+      "src/config/animals/animal.catalog.ts": "decb76cd79e371afe9680448b71a96e003d52de99c6243988c6be175358c2cfc",
+      "src/config/animals/animal.defaults.ts": "d5c0843e77ae99c28c68e31503509e43bedae4025a315ae4baf1ba58ea214de5",
+      "src/config/animals/animal.simulation.ts": "4ef2c7048426e5572a7c28fb5d58ce77ec2b7b18915975fcf95e7d1e0ae86ffd",
+      "src/config/animals/animal.types.ts": "d5febf5455c51a42a738add36c789a6569c99b201c188df684f4850e38ad55e7",
+      "src/config/animals/species/birds.animals.ts": "41b73d32935468bb2fc743cb08e60e55587292c0bd53d818f232de10cffa8e0b",
+      "src/config/animals/species/domestic.animals.ts": "24fd2da579c6d6d51410a44ef4ee1307013c286a210fb7287d8b397d292c364b",
+      "src/config/animals/species/large-mammals.animals.ts": "d47b6c7b98cdaaf858edf1380f9b5e256bdd2883da1e5afb52b13e407235eebd",
+      "src/config/animals/species/reptiles.animals.ts": "94e80ab24b88de5dfc1589752281d7f57bf0c466b7dea319db9a831245dcfcbb",
+      "src/config/animals/species/small-mammals.animals.ts": "9e389a68298820515d2f6b2e589845ca33f5a8387c676852956db91140c9daa5",
+      "src/config/animations.config.ts": "1ec9ca4d8621675c06c8f760e359f93b1cf3892683222b10fcb1c2ce0d02f40f",
+      "src/config/archetypes.config.ts": "35c2e78a58bda62b71367eeea007e20548a37c42f9c09805df6dd9a686c70849",
+      "src/config/elements.config.ts": "2a6778d7541306d50807e5a8dc3282e0ce4017283b2d33f020bcc22692f9b3f8",
+      "src/config/factions.config.ts": "e3a22cbcd4ecf357ce815a82d5c0fbb8f0be357ab715f6bfd994412dd64c8e82",
+      "src/config/mental-growth.config.ts": "9d2fb2e8bd0e40a66b1c220344c2d973bca82e1d5d841cfa4e0414bf2290e4bd",
+      "src/config/pills.config.ts": "9eede6a92e1eb027255d1f010efecf39a18ea7812102cfb764fe6061dd9e63f2",
+      "src/config/plants.config.ts": "2706aa0cf35f53432467b01a121b04010e13bd1208c26b3e02e780bfa56280e4",
+      "src/config/professions.config.ts": "d927d8ef20c2b1354804076438728d19717026515d392acb28198573f3e715e8",
+      "src/config/races.config.ts": "6649903eb6111d4a743738816aa680d177021626194abd3cebed717f89171e1b",
+      "src/config/realms.config.ts": "c38ef6e7b0afe7883d0f3eb5e43b4e2c9fb8440bc67de9e170299d56302cd27a",
+      "src/config/social.config.ts": "51d0ef610529edd7df961b9ab693b00e8aa54f2d87dee7b71cb33bb6362ee803",
+      "src/config/talent.config.ts": "288bbf3bc040e5560789638f764791fef5051be94936497dfadb95cba864633a",
+      "src/config/techniques.config.ts": "696f1ba1f18a680e0cf4ee47d51a1721ee3b381c80621d7c453f7db74e684b1f",
+      "src/config/terrains.config.ts": "408217f68c9afbc31999bc5498d1dfea4cf20256e1cadc569ed4d73a8ce2bacf",
+      "src/config/tools.config.ts": "2fbe421fe84ab4f82b46e9869e881f16a04efa1f9a40c72a46f7ecbc015c5233",
+      "src/config/traits/beast.traits.ts": "8e4e514818ce9d27bc11c68310385d8f5fe014b87f77f8ecd853f3b57e5c4da1",
+      "src/config/traits/common.traits.ts": "c1878153d6a656dcd97619ac0a09bd7f87cca65644f7c01133e88dc5c497ba35",
+      "src/config/traits/demon.traits.ts": "da04d20d06f3970985e44e65abc32de5a406ed91f036c150453d90aab3cae72e",
+      "src/config/traits/human.traits.ts": "bc533f77f32a82163813f74afca46e28beaee7ea3adb3c1dcb82ffdc2fc8bc0e",
+      "src/config/traits/legacy-traits.config.ts": "d405142deae514a695104befa69081f25903d94d53f4b991f1c36ffdd534c1f9",
+      "src/config/traits/trait.types.ts": "3bc8c689155e8a4d25fc8b73a0bc27529383d7e73e2a9d55bf64b0b317b321d0",
+      "src/config/traits.config.ts": "ae1e513ef4205f031cd0ca41f1a58a0ed55da20fac52e635c9b2b8b7f64b821f",
+      "src/config/weapons.config.ts": "3814b75291f55a0efbb49182e924de408eb06a7698e52484c5556942b92712aa",
+      "src/config/weather.config.ts": "c4cdf54fc791b2cc379cea7ac4173a93094008743467f607c78e7255b5cfbb0f",
+      "src/config/yao/yao-species.config.ts": "f9104c9b3f264acd5f4f0d3d32dc32d8c2553ed1ee7a578c63d86dc1f988d45b",
+      "src/core/Engine.ts": "5a26a755a84f018d2c80ef0c673d3212c45a7ea0da94c07065ad682607e4e8f0",
+      "src/core/EventBus.ts": "763b814e42f394f8a43e5f18e00c6663434e4881473b6c3bf70d21f5e226430f",
+      "src/core/GameSettings.ts": "273d66722f68b363e56ab9046b8499f57b5195d1bcaf8bb1277eb4f10f54e20e",
+      "src/core/SeededRNG.ts": "31078f3d96ea2267d7b171f2e5f83a43475c98e6d98571b31e2ec47fa1f0c161",
+      "src/core/SpatialGrid.ts": "e39d3668a10608b939e25a82e0d250ae6bb9c47e9bac83e2a559e0b1cec586af",
+      "src/core/TimeManager.ts": "b3ecf8bcea236d77a0885e03c6422611976b0bc87162c6d7e172a48ecd112329",
+      "src/ecs/Component.ts": "ec365bb4562da4251ac298901e06646362a8417e70620d383b349c64221ff48a",
+      "src/ecs/Entity.ts": "806755f4d33711d70602e8da69139ae434401d95a384a48087bda5a40d898d09",
+      "src/ecs/System.ts": "a61dfecc423e77a67e3a8851006289fafc6ea5675305f3f03f8c23ad217def95",
+      "src/ecs/World.ts": "5cd52b0baa915722071a52b5e47384aeb7706b95549cda3a2621c2857f9429d9",
+      "src/main.ts": "f40955e5871c0dc3223e34b3980fb943a6e0b82246b6af50e2c9cf6adcf15f50",
+      "src/modules/ai/AutonomousMovementSystem.ts": "1331b15ffca0cd3c0379692f4fa56ab74a0a85660f90d8af0e38eebf858a5584",
+      "src/modules/ai/brain/AIComponents.ts": "92014ece24c6161456d4a2bfcdba9a1489bb97a55d047c3f2c836688b44bdbdf",
+      "src/modules/ai/brain/behavior/BehaviorTree.ts": "741bdc03d6bca2c8c0892b06d16f2970da12922a92b1eab7f239aa0571a6a984",
+      "src/modules/ai/brain/goals/StrategicGoal.ts": "52d3b9e5576cf713dc5f40108de47639ffaad5f69968f5ad590fd2a82ff370b6",
+      "src/modules/ai/brain/planner/AIPlanner.ts": "d4e52eda28ee7b217a3fa5c67f77f8dbdc94b7abfcdfaa6fb5852964311bb661",
+      "src/modules/ai/brain/ResidentPreferences.ts": "b01e168c6e4b84dcfe46c6ded68965fb041b98d7d9c3954586457c1dcd84e985",
+      "src/modules/ai/community/CommunityTaskBoard.ts": "ff89ac24b13a637cdebfaae6a2178688b8db8cdba987912fcb275a97b3b3aa2c",
+      "src/modules/ai/MortalAISystem.ts": "bc317d050d41a2ee1f161fcb8bece0056d385d4d6b54ada69fed90fc9d4f2abe",
+      "src/modules/ai/NeedsSystem.ts": "a1605ad4c69885b76bf3a703e4fef52df364ce512ea26ecdf6fdfe166312600a",
+      "src/modules/ai/pathfinding/AStar.ts": "2a64ded87a941276ee569e77cbb12b51b4f1520ea16008bdea2d4a2dda2dba5c",
+      "src/modules/ai/smartobjects/SmartObjectManager.ts": "0d4a6f691aeb08ceb1e628f021b84d3f146337076910e21f1ce7a061b4b768a9",
+      "src/modules/ai/systems/ThreeTierAISystem.ts": "ff77a767648879c35015cc439d57781c0e36e24e2160e1646b49e2c012feefe8",
+      "src/modules/alchemy/AlchemySystem.ts": "2af0b4b0916a4f226bd4ae2f0c7e66b32b3e3c75868f693a4b4e495a5bda5dcd",
+      "src/modules/alchemy/InventoryComponent.ts": "9ab9167f5982e0ebddb44736ab503c9e313b49496d127c71b5f110c3d3fca165",
+      "src/modules/alchemy/PillUsageService.ts": "7b472459bf9f4c76cfb6fd728412d7e72f8bcb2508d82b01825783007c1cfdd2",
+      "src/modules/animals/AnimalAISystem.ts": "b3d5493233a0369d2c3624b10cb5d3799582aa070bd54b10a8d3d443737b261a",
+      "src/modules/animals/AnimalCarcassSystem.ts": "5e20e9b2ca08790efe6c494a37f3090dfb8d5b83e9da31dabb488c41a5176e9d",
+      "src/modules/animals/AnimalComponents.ts": "dba43d05fc801dbc90d0e2930dd9b6f3f4546094fef21f394db1d786186b0c27",
+      "src/modules/animals/AnimalFactory.ts": "26d6374465d436383a0f8f89ee728685ba0b74dc625e9414abdd91bbb93884c0",
+      "src/modules/animals/AnimalLifecycleSystem.ts": "21c1be7cae8eaf7c9b63cebe7a523d7a44887ab5778e8be661ac5d891c4d42dc",
+      "src/modules/animals/AnimalMovement.ts": "7168a3988a64ecacf1691cba5fda6713e4eb278459927b3c08dfa7163a71c968",
+      "src/modules/animals/AnimalReproductionSystem.ts": "895b43fd132f1d40dedf77611588cdd9d96dc383120b99156a0663027787c4cf",
+      "src/modules/animals/AnimalSaveCodec.ts": "caf87182f8405044d1b1e0f797cd5e05cf505410365930239935f91c53113417",
+      "src/modules/animals/AnimalSpawnService.ts": "1cfded02d91fff1032cf5a9b9bf30a9a95cc0b59840c614d6154015b4be325a3",
+      "src/modules/appearance/Appearance.ts": "fef773d926ee54fdbf347b48f2566b7221c86231f11983a360f54cc6669d21e6",
+      "src/modules/appearance/EquipmentAppearance.ts": "c64ba2d6911305349807c4d183e8830eb4da5741146dc317ca7a626b9b554445",
+      "src/modules/beings/BeingComponents.ts": "bbab7e60aa9ca8fc28beeea7566007cf4df3e3debd26cbc7515c87fd733abd91",
+      "src/modules/beings/BeingFactory.ts": "024071309a64c28596a1e4d84d47cf1bddda6d5ab90be0ee9b92c63d1a4aa57b",
+      "src/modules/beings/CorpseAndGraveSystem.ts": "38e33d4991eced1ff55c752fb7c2c016bf5d12868ed883811a1a79dc0d76b7b5",
+      "src/modules/beings/DeathComponents.ts": "839edfd78ff50297e9ca0656a6ba4cbac325c76e8fa359946f204a563d28b690",
+      "src/modules/beings/FamilyComponent.ts": "c60f58622649dcd46118032d40b72913c321b896680dd62cf2fbce7cc505f8d5",
+      "src/modules/beings/LifeStageSystem.ts": "4fe5f267de30ea90d7a55ef68a9128bf5b0f50de5458f3a03f4674b5cfc40853",
+      "src/modules/beings/ReproductionSystem.ts": "c4e2903e1b3d7fcb2a052ec67584424ff0aa8971ecf3b388ad4e4ac8a22fa66a",
+      "src/modules/combat/CombatComponents.ts": "2e0fcdd99d077d1b1808ab22f453efe1c66aea6fb14102148d3a2c960c920f5d",
+      "src/modules/combat/CombatIntentService.ts": "e41b0b78986bff673d45999502196cd818d86526be974ccdf096721d1122f529",
+      "src/modules/combat/CombatSystem.ts": "78e5bea8aa6e0be994e3c0ed567e7a83921232a0091173b5a9768190fea8a563",
+      "src/modules/combat/ProjectileSystem.ts": "b9efa01bd8f38336fe03c315a958f684ded9404e19311f1194e3d1ab9deab3c3",
+      "src/modules/cultivation/BreakthroughRules.ts": "e7d2682d805e054f8170fd6bdfa8fc2a1abafcf7e8fc9b703481538eecb2d185",
+      "src/modules/cultivation/CultivationSystem.ts": "b9409eee8c05a6d13f48695295e238e5c0d5f31ee1725f9afda4426eadfa162c",
+      "src/modules/cultivation/SpiritualRootSystem.ts": "7dc994ba3cbdb0fcad4e545fcc4de89b5ed447c080b503caec30986de5dc1a7f",
+      "src/modules/cultivation/TribulationSystem.ts": "ff27472c42319ddd468d18eb7ed6d7919f4bc632efab2eed57b607b966f07773",
+      "src/modules/energy/ElementType.ts": "45569484d4e1617eca67b4be47d62ebbb79faa02f3652c404b301a73f0161f30",
+      "src/modules/energy/QiGrid.ts": "b8bc0cb6e23e8beea7ba03f8be7fa4880a5f4bbf71ba31736bcb543735185143",
+      "src/modules/energy/QiSystem.ts": "6f1a33459dbbb044633e2616cc84c0c43e35a9ff4e34a2b021f4f99d511bdcf1",
+      "src/modules/factions/BuildingPlacementRules.ts": "a69b8227575a2859cd77159178b358a5334b9628de79d05ddb6fc570993417fc",
+      "src/modules/factions/BuildingSystem.ts": "e79eb548b86754e5e7dbbf250b6880ab1ad7fb3de57bbedb6058777bea9ffdd6",
+      "src/modules/factions/DiplomacySystem.ts": "6c8e13da0d97618e0ec71097bb71fa5592cd927685aabf586c1fcc3848af4624",
+      "src/modules/factions/FactionComponents.ts": "44f460d5e5d3455a16ee13205abeae83c696ffb4cbbd81bea0bbe6d1510f97b4",
+      "src/modules/factions/FactionFactory.ts": "38090aac7f224edcb096aa52eb9c47899ea8f3a98dda711e65965a489e5b60da",
+      "src/modules/factions/FactionSystem.ts": "b6a0ea4676e2a31ca5d061811a5f50da413026c3732da833622a4406629f1c8c",
+      "src/modules/flora/PlantComponents.ts": "0bda42293ddfa74b9cd4ffce90030f6f113f7ca3ed232d14480e309456ef092b",
+      "src/modules/flora/PlantFactory.ts": "b5ca66085812b5c8886eb15f5376a71dd0e8da6e92c07c0c791c872b05d9d617",
+      "src/modules/flora/PlantGrowthSystem.ts": "6635be05e74acb5dd7528ad9480ca5f26266a3f1d6ee289359043e461593a4a0",
+      "src/modules/professions/ProfessionComponents.ts": "e07c59b7feaa190511f8d3be97c501e64365a4bdd9dcc7698f75a62d7440b1ff",
+      "src/modules/professions/ProfessionSaveCodec.ts": "d55c119825a42791ca9bbc2154cd58a98aa438ba0d152a091d194ac1a748c27d",
+      "src/modules/professions/ProfessionService.ts": "c0bc92cf08f1bc2e1d5eb9e75464435213eaa114b90b0aa3945b4f4e54631505",
+      "src/modules/professions/ProfessionSystem.ts": "e6f62c9800208b8de5e1923c0035a39f689841005ca76f41a106e93257d88b8d",
+      "src/modules/save/SaveManager.ts": "377be407390d57368b3c0bea08e945b1167bd4b0de0dd6f780a2329d134d5436",
+      "src/modules/save/SaveStorage.ts": "14ddce4e03796d1c29b20fcd94a14c8b7a34531ea7bd286324572fac642b44d9",
+      "src/modules/save/SaveTypes.ts": "9616b328d076db9058829d2e7d74fd4ecb72a5b5fa1c544b0a300c0276eae227",
+      "src/modules/save/TraitTalentMigration.ts": "7a8ad8265d32fc83f9307d794bd1819a1cc9cadecde7160987e193b0aad3dd97",
+      "src/modules/social/CommunityConversationService.ts": "85e374c407ebdd66423fd3d3da8e5bfe4e5ec2dba241f26cd07c5dd123ca201c",
+      "src/modules/social/RelationshipRules.ts": "8092ee413ae5230b5382d4e8cc0d9bc8e3e7170b85fb356cb2697aebba5f1bcb",
+      "src/modules/social/RelationshipService.ts": "bd01b589d6ad309d44c4e401b076c2b10de9776db67302450c68dae584c01204",
+      "src/modules/social/RescueEvidenceService.ts": "c05d7064395ee4cab893abeefdc85ae93ab2d073a430b03c4acf1c6ff8d9cab7",
+      "src/modules/social/SocialComponents.ts": "9b2b189083797fe9fcd57c08ebd4f42343fe5468b51dbba274f5361aa5572f9f",
+      "src/modules/social/SocialConversationService.ts": "d172f1aa75023dbad1974ec57bb5286277b7a5c5a0a243cd80c7b0958a0ca174",
+      "src/modules/social/SocialCooldown.ts": "066bc3ecb42c595496ecb22eb68fcd5d7dfaf708331ca70dad43154345c3e94c",
+      "src/modules/social/SocialDeathService.ts": "1e1fd6b569a2875ace7b1bd35397a18a124874fdabc3316fcb1f33759dffa136",
+      "src/modules/social/SocialDecisionService.ts": "101a666f443fcdbcec5a44f872431cc8c541c4dd3b0955fc49560e828a32e30f",
+      "src/modules/social/SocialEventTime.ts": "6063fa45eabd90a38f29e90c498b8fd6a56c3bdb9894855a286253c006ef4018",
+      "src/modules/social/SocialFamiliarityService.ts": "1f9ce6dc112c3202c578004bcf3e63ffa342f37a3d24fdc2ae9981ae6e66bde8",
+      "src/modules/social/SocialInteractionGate.ts": "393b2c945386696e0ad1fadb6a4c99534501f4865d9cfe8bb3366c98f6046f47",
+      "src/modules/social/SocialInteractionService.ts": "f3f45992aa721e4193d7ac082bb20223457776ee00064b78dc6b05043d08e389",
+      "src/modules/social/SocialInteractionSystem.ts": "af1ff89e6323b9ae3377fe8bed55d8b69cbd0098eb0baa033bf1c5adb02f9d38",
+      "src/modules/social/SocialPlanTelemetry.ts": "810124eec49401fc01e9883a3052862726b0af23ea90fd2318c167ff4e974808",
+      "src/modules/social/SocialSaveCodec.ts": "e5eac3590789830e037cbc5d18a0cab201c635d8f5b8141cf4adfd7e5be28544",
+      "src/modules/social/SocialSimulationTelemetry.ts": "9791cc0d61fbebeeb0313f446e4817d40628e05f7fb55d891dee47a335bbbc46",
+      "src/modules/talent/EncounterTracker.ts": "f4bdbed214b49a2b460f0dad8092d2ec40117da9918a477fd14c3f0eb949412d",
+      "src/modules/talent/GrowthEvents.ts": "62617d296c9ecf6787a5df5cb1037ed34fd36a6eba59edd8d71e87801fd1ad55",
+      "src/modules/talent/GrowthSystem.ts": "63bd701a5c196e0482e8695f554b2e2eb47a50206a27f52a00cb2cd9f9a18c09",
+      "src/modules/talent/MentalStateSystem.ts": "a6cb81b19c0ac92b023fe4b2b8e400222987c358ac8bc52e9618eb5497d3fed6",
+      "src/modules/talent/PotentialCalculator.ts": "ee0d353709337a46c6101e3fa53e8c68a06da07260e6509e5c6102c9d963400f",
+      "src/modules/talent/TalentComponents.ts": "a94a56ef55bbecd12c9994eef5be930a1964c3038f1ee5c334ba73af355b8796",
+      "src/modules/talent/TalentGenerator.ts": "be309d83057ee93f42528166b46abd6f48856e1fd53db24eda8352cf9e9ee36e",
+      "src/modules/traits/DerivedStatsService.ts": "b5318f410ffe98827f0168cf5d5dae1e365c1421fccc324da0cca71933f105dc",
+      "src/modules/traits/TraitCatalog.ts": "8e337e899256845609cfb3ede59a492225382885620c5a832a647d04499b9408",
+      "src/modules/traits/TraitEffectResolver.ts": "0318366ec1778e154658f25393edf7318d1ecffe58cb19b6f7ede79e2748bc3f",
+      "src/modules/traits/TraitService.ts": "8f53a8639d736dba38800065911152ebc2539a9001ccc1588aa9492ae83790f6",
+      "src/modules/treasure/TreasureChest.ts": "358ae233c9eac8a5d3bdfcd375e3acf79cdb97279badcdfec29340f995dc7d0c",
+      "src/modules/weather/DisasterSystem.ts": "7709a78f228b64a50d6911998663e4f7a129c12ce3235b954fe870f5a94c676b",
+      "src/modules/weather/WeatherSystem.ts": "130381e6fc44d3527a992a87dde43dd0aba32d86cadc8e2e8cc5f6771922993d",
+      "src/modules/weather/WeatherTypes.ts": "167b3b6e1b73f79e0695fb6bfb9844dbf3c78c36ac54341bb2f7dae4609cd2ab",
+      "src/modules/world/ElevationMovement.ts": "43cf4d2819e7331db18889cda1f26f97149c8a1f44b4789e577e462ae5e933ae",
+      "src/modules/world/ElevationRules.ts": "07241d108c7daaf61b8042c0c8df46090ed95fafcb52358f154525ee36610442",
+      "src/modules/world/TerrainEnvironment.ts": "f3d18e9fce02cead266e28a436e709ef90d2ba6b608d914e2d069bd3516437cb",
+      "src/modules/world/TerrainType.ts": "0414f2257d2b646ce475a0115fcb2e1b11979d3e994da739be8d52b451ed2f25",
+      "src/modules/world/WorldGenerator.ts": "20bac61f76371fc30c6b278880e158d1b9ddd6a3f123ac2f6d4f44fb9374c9ac",
+      "src/modules/world/WorldMap.ts": "eebfb5dbfd99a4de1666423e1be07343103f171331d1169d9b617e82b6187206",
+      "src/renderer/assets/AnimalAssetManager.ts": "879dc73b92f83bd5bfcac1e207e9e8fa5db18f25940b11f1f8e39458a218d053",
+      "src/renderer/assets/AssetManager.ts": "2c7fb07e3a9b4892d5dba0985f6f074b19177498dc472c0b9b2972485c1c3f35",
+      "src/renderer/assets/FallbackPixelRenderer.ts": "5644c8bf2aa3eff1330abf8166cd98fd9d8b6f5cee856ff0b83609a3845676fd",
+      "src/renderer/PixelCanvas.ts": "4f42303a23eab6711de80bb28aecd55ba5829150c1a182f7caa8f97ef982d98b",
+      "src/renderer/systems/ActivityFeedback.ts": "b6a2735ffdc0942d1b74911b621674c0ce89f59c37df235004479a7da9d11518",
+      "src/renderer/systems/AnimalRenderer.ts": "7db7dafe9f16b08b00c6061bc29aa833d86f7bff6e6b587fcf074c66fef964b0",
+      "src/renderer/systems/AnimationSystem.ts": "1979e4317899003b97076d00f06821e185aad8e2074f92f96d12f2240a62dda3",
+      "src/renderer/systems/BuildingRenderer.ts": "65628ccf374f02725efd906565fd6f845c99f3e905b1061f83f075c597d0e361",
+      "src/renderer/systems/CombatFxRenderer.ts": "a075789a2fad13b72f39dc8d91c2bdb8d49343696594a34b0ba6b9f5e7f11045",
+      "src/renderer/systems/DialogueRenderer.ts": "a8ee274beb1c970acc13ebb4e0f256ce8c8ba66771301c028f4ebe2c1d1c7c8b",
+      "src/renderer/systems/EntityRenderer.ts": "5882a779cfff95a030bd8a082b67bc920696eaf52192f2a416a473e41bcd6123",
+      "src/renderer/systems/FloraRenderer.ts": "16135ed5661a1980d03a0060ad64df8b51b50899af043184af1e1e112600cb1f",
+      "src/renderer/systems/LayeredCharacterRenderer.ts": "e1c92b568170df2a61f9dc8e29a3de0c18f98181dd02337fdef31d60ce2dcc61",
+      "src/renderer/systems/MenuBackground.ts": "dc9d595f35c42b7493a341aa857e468743901cda5607d3c93701479af25891fd",
+      "src/renderer/systems/QiOverlayRenderer.ts": "ed77dabd749eeb98b131fc34c0753fccf28c12afc60675611f50df5c70a14029",
+      "src/renderer/systems/TerritoryRenderer.ts": "7640c8e744c4adeffcc04136ef7ceb6dcc49c0dc8936a04586b3f7db5b8cd5dc",
+      "src/renderer/systems/TreasureRenderer.ts": "ec906be3a9dd946977f9c62dd85dd36765a61f80c4f76969f546f425a49ade9e",
+      "src/renderer/systems/WeatherFxRenderer.ts": "18f62fd92d2519490c137b87471f720373c780a23a6e0fb570e6fe1db123483b",
+      "src/renderer/systems/WorldRenderer.ts": "58c011244c1da4017558e622c2cf2dada84c1fb6f6fbaeba5c4ca9828b51b988",
+      "src/renderer/ViewportCamera.ts": "caf84e4de10d29a89d040ec8b430ddd4049c244e830f74d21507cf9fb9033eeb",
+      "src/ui/AnimalInspector.ts": "204d2bfc61f8cb67a6107232ddafc5e851b9cc40881832f6682ba7ad07a57e1a",
+      "src/ui/GodToolbar.ts": "baa855946fb9b7399268a8f2a32a586f223f264369a0938241f7854f2e2d059b",
+      "src/ui/InspectorPanel.ts": "03272c30e4fb5eac915589ce4fa5bb4a2d1b0eb77c2b0c1822acb406407d2dea",
+      "src/ui/MainMenu.ts": "1d65014d0a2930358f516a4beeca40478f3d72eb151cf287a187200407ff4484",
+      "src/ui/Minimap.ts": "623f954a1779a258e8c5331c3539a3308c652046acc47a88807ef0109f72c9b9",
+      "src/ui/PauseMenu.ts": "0d05f18da66c3b60d20b139d6d586593fa8b5fe3af7b0f35d4a8508a4c417970",
+      "src/ui/ProfessionPanel.ts": "2526e8bead7d46e86834603dec04f7196ccd6647a3ed1011d596523000067b3e",
+      "src/ui/SocialRelationshipInspector.ts": "bd35a6c1fc1240c59bf326756a844f970063c341b529b8e5c305b5290f63e7f2",
+      "src/ui/TimeControls.ts": "83b2df3d745c532bcfc01995f42573c884e90d8da366e6a170601bb3c4e7ab5e",
+      "src/ui/UIManager.ts": "11cf20effa0da812df1768117356826c485c574f4592746ecf098da932df5f4b",
+      "src/ui/WorldChronicle.ts": "7ab033564487075c73e5425f68753a60af9e70a0ab7c78ff1e1661d7766ec74a",
+      "tests/social-baseline.ts": "e4f472055f856cb6e602b59ec3be7936ddd5b5a40dc3e7ceede38adf0bbbd9e9",
+      "tests/social-integration-baseline.ts": "d1f7943c317467384394d3e0fc4f55a22655b562504ccc14f508fc85c0b1f689",
+      "tests/social-world-baseline.ts": "5d024ce25055c6413b9663a273613ff061a7f352354d333db6eca4abdfad99f1",
+      "tests/social-phase6-regression.ts": "7f878cf2b76b2a47be44b0246972fa217ed564e74e99b2ea65223e406d1ae88e",
+      "tests/social-fixture.ts": "c89159f444aab4b228c4e0fc0b4dc61b434aee7e4eebe6b5c9a2c2e6d712c5fe",
+      "tests/social-baseline-output.ts": "a05c0e6635a7548965c3c0547688450fd78a0276f595011120cb4c61bc3d0702"
+    },
+    "scope": "Harness metadata; timing is not a whole Engine benchmark"
+  }
+}

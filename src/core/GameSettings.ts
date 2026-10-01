@@ -87,7 +87,7 @@ export class GameSettings {
     return { ...this.current };
   }
 
-  private static sanitize(input: any): GameSettingsData {
+  private static sanitize(input: Record<string, unknown>): GameSettingsData {
     const autosaveEnabled = typeof input.autosaveEnabled === 'boolean'
       ? input.autosaveEnabled
       : DEFAULT_SETTINGS.autosaveEnabled;

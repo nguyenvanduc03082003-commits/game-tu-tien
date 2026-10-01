@@ -1,3 +1,4 @@
+import { setCombatIntent } from '../combat/CombatIntentService.ts';
 import { System } from '../../ecs/System.ts';
 import { ECSWorld } from '../../ecs/World.ts';
 import { EventBus } from '../../core/EventBus.ts';
@@ -842,8 +843,8 @@ export class DiplomacySystem implements System {
           if (this.getRelation(memA.factionId, memB.factionId, world) === 'war') {
             const dist = Math.hypot(posA.x - item.x, posA.y - item.y);
             if (dist < 120) {
-              if (statsA) statsA.targetEntityId = entB;
-              if (statsB) statsB.targetEntityId = entA;
+              if (statsA) setCombatIntent(world, entA, entB, 'autonomous');
+              if (statsB) setCombatIntent(world, entB, entA, 'autonomous');
               break;
             }
           }
@@ -867,8 +868,8 @@ export class DiplomacySystem implements System {
             const posB = world.getComponent(entB, PositionComponent)!;
             const dist = Math.hypot(posA.x - posB.x, posA.y - posB.y);
             if (dist < 120) {
-              if (statsA) statsA.targetEntityId = entB;
-              if (statsB) statsB.targetEntityId = entA;
+              if (statsA) setCombatIntent(world, entA, entB, 'autonomous');
+              if (statsB) setCombatIntent(world, entB, entA, 'autonomous');
               break;
             }
           }

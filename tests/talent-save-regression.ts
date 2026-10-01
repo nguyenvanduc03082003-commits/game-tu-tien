@@ -145,6 +145,8 @@ test('S02, S03, S09 & G06: legacy save migration preserves 7 missing IDs, an_lin
   delete baseSave.traitSystemVersion;
   delete baseSave.talentGenerationVersion;
   delete baseSave.birthOrdinal;
+  // The synthetic legacy entities below use IDs 10 and 11.
+  baseSave.nextEntityId = 12;
 
   baseSave.entities = [
     {
@@ -340,6 +342,7 @@ test('S04, S08 & P11: future traitSystemVersion or NaN/Infinity in V3 save is re
 test('Bug 1 Legacy Migration Regression: migrating legacy save at stageIndex = 3 preserves baseAtk = 100 across repeated rebuilds', () => {
   const engine = createMockEngine();
   const legacySave = SaveManager.serializeWorld(engine, 'Legacy Stage 3');
+  legacySave.nextEntityId = 26; // Synthetic entity below has ID 25.
   delete legacySave.traitSystemVersion;
   delete legacySave.talentGenerationVersion;
 

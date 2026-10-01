@@ -1,3 +1,8 @@
+import { CombatStatsComponent } from '../modules/combat/CombatComponents.ts';
+import { evaluateMaintainedAssistance } from '../modules/combat/CombatIntentService.ts';
+import { readSocialTelemetry } from '../modules/social/SocialSimulationTelemetry.ts';
+import { readSocialFamiliarity, evaluateSocialFamiliarity } from '../modules/social/SocialFamiliarityService.ts';
+import { socialEventTime } from '../modules/social/SocialEventTime.ts';
 import { SOCIAL_CONFIG } from '../config/social.config.ts';
 import { ECSWorld } from '../ecs/World.ts';
 import { CorpseComponent, GraveComponent, HealthComponent, NameComponent, PositionComponent } from '../modules/beings/BeingComponents.ts';
@@ -48,6 +53,37 @@ const REASONS: Record<RelationshipRejectionReason, string> = {
 
 function formatDays(value: number): string {
   return (Math.ceil(value * 100) / 100).toLocaleString('vi-VN', { maximumFractionDigits: 2 });
+}
+
+function renderFamiliarity(world: ECSWorld, owner: number, target: number, ownName: string,
+  targetName: string, escape: (value: unknown) => string): string {
+  const config = SOCIAL_CONFIG.familiarity;
+  const line = (a: number, b: number, label: string) => {
+    const record = world.getComponent(a, SocialRelationshipComponent)?.getRelationship(b);
+    const reverse = world.getComponent(b, SocialRelationshipComponent)?.getRelationship(a);
+    const hpA = world.getComponent(a, HealthComponent), hpB = world.getComponent(b, HealthComponent);
+    let text: string;
+    if (!hpA || !hpB || hpA.isDead || hpB.isDead || hpA.current <= 0 || hpB.current <= 0)
+      text = 'Không tích lũy với người đã mất hoặc không còn đủ dữ liệu.';
+    else if (!record || !reverse) text = 'Chưa có đủ ghi nhận quan hệ ở cả hai phía.';
+    else if (record.trust >= config.maxTrust) text = `Tín nhiệm hiện đã từ ${config.maxTrust}; không nhận thêm từ cơ chế tiếp xúc thường ngày. Nguồn khác vẫn có thể tăng thêm.`;
+    else if (record.affinity < config.minMutualAffinity || reverse.affinity < config.minMutualAffinity)
+      text = `Cần hảo cảm cả hai phía từ ${config.minMutualAffinity} để bắt đầu tích lũy.`;
+    else {
+      const progress = readSocialFamiliarity(world, a, b);
+      const expired = record.familiarity && world.calendarDaysAtTick() - record.familiarity.lastQualifiedDay >= config.expiryDays;
+      const count = progress?.neutralCount ?? 0;
+      text = `${count}/${config.neutralMeetings} cuộc gặp trung tính đủ điều kiện; còn ${config.neutralMeetings - count} cuộc để nhận tối đa +${config.trustPerReward} tín nhiệm.`;
+      if (expired) text += ' Tiến độ cũ đã hết hiệu lực vì lâu không gặp.';
+      if (progress) text += ` Gặp đủ điều kiện gần nhất: ngày ${formatDays(progress.lastQualifiedDay)}; còn ${formatDays(Math.max(0, config.expiryDays - (world.calendarDaysAtTick() - progress.lastQualifiedDay)))} ngày trước khi tiến độ hết hiệu lực.`;
+    }
+    return `<div style="margin-top:4px;"><b>${escape(label)}</b>: ${escape(text)}</div>`;
+  };
+  return `<div style="margin-top:7px;border-top:1px solid #30363d;padding-top:5px;line-height:1.5;overflow-wrap:anywhere;">
+    <b>Quen nhau qua những cuộc gặp</b>
+    ${line(owner, target, `${ownName} → ${targetName}`)}${line(target, owner, `${targetName} → ${ownName}`)}
+    <div style="color:#8b949e;font-size:10px;margin-top:4px;">Chỉ tính cuộc gặp đã hoàn tất. Cuộc gặp ấm áp tăng tín nhiệm theo kết quả riêng; ấm áp hoặc vụng về xóa tiến độ trung tính của phía tương ứng. Nghỉ từ ${config.expiryDays} ngày làm tiến độ cũ hết hiệu lực. Đủ tiến độ chưa bảo đảm hình thành ràng buộc.</div>
+  </div>`;
 }
 
 const END_REASONS = { death: 'Qua đời', betrayal: 'Phản bội', estrangement: 'Xa cách / mâu thuẫn' } as const;
@@ -162,8 +198,13 @@ export function renderSocialRelationshipDetails(world: ECSWorld, entity: number,
     const sideLine = (name: string, side: typeof snapshot.a) =>
       `<div>${escape(name)}: mức hướng ngoại ${formatDays(side.sociability * 100)}% · ${side.busy ? 'đang bận' : 'chưa ghi nhận đang bận'}.</div>`;
     const prediction = conversation.status === 'skipped' ? escape(CONVERSATION_REASONS[conversation.reason]) :
-      [conversation.evaluation.a, conversation.evaluation.b].map((side, index) =>
-        `<div>${escape(index === 0 ? ownName : targetName)} → ${escape(index === 0 ? targetName : ownName)}: ${OUTCOMES[side.outcome]}; dự kiến hảo cảm ${side.delta.affinity > 0 ? '+' : ''}${side.delta.affinity}, tin tưởng +${side.delta.trust}, kính trọng +${side.delta.respect}.</div>`).join('');
+      [conversation.evaluation.a, conversation.evaluation.b].map((side, index) => {
+        const progress = evaluateSocialFamiliarity(index === 0 ? record.familiarity : reverse?.familiarity,
+          side.outcome, index === 0 ? snapshot.a.affinity : snapshot.b.affinity,
+          index === 0 ? snapshot.b.affinity : snapshot.a.affinity,
+          index === 0 ? snapshot.a.trust : snapshot.b.trust, socialEventTime(world));
+        return `<div>${escape(index === 0 ? ownName : targetName)} → ${escape(index === 0 ? targetName : ownName)}: ${OUTCOMES[side.outcome]}; dự kiến hảo cảm ${side.delta.affinity > 0 ? '+' : ''}${side.delta.affinity}, tín nhiệm +${side.delta.trust + progress.trustDelta}, kính trọng +${side.delta.respect}${progress.trustDelta > 0 ? ' (gồm tín nhiệm tích lũy từ những lần gặp trước)' : ''}.</div>`;
+      }).join('');
     const assistanceLine = (helper: number, ally: number, helperName: string, allyName: string) => {
       const result = evaluateSocialAssistance(world, helper, ally);
       const enemyName = result.status === 'eligible' ? world.getComponent(result.enemyId, NameComponent)?.name ?? 'kẻ địch' : '';
@@ -191,9 +232,43 @@ export function renderSocialRelationshipDetails(world: ECSWorld, entity: number,
     ${conflictHtml}
     ${rescueHtml}
     ${decisionsHtml}
+    ${open ? renderFamiliarity(world, entity, target, ownName, targetName, escape) : ''}
+    ${open ? renderCombatIntent(world, entity, escape) : ''}
     <div style="margin-top:5px;color:#fbbf24;">${cooldownHtml || 'Không có thời gian chờ còn hiệu lực cho chiều đang xem.'}</div>
     ${eligibilityHtml}
     <div style="font-size:10px;color:#8b949e;margin-top:6px;">Đủ điều kiện vẫn cần lần thử thành công khi gặp nhau. Thời gian chờ tính theo ngày trong game; tạm dừng không làm thời gian trôi.</div>
   </details>`;
   return { statusHtml, focusHtml, detailsHtml };
+}
+
+function renderCombatIntent(world: ECSWorld, entity: number, escape: (value: unknown) => string): string {
+  const stats = world.getComponent(entity, CombatStatsComponent);
+  if (!stats?.targetEntityId) return '<div>Chưa có mục tiêu chiến đấu.</div>';
+  const intent = stats.combatIntent;
+  const labels = { autonomous: 'AI tự chọn', self_defense: 'Tự vệ sau khi bị đánh', social_assistance: 'Trợ chiến tự nguyện', god_decree: 'Thần dụ' };
+  const target = world.getComponent(stats.targetEntityId, NameComponent)?.name ?? `#${stats.targetEntityId}`;
+  const result = evaluateMaintainedAssistance(world, entity);
+  const reasons: Record<string, string> = { ...ASSISTANCE_REASONS, stale_intent: 'Dữ liệu mục tiêu không còn khớp', bond_episode_changed: 'Ràng buộc đã đổi sang lần hình thành khác', ally_target_changed: 'Người được giúp đã đổi kẻ địch' };
+  return `<div style="margin-top:6px;font-size:10px;">Mục tiêu hiện tại: ${escape(target)} · ${escape(intent ? labels[intent.source] : 'Chưa ghi nhận nguồn')}.
+    ${intent?.source === 'social_assistance' ? `<div>Người được giúp: ${escape(world.getComponent(intent.allyId!, NameComponent)?.name ?? `#${intent.allyId}`)}. ${result.status === 'maintained' ? 'Hiện đủ điều kiện tiếp tục trợ chiến.' : `Dự kiến dừng: ${escape(reasons[result.reason ?? ''] ?? 'Dữ liệu không còn phù hợp')}.`}</div>` : ''}
+    <div style="color:#8b949e;">Đánh giá chỉ đọc; việc duy trì hoặc dừng do vòng mô phỏng thực hiện.</div></div>`;
+}
+
+export function renderSocialSimulationDebug(world: ECSWorld, entity: number, open: boolean, escape: (value: unknown) => string): string {
+  const data = readSocialTelemetry(world);
+  const counts = Object.entries(data.counters).sort((a, b) => b[1] - a[1]).slice(0, 20);
+  const total = (prefix: string) => Object.entries(data.counters).reduce((sum, [key, value]) => sum + (key.startsWith(prefix) ? value : 0), 0);
+  const count = (key: string) => data.counters[key] ?? 0;
+  return `<details data-social-details="${entity}:debug" data-social-loaded="${open}" ${open ? 'open' : ''} style="font-size:10px;border-top:1px solid #30363d;padding-top:6px;">
+    <summary style="cursor:pointer;color:#8b949e;">Công cụ phát triển · theo dõi mô phỏng xã hội</summary>
+    ${!open ? '' : `<button data-social-telemetry-toggle>${data.enabled ? 'Tắt' : 'Bật'} thu số liệu</button>
+    <div>Toàn thế giới · mặc định tắt · tối đa 128 bộ đếm và 200 mẫu gần nhất. Không lưu vào bản lưu; tạo thế giới hoặc tải lại sẽ xóa. Bảng hiển thị 20 bộ đếm và 10 mẫu. Đây không phải thống kê toàn bộ lịch sử thế giới.</div>
+    <div style="margin-top:5px;line-height:1.5;"><b>Cuộc gặp:</b> gọi ${total('conversation:attempted:')} · hoàn tất ${total('conversation:completed:')} · bỏ qua ${total('conversation:skipped:')}.</div>
+    <div style="margin-top:4px;line-height:1.5;"><b>Quét cộng đồng:</b> đầu vào ${count('community_scan:input_pairs:')} lượt cặp · không ở gần/thiếu vị trí ${count('community_scan:excluded_non_near_pairs:')} · cặp gần trùng ${count('community_scan:duplicate_near_pairs:')} · còn thời gian chờ ${count('community_scan:filtered_cooldown:')} · gọi hội thoại ${count('community_scan:commit_calls:')}.</div>
+    <div style="margin-top:4px;line-height:1.5;"><b>Kế hoạch nghỉ/giao lưu:</b> bắt đầu ${total('social_plan:started:')} · hoàn tất ${total('social_plan:completed:')} · thất bại ${total('social_plan:failed:')} · bị thay ${total('social_plan:interrupted:')}. Hoàn tất kế hoạch nghỉ chưa đồng nghĩa đã trò chuyện.</div>
+    <div style="margin-top:4px;"><b>Tích lũy tín nhiệm:</b> ${total('familiarity:rewarded:')} lần thưởng theo từng phía; không phải số cặp.</div>
+    <div style="color:#8b949e;margin:4px 0;">Đầu vào có thể lặp giữa cụm; cặp bị lọc chưa phải một hội thoại. Counter có thể thiếu khi hết giới hạn key; mẫu chỉ là cửa sổ gần nhất. Các kế hoạch còn chạy, đã chết hoặc thiếu hook kết thúc không được suy thành thất bại.</div>
+    ${counts.map(([key, value]) => `<div>${escape(key)}: ${value}</div>`).join('') || '<div>Chưa có số liệu.</div>'}
+    ${data.samples.slice(0, 10).map(sample => `<div>Ngày ${formatDays(sample.day)} · #${sample.actor}${sample.target ? ` → #${sample.target}` : ''}${sample.planRevision !== undefined ? ` · kế hoạch ${sample.planRevision}` : ''}: ${escape(sample.category)} / ${escape(sample.result)} ${escape(sample.detail ?? '')}</div>`).join('')}`}
+  </details>`;
 }

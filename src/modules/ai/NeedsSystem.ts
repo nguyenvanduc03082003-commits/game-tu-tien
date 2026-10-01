@@ -95,7 +95,7 @@ export class NeedsSystem implements System {
       const mortalNeeds = world.getComponent(ent, MortalNeedsComponent);
       if (mortalNeeds) {
         const currentWeather = (typeof window !== 'undefined' ? (window as any)._currentWeather : undefined) ?? WeatherType.CLEAR;
-        
+
         // Khát nước: Hao nhanh hơn khi hạn hán
         const thirstDrain = (currentWeather === WeatherType.DROUGHT ? 1.8 : 1.0) * deltaDays * 1.2 * traitEffects.thirstRateFactor;
         mortalNeeds.thirst = Math.max(0, mortalNeeds.thirst - thirstDrain);

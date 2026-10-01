@@ -89,8 +89,7 @@ export function claimRescueLife(world: ECSWorld, rescuer: number, victim: number
   const victimName = world.getComponent(victim, NameComponent)?.name ?? 'Cư dân';
   e.claimed = true;
   startSocialCooldown(world, victim, rescuer, 'rescueLife', SOCIAL_CONFIG.rescue.cooldownDays);
-  const record = social.adjustScores(rescuer, name, 70, 60, 40, socialEventTime(world));
-  record.lastInteractionDay = world.calendarDayFloorAtTick(); record.lastInteractionTick = world.getCurrentTick();
+  social.adjustScores(rescuer, name, 70, 60, 40, socialEventTime(world));
   social.updateOrdinaryLabel(rescuer);
   for (const [owner, type, description, importance, emotion, target, targetName] of [
     [victim, 'saved_life', `Được [${name}] trảm sát kẻ đang đe dọa, cứu lấy một mạng!`, 5, 95, rescuer, name],

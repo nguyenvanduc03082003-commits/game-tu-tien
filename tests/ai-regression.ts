@@ -49,9 +49,9 @@ test('social interaction improves both relationships once and fails when partner
  f.world.addComponent(other,new PositionComponent(45,40)); f.world.addComponent(other,new HealthComponent(100)); f.world.addComponent(other,new SocialRelationshipComponent());
  f.planner.currentPlanGoal='SOCIAL_RECREATE'; f.planner.steps=[{type:'IDLE_WAIT',description:'chat',duration:1,customData:{socialWith:other}}];
  BehaviorTreeExecutor.tick(f.world,f.id,f.bt,f.planner,map,1);
- assert.equal(f.world.getComponent(other,SocialRelationshipComponent)!.getRelationship(f.id)!.affinity,2);
+ assert.equal(f.world.getComponent(other,SocialRelationshipComponent)!.getRelationship(f.id)!.affinity,1);
  BehaviorTreeExecutor.tick(f.world,f.id,f.bt,f.planner,map,1);
- assert.equal(f.world.getComponent(other,SocialRelationshipComponent)!.getRelationship(f.id)!.affinity,2);
+ assert.equal(f.world.getComponent(other,SocialRelationshipComponent)!.getRelationship(f.id)!.affinity,1);
  f.planner.currentStepIndex=0; f.planner.planStatus='executing'; f.world.getComponent(other,PositionComponent)!.x=400;
  BehaviorTreeExecutor.tick(f.world,f.id,f.bt,f.planner,map,1); assert.equal(f.planner.planStatus,'failed');
 });
@@ -60,8 +60,9 @@ test('travel timeout fails rather than granting remote work',()=>{
  BehaviorTreeExecutor.tick(f.world,f.id,f.bt,f.planner,map,0.05); assert.equal(f.planner.planStatus,'failed'); assert.equal(f.planner.currentStepIndex,0);
 });
 test('preferences are stable and diverse',()=>{
- assert.deepEqual(residentPreferences(42),residentPreferences(42));
- const values=Array.from({length:100},(_,i)=>residentPreferences(i).sociability);
+ const world = new ECSWorld(); const id = world.createEntity();
+ assert.deepEqual(residentPreferences(id,world),residentPreferences(id,world));
+ const values=Array.from({length:100},()=>residentPreferences(world.createEntity(),world).sociability);
  assert.ok(values.some(v=>v<0.2)&&values.some(v=>v>0.8));
 });
 test('urgent thirst interrupts routine behavior',()=>{
@@ -104,7 +105,6 @@ import './mental-growth-regression.ts';
 import './pill-usage-regression.ts';
 import './world-chronicle-regression.ts';
 import './time-pacing-regression.ts';
-
 
 
 

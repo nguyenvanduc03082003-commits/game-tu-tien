@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import { TimeManager } from '../src/core/TimeManager.ts';
+import { calculateEnvironmentalPlantGrowth } from '../src/modules/world/TerrainEnvironment.ts';
 import { ECSWorld } from '../src/ecs/World.ts';
 import { TimeManager } from '../src/core/TimeManager.ts';
 import { WorldMap } from '../src/modules/world/WorldMap.ts';
@@ -64,12 +66,16 @@ test('2. Chu kỳ tái mọc quả: sau khi hái -> cooldown -> ra quả lại, 
   // 1 ngày game = 100 ticks = 5 giây ở tốc độ 1x (TimeManager: 20 ticks/giây, 100 ticks/ngày)
   // 5 ngày game = 5 * 5 = 25 giây.
   // Chạy 2 ngày game (10 giây) = 200 bước dt = 0.05
-  for (let i = 0; i < 200; i++) {
+  const secondsPerDay = TimeManager.TICKS_PER_DAY / TimeManager.TICKS_PER_SECOND;
+  const tileA = mapA.getTile(0, 0)!;
+  const multiplier = calculateEnvironmentalPlantGrowth(tileA.terrain, tileA.moisture, tileA.temperature);
+  const expectedRemaining = fruitRegrowDays - 2 * multiplier;
+  for (let i = 0; i < 2 * secondsPerDay / .05; i++) {
     growthA.update(worldA, 0.05);
   }
   assert.equal(plantA.hasFruit, false, 'Sau 2 ngày game (chưa đủ 5 ngày), cây chưa thể ra quả lại');
   assert.ok(
-    Math.abs(plantA.fruitRegrowDaysRemaining - 3) < 0.01,
+    Math.abs(plantA.fruitRegrowDaysRemaining - expectedRemaining) < 0.01,
     `fruitRegrowDaysRemaining phải còn xấp xỉ 3 ngày (thực tế: ${plantA.fruitRegrowDaysRemaining})`
   );
 
@@ -91,12 +97,12 @@ test('2. Chu kỳ tái mọc quả: sau khi hái -> cooldown -> ra quả lại, 
   plantB.fruitRegrowDaysRemaining = fruitRegrowDays;
 
   // Chạy 10 bước dt = 1.0 (tương đương 2 ngày game)
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 2 * secondsPerDay; i++) {
     growthB.update(worldB, 1.0);
   }
   assert.equal(plantB.hasFruit, false);
   assert.ok(
-    Math.abs(plantB.fruitRegrowDaysRemaining - 3) < 0.01,
+    Math.abs(plantB.fruitRegrowDaysRemaining - expectedRemaining) < 0.01,
     `dt=1.0 phải cho cùng ngày đếm ngược như dt=0.05 (thực tế: ${plantB.fruitRegrowDaysRemaining})`
   );
   assert.ok(
@@ -105,14 +111,15 @@ test('2. Chu kỳ tái mọc quả: sau khi hái -> cooldown -> ra quả lại, 
   );
 
   // Chạy tiếp 3 ngày game (15 giây) = 300 bước dt = 0.05 (tổng đủ 5 ngày game)
-  for (let i = 0; i < 300; i++) {
+  const remainingSeconds = Math.ceil((fruitRegrowDays / multiplier - 2) * secondsPerDay) + 1;
+  for (let i = 0; i < remainingSeconds / .05; i++) {
     growthA.update(worldA, 0.05);
   }
   assert.equal(plantA.hasFruit, true, 'Sau đủ 5 ngày game, cây phải tự động kết trái lại');
   assert.equal(plantA.fruitRegrowDaysRemaining, 0);
 
   // Chạy nốt 15 bước dt = 1.0 (tổng đủ 5 ngày game)
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < remainingSeconds; i++) {
     growthB.update(worldB, 1.0);
   }
   assert.equal(plantB.hasFruit, true, 'dt=1.0 sau 5 ngày game cũng phải tự ra quả lại');
@@ -149,7 +156,10 @@ test('3. Khai thác gỗ làm giảm woodRemaining, hết gỗ chuyển cooldown
   assert.equal(pComp.woodRegrowDaysRemaining, 15);
 
   // Cho thời gian trôi qua 15 ngày game (15 * 5 = 75 giây game = 75 bước dt=1.0)
-  for (let i = 0; i < 75; i++) {
+  const tile = map.getTile(0, 0)!;
+  const regrowSeconds = Math.ceil(15 * TimeManager.TICKS_PER_DAY / TimeManager.TICKS_PER_SECOND /
+    calculateEnvironmentalPlantGrowth(tile.terrain, tile.moisture, tile.temperature)) + 1;
+  for (let i = 0; i < regrowSeconds; i++) {
     growth.update(world, 1.0);
   }
 

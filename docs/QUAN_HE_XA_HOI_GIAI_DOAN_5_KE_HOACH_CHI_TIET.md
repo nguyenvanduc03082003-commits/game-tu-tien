@@ -1,6 +1,6 @@
 # Quan hệ xã hội — Kế hoạch chi tiết giai đoạn 5
 
-Ngày lập: 30-09-2026. **Trạng thái: đề xuất phạm vi và kế hoạch; chưa sửa gameplay, chưa chạy test trong lượt này.**
+Ngày lập: 30-09-2026. **Trạng thái cập nhật 01-10-2026: đã triển khai 5 đợt; cân bằng thực nghiệm và nghiệm thu runtime còn chờ số liệu. Xem báo cáo tổng kết để đối chiếu phạm vi thực tế.**
 
 ## 1. Mục tiêu
 
@@ -183,3 +183,12 @@ Kịch bản quan sát khi được yêu cầu: nhóm cư dân nhiều sociabili
 ## 7. Điểm bắt đầu
 
 Đợt1: tách gate giao tiếp, chuẩn hóa world clock cho producer xã hội và inventory nguồn combat target. Đây là phần nền tảng có thể triển khai độc lập trước khi thêm monitoring hoặc thay đổi cân bằng.
+
+
+## Cập nhật triển khai 01-10-2026
+
+Đã thực hiện lần lượt năm đợt. Báo cáo riêng: QUAN_HE_XA_HOI_GIAI_DOAN_5_DOT_1.md đến DOT_5.md; tổng kết ở QUAN_HE_XA_HOI_GIAI_DOAN_5_TONG_KET.md. Các mục kiểm thử trong kế hoạch vẫn là công việc nghiệm thu chưa chạy. Không thay thông số cân bằng khi chưa có baseline, không tuyên bố hoàn thành nghiệm thu gameplay.
+
+## Cập nhật nghiệm thu 01-10-2026
+
+Đã nghiệm thu 17 nhóm xã hội, toàn bộ npm test, build và assets:check; thu 18 lượt baseline có kiểm soát, 3 lượt tích hợp AI và bằng chứng trình duyệt. Đã sửa ba vấn đề được xác nhận trong nghiệm thu. Xem [báo cáo nghiệm thu và số liệu](QUAN_HE_XA_HOI_GIAI_DOAN_5_NGHIEM_THU_2026-10-01.md) để biết kết quả, phạm vi, giới hạn và công việc tiếp theo. Các ghi chú chưa chạy kiểm tra phía trên phản ánh thời điểm viết ban đầu.

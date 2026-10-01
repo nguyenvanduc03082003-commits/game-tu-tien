@@ -127,6 +127,10 @@ export class StrategicGoalEvaluator {
       const relComp = world.getComponent(entity, SocialRelationshipComponent);
       if (relComp && pos) {
         for (const rel of relComp.relationships.values()) {
+          // Ordinary contacts are not voluntary-assistance candidates. Avoid
+          // filling debug telemetry with a rejection on every utility scan.
+          if (!['dao_companion', 'master', 'disciple', 'sworn_brother'].includes(rel.relationType) ||
+              rel.bond?.status === 'ended') continue;
           const assistance = evaluateSocialAssistance(world, entity, rel.targetEntityId);
           recordSocialTelemetry(world, 'assistance', assistance.status, entity, rel.targetEntityId, assistance.status === 'rejected' ? assistance.reason : undefined);
           if (assistance.status === 'eligible' && combat) {

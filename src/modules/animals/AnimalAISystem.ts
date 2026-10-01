@@ -1,3 +1,4 @@
+import { setCombatIntent } from '../combat/CombatIntentService.ts';
 import { SpatialGrid } from '../../core/SpatialGrid.ts';
 import { getAnimalSpecies } from '../../config/animals/animal.catalog.ts';
 import {
@@ -106,7 +107,7 @@ export class AnimalAISystem implements System {
         } else {
           brain.destinationX = preyPos.x;
           brain.destinationY = preyPos.y;
-          if (combat) combat.targetEntityId = brain.targetEntityId;
+          if (combat && brain.targetEntityId !== null) setCombatIntent(world, id, brain.targetEntityId, 'autonomous');
         }
       }
 
@@ -435,7 +436,7 @@ export class AnimalAISystem implements System {
         brain.targetEntityId = nearestPrey;
         brain.destinationX = pPos.x;
         brain.destinationY = pPos.y;
-        if (combat) combat.targetEntityId = nearestPrey;
+        if (combat) setCombatIntent(world, selfId, nearestPrey, 'autonomous');
         return true;
       }
 
@@ -472,7 +473,7 @@ export class AnimalAISystem implements System {
         brain.targetEntityId = nearestPrey;
         brain.destinationX = pPos.x;
         brain.destinationY = pPos.y;
-        if (combat) combat.targetEntityId = nearestPrey;
+        if (combat) setCombatIntent(world, selfId, nearestPrey, 'autonomous');
         return true;
       }
     }

@@ -33,6 +33,8 @@ export const SOCIAL_CONFIG = {
     maxCandidates: 12, searchRadius: 200,
     weights: { relationship: 0.35, receptivity: 0.25, distance: 0.25, context: 0.15 },
   },
+  // G6 trial values; balance acceptance requires measured before/after runs.
+  familiarity: { neutralMeetings: 3, trustPerReward: 1, maxTrust: 60, minMutualAffinity: 10, expiryDays: 10 },
   assistance: { minAffinity: 20, minTrust: 40, fleeHealthRatio: 0.25, radius: 180 },
   cooldownDays: {
     communication: 1, healing: 3, teaching: 10, bondAttempt: 30,

@@ -381,23 +381,31 @@ export class BeingFactory {
    * Create a child with a new appearance, preserving species and reciprocal family links.
    */
   public static createNewborn(world: ECSWorld, parentA: number, parentB: number): Entity | null {
-    const a=world.getComponent(parentA,RaceComponent);const b=world.getComponent(parentB,RaceComponent);
-    const pos=world.getComponent(parentA,PositionComponent);
-    const aa=world.getComponent(parentA,AppearanceComponent);const ab=world.getComponent(parentB,AppearanceComponent);
-    if(parentA===parentB||!a||!b||a.raceId!==b.raceId||!pos||!aa||!ab||aa.speciesId!==ab.speciesId)return null;
-    for(const p of [parentA,parentB]) {const hp=world.getComponent(p,HealthComponent);if(!hp||hp.isDead)return null;}
-    const archetype=a.raceId==='beast'?'yao_common':a.raceId==='demon'?'mortal_demon':'mortal_human';
-    const child=this.spawnFromArchetype(world,archetype,pos.x,pos.y,{
-      newborn:true,
-      speciesId:aa.speciesId,
-      parents:[parentA,parentB],
-      mode:'natural'
+    const raceA = world.getComponent(parentA, RaceComponent);
+    const raceB = world.getComponent(parentB, RaceComponent);
+    const pos = world.getComponent(parentA, PositionComponent);
+    const appearanceA = world.getComponent(parentA, AppearanceComponent);
+    const appearanceB = world.getComponent(parentB, AppearanceComponent);
+    if (parentA === parentB || !raceA || !raceB || raceA.raceId !== raceB.raceId ||
+        !pos || !appearanceA || !appearanceB || appearanceA.speciesId !== appearanceB.speciesId) return null;
+    for (const parent of [parentA, parentB]) {
+      const hp = world.getComponent(parent, HealthComponent);
+      if (!hp || hp.isDead) return null;
+    }
+    const archetype = raceA.raceId === 'beast' ? 'yao_common'
+      : raceA.raceId === 'demon' ? 'mortal_demon' : 'mortal_human';
+    const child = this.spawnFromArchetype(world, archetype, pos.x, pos.y, {
+      newborn: true,
+      speciesId: appearanceA.speciesId,
+      parents: [parentA, parentB],
+      mode: 'natural'
     });
-    world.getComponent(child,FamilyComponent)!.parentIds=[parentA,parentB];
-    world.getComponent(child,ChildcareComponent)!.guardianEntityId=parentA;
-    for(const p of [parentA,parentB]) {
-      const care=world.getComponent(p,ChildcareComponent);if(care&&!care.childrenEntityIds.includes(child))care.childrenEntityIds.push(child);
-      linkParentAndChild(world, p, child);
+    world.getComponent(child, FamilyComponent)!.parentIds = [parentA, parentB];
+    world.getComponent(child, ChildcareComponent)!.guardianEntityId = parentA;
+    for (const parent of [parentA, parentB]) {
+      const care = world.getComponent(parent, ChildcareComponent);
+      if (care && !care.childrenEntityIds.includes(child)) care.childrenEntityIds.push(child);
+      linkParentAndChild(world, parent, child);
     }
     return child;
   }

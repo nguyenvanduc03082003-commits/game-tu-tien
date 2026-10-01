@@ -1,9 +1,9 @@
-export type AnimationState = 
-  | 'idle' 
-  | 'walk' 
-  | 'meditate' 
-  | 'attack' 
-  | 'breakthrough' 
+export type AnimationState =
+  | 'idle'
+  | 'walk'
+  | 'meditate'
+  | 'attack'
+  | 'breakthrough'
   | 'dead'
   | 'sleep'
   | 'farm'

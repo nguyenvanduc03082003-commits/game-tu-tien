@@ -127,7 +127,7 @@ export class Engine {
   private eventBus = EventBus.getInstance();
 
   // Thao tác công cụ Thượng Đế
-  public activeBrushTerrain: any = null;
+  public activeBrushTerrain: TerrainType | null = null;
   public activeElevationBrushMode: 'raise' | 'lower' | 'smooth' | null = null;
   public brushRadius: number = 2;
   public activePlantSpeciesId: string | null = null;
@@ -775,9 +775,6 @@ export class Engine {
     this.worldName = name;
     this.worldTemplate = template;
     this.worldSeed = seed;
-    (this as any)._worldName = name;
-    (this as any)._worldTemplate = template;
-    (this as any)._worldSeed = seed;
 
     // 1. Dọn sạch toàn bộ trạng thái thế giới cũ (Entities, Systems, Queues, Singletons)
     this.resetWorldState();

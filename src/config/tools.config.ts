@@ -4,7 +4,7 @@
  * Bao gồm các nông cụ, dụng cụ lâm nghiệp, xây dựng, hái lượm, khai khoáng và ngư nghiệp.
  */
 
-export type ToolType = 
+export type ToolType =
   | 'hoe'          // Cuốc làm đất, trồng trọt
   | 'axe'          // Rìu đốn củi, khai thác gỗ
   | 'hammer'       // Búa thợ xây, sửa chữa và kiến thiết

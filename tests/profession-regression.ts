@@ -203,7 +203,8 @@ test('morning shift survives normal goal reevaluation but emergency combat inter
   StrategicGoalEvaluator.evaluate(f.world, f.id, brain, f.map, f.engine.qiGrid, WeatherType.CLEAR, .5);
   assert.equal(brain.currentGoal, 'LABOUR_WORK');
   const combat = f.world.addComponent(f.id, new CombatStatsComponent());
-  const enemy = f.world.createEntity(); f.world.addComponent(enemy, new HealthComponent(100)); combat.targetEntityId = enemy;
+  const enemy = f.world.createEntity(); f.world.addComponent(enemy, new HealthComponent(100));
+  f.world.addComponent(enemy, new PositionComponent(170, 170)); combat.targetEntityId = enemy;
   StrategicGoalEvaluator.evaluate(f.world, f.id, brain, f.map, f.engine.qiGrid, WeatherType.CLEAR, .3);
   assert.equal(brain.currentGoal, 'COMBAT_DEFENSE');
 });

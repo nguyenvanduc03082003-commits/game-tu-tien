@@ -1,0 +1,846 @@
+{
+  "schemaVersion": 1,
+  "scope": "Controlled fixed-position social subsystem, not full engine",
+  "tickPerDay": 400,
+  "secondsPerDayAt1x": 20,
+  "seeds": [
+    11,
+    22,
+    33,
+    44,
+    55,
+    66
+  ],
+  "results": [
+    {
+      "scenario": "cluster_idle",
+      "seed": 11,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 29,
+      "firstBondDay": 66,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 1,
+          "directedAcquaintances": 149,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 148,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 1,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 114,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 18,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 138722,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 68723,
+        "conversation:attempted:casual": 9998,
+        "conversation:completed:neutral": 5217,
+        "conversation_side:neutral:casual": 12634,
+        "conversation_side:warm:casual": 7362,
+        "conversation:completed:warm": 4781,
+        "bond_proposal:not_formed:": 52,
+        "bond_proposal:rejected:cooldown_active": 17379,
+        "bond:attempted:sworn_brother": 10,
+        "bond:created:sworn_brother": 10,
+        "bond_proposal:already_exists:": 4598,
+        "bond_proposal:rejected:insufficient_trust": 43528,
+        "bond:attempted:dao_companion": 8,
+        "bond:created:dao_companion": 8,
+        "bond_proposal:rejected:existing_bond_conflict": 4424
+      },
+      "sampleCount": 200,
+      "executionMs": 9436
+    },
+    {
+      "scenario": "cluster_idle",
+      "seed": 22,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 35,
+      "firstBondDay": 72,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 150,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 148,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 1,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 120,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 15,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 138127,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 69477,
+        "conversation:attempted:casual": 9972,
+        "conversation:completed:neutral": 5493,
+        "conversation_side:neutral:casual": 13276,
+        "conversation_side:warm:casual": 6668,
+        "conversation:completed:warm": 4479,
+        "bond_proposal:not_formed:": 47,
+        "bond_proposal:rejected:cooldown_active": 13966,
+        "bond_proposal:rejected:insufficient_trust": 47364,
+        "bond:attempted:sworn_brother": 9,
+        "bond:created:sworn_brother": 9,
+        "bond_proposal:already_exists:": 3366,
+        "bond:attempted:dao_companion": 6,
+        "bond:created:dao_companion": 6,
+        "bond_proposal:rejected:existing_bond_conflict": 3892
+      },
+      "sampleCount": 200,
+      "executionMs": 17640
+    },
+    {
+      "scenario": "cluster_idle",
+      "seed": 33,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 27,
+      "firstBondDay": 59,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 3,
+          "directedAcquaintances": 147,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 140,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 5,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 92,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 29,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 138700,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 65098,
+        "conversation:attempted:casual": 10006,
+        "conversation:completed:neutral": 3774,
+        "conversation_side:neutral:casual": 9642,
+        "conversation_side:warm:casual": 10370,
+        "conversation:completed:warm": 6232,
+        "bond_proposal:not_formed:": 90,
+        "bond_proposal:rejected:cooldown_active": 27813,
+        "bond:attempted:sworn_brother": 18,
+        "bond:created:sworn_brother": 18,
+        "bond_proposal:already_exists:": 8714,
+        "bond_proposal:rejected:insufficient_trust": 29307,
+        "bond:attempted:dao_companion": 11,
+        "bond:created:dao_companion": 11,
+        "bond_proposal:rejected:existing_bond_conflict": 7649
+      },
+      "sampleCount": 200,
+      "executionMs": 21309
+    },
+    {
+      "scenario": "cluster_idle",
+      "seed": 44,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 24,
+      "firstBondDay": 91,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 5,
+          "directedAcquaintances": 145,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 150,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 114,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 18,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 143954,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 67584,
+        "conversation:attempted:casual": 9939,
+        "conversation:completed:neutral": 4589,
+        "conversation_side:neutral:casual": 11297,
+        "conversation_side:warm:casual": 8581,
+        "conversation:completed:warm": 5350,
+        "bond_proposal:not_formed:": 85,
+        "bond_proposal:rejected:cooldown_active": 30962,
+        "bond_proposal:rejected:insufficient_trust": 36859,
+        "bond:attempted:dao_companion": 8,
+        "bond:created:dao_companion": 8,
+        "bond_proposal:rejected:existing_bond_conflict": 4487,
+        "bond:attempted:sworn_brother": 10,
+        "bond:created:sworn_brother": 10,
+        "bond_proposal:already_exists:": 3959
+      },
+      "sampleCount": 200,
+      "executionMs": 15937
+    },
+    {
+      "scenario": "cluster_idle",
+      "seed": 55,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 23,
+      "firstBondDay": 62,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 5,
+          "directedAcquaintances": 145,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 138,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 6,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 108,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 21,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 140596,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 66934,
+        "conversation:attempted:casual": 9982,
+        "conversation:completed:neutral": 4207,
+        "conversation_side:neutral:casual": 10716,
+        "conversation_side:warm:casual": 9248,
+        "conversation:completed:warm": 5775,
+        "bond_proposal:not_formed:": 77,
+        "bond_proposal:rejected:cooldown_active": 25321,
+        "bond:attempted:sworn_brother": 14,
+        "bond:created:sworn_brother": 14,
+        "bond_proposal:already_exists:": 7148,
+        "bond_proposal:rejected:insufficient_trust": 35240,
+        "bond:attempted:dao_companion": 7,
+        "bond:created:dao_companion": 7,
+        "bond_proposal:rejected:existing_bond_conflict": 5855
+      },
+      "sampleCount": 200,
+      "executionMs": 19903
+    },
+    {
+      "scenario": "cluster_idle",
+      "seed": 66,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 36,
+      "firstBondDay": 92,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 150,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 150,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 122,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 14,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 138264,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 68933,
+        "conversation:attempted:casual": 9971,
+        "conversation:completed:neutral": 5641,
+        "conversation_side:neutral:casual": 13292,
+        "conversation_side:warm:casual": 6650,
+        "conversation:completed:warm": 4330,
+        "bond_proposal:not_formed:": 56,
+        "bond_proposal:rejected:cooldown_active": 17324,
+        "bond_proposal:rejected:insufficient_trust": 44611,
+        "bond:attempted:dao_companion": 6,
+        "bond:created:dao_companion": 6,
+        "bond_proposal:rejected:existing_bond_conflict": 4075,
+        "bond:attempted:sworn_brother": 8,
+        "bond:created:sworn_brother": 8,
+        "bond_proposal:already_exists:": 3251
+      },
+      "sampleCount": 200,
+      "executionMs": 13342
+    },
+    {
+      "scenario": "cluster_busy",
+      "seed": 11,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 37,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 30,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 30,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 30,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 135000,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 131559,
+        "conversation:attempted:casual": 24427,
+        "conversation:completed:awkward": 2070,
+        "conversation_side:awkward:casual": 3600,
+        "conversation_side:neutral:casual": 1724,
+        "conversation:completed:neutral": 592,
+        "conversation:skipped:declined": 21765,
+        "bond_proposal:rejected:insufficient_trust": 3441
+      },
+      "sampleCount": 200,
+      "executionMs": 6518
+    },
+    {
+      "scenario": "cluster_busy",
+      "seed": 22,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 36,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 35,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 35,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 35,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 135000,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 132471,
+        "conversation:attempted:casual": 24552,
+        "conversation:completed:awkward": 2070,
+        "conversation_side:neutral:casual": 1674,
+        "conversation_side:awkward:casual": 3450,
+        "conversation:completed:neutral": 492,
+        "conversation:skipped:declined": 21990,
+        "bond_proposal:rejected:insufficient_trust": 2529
+      },
+      "sampleCount": 200,
+      "executionMs": 4327
+    },
+    {
+      "scenario": "cluster_busy",
+      "seed": 33,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 36,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 65,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 65,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 65,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 135000,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 125632,
+        "conversation:attempted:casual": 23193,
+        "conversation:completed:neutral": 1836,
+        "conversation_side:awkward:casual": 2550,
+        "conversation_side:neutral:casual": 4182,
+        "conversation:completed:awkward": 1530,
+        "conversation:skipped:declined": 19827,
+        "bond_proposal:rejected:insufficient_trust": 9368
+      },
+      "sampleCount": 200,
+      "executionMs": 5416
+    },
+    {
+      "scenario": "cluster_busy",
+      "seed": 44,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 36,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 45,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 45,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 45,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 135000,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 129808,
+        "conversation:attempted:casual": 23794,
+        "conversation:completed:awkward": 1710,
+        "conversation_side:awkward:casual": 3150,
+        "conversation:completed:neutral": 1157,
+        "conversation_side:neutral:casual": 2584,
+        "conversation:skipped:declined": 20927,
+        "bond_proposal:rejected:insufficient_trust": 5192
+      },
+      "sampleCount": 200,
+      "executionMs": 5849
+    },
+    {
+      "scenario": "cluster_busy",
+      "seed": 55,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 35,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 65,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 65,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 65,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 135000,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 124679,
+        "conversation:attempted:casual": 22811,
+        "conversation:completed:awkward": 1770,
+        "conversation_side:neutral:casual": 4404,
+        "conversation_side:awkward:casual": 2550,
+        "conversation:completed:neutral": 1707,
+        "conversation:skipped:declined": 19334,
+        "bond_proposal:rejected:insufficient_trust": 10321
+      },
+      "sampleCount": 200,
+      "executionMs": 7071
+    },
+    {
+      "scenario": "cluster_busy",
+      "seed": 66,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": 36,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 40,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 90,
+          "directedFriends": 40,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        },
+        {
+          "day": 180,
+          "directedFriends": 40,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 0
+        }
+      ],
+      "counters": {
+        "bond_proposal:attempted:": 135000,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 131519,
+        "conversation:attempted:casual": 24357,
+        "conversation:completed:awkward": 1980,
+        "conversation_side:awkward:casual": 3300,
+        "conversation_side:neutral:casual": 2022,
+        "conversation:completed:neutral": 681,
+        "conversation:skipped:declined": 21696,
+        "bond_proposal:rejected:insufficient_trust": 3481
+      },
+      "sampleCount": 200,
+      "executionMs": 4439
+    },
+    {
+      "scenario": "separated",
+      "seed": 11,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 90,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 180,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        }
+      ],
+      "counters": {},
+      "sampleCount": 0,
+      "executionMs": 204
+    },
+    {
+      "scenario": "separated",
+      "seed": 22,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 90,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 180,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        }
+      ],
+      "counters": {},
+      "sampleCount": 0,
+      "executionMs": 179
+    },
+    {
+      "scenario": "separated",
+      "seed": 33,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 90,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 180,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        }
+      ],
+      "counters": {},
+      "sampleCount": 0,
+      "executionMs": 199
+    },
+    {
+      "scenario": "separated",
+      "seed": 44,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 90,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 180,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        }
+      ],
+      "counters": {},
+      "sampleCount": 0,
+      "executionMs": 195
+    },
+    {
+      "scenario": "separated",
+      "seed": 55,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 90,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 180,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        }
+      ],
+      "counters": {},
+      "sampleCount": 0,
+      "executionMs": 205
+    },
+    {
+      "scenario": "separated",
+      "seed": 66,
+      "residents": 30,
+      "days": 180,
+      "dt": 0.25,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "snapshots": [
+        {
+          "day": 30,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 90,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        },
+        {
+          "day": 180,
+          "directedFriends": 0,
+          "directedAcquaintances": 0,
+          "activeBondPairs": 0,
+          "isolatedResidents": 30
+        }
+      ],
+      "counters": {},
+      "sampleCount": 0,
+      "executionMs": 192
+    }
+  ],
+  "benchmarks": [
+    {
+      "residents": 30,
+      "spatialIndex": false,
+      "calls": 300,
+      "msPerSelection": 0.14577733333329282
+    },
+    {
+      "residents": 30,
+      "spatialIndex": true,
+      "calls": 300,
+      "msPerSelection": 0.1420559999999629
+    },
+    {
+      "residents": 100,
+      "spatialIndex": false,
+      "calls": 300,
+      "msPerSelection": 0.40730966666664853
+    },
+    {
+      "residents": 100,
+      "spatialIndex": true,
+      "calls": 300,
+      "msPerSelection": 0.34742666666657895
+    },
+    {
+      "residents": 300,
+      "spatialIndex": false,
+      "calls": 300,
+      "msPerSelection": 1.113707333333344
+    },
+    {
+      "residents": 300,
+      "spatialIndex": true,
+      "calls": 300,
+      "msPerSelection": 0.9266706666666626
+    }
+  ]
+}

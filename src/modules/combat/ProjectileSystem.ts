@@ -7,6 +7,10 @@ import { BehaviorTreeExecutor } from '../ai/brain/behavior/BehaviorTree.ts';
 import { AIBehaviorTreeComponent } from '../ai/brain/AIComponents.ts';
 import { AnimalBrainComponent, AnimalComponent } from '../animals/AnimalComponents.ts';
 import { EncounterTracker } from '../talent/EncounterTracker.ts';
+import { registerSelfDefense } from './CombatIntentService.ts';
+import { handleBondBetrayal } from '../social/RelationshipService.ts';
+import { captureRescueCandidates, recordRescueThreat, resolveRescueKill } from '../social/RescueEvidenceService.ts';
+import { SocialInteractionSystem } from '../social/SocialInteractionSystem.ts';
 
 export class ProjectileSystem implements System {
   public name = 'ProjectileSystem';
@@ -46,7 +50,7 @@ export class ProjectileSystem implements System {
           const targetStats = world.getComponent(proj.targetEntityId, CombatStatsComponent);
           const targetEquip = world.getComponent(proj.targetEntityId, EquipmentComponent);
 
-          if (targetHp && !targetHp.isDead) {
+          if (targetHp && !targetHp.isDead && Number.isFinite(targetHp.current) && targetHp.current > 0) {
             // Kiểm tra né đòn chủ động qua Thân Pháp Behavior Tree
             const isDodged =
               world.hasComponent(proj.targetEntityId, AIBehaviorTreeComponent) &&
@@ -60,7 +64,15 @@ export class ProjectileSystem implements System {
               const postDef = Math.max(1, proj.damage - targetDefense);
               const finalDmg = Math.max(1, Math.floor(postDef * (50 / (50 + targetArmor))));
 
+              const hpBeforeHit = targetHp.current;
+              const rescueCandidates = finalDmg >= hpBeforeHit ? captureRescueCandidates(world, proj.targetEntityId) : [];
+              handleBondBetrayal(world, proj.sourceEntityId, proj.targetEntityId, Math.min(hpBeforeHit, finalDmg));
               targetHp.current = Math.max(0, targetHp.current - finalDmg);
+              recordRescueThreat(world, proj.targetEntityId, proj.sourceEntityId);
+              registerSelfDefense(world, proj.targetEntityId, proj.sourceEntityId);
+              if (!world.hasComponent(proj.sourceEntityId, AnimalComponent) && !world.hasComponent(proj.targetEntityId, AnimalComponent)) {
+                SocialInteractionSystem.handleCombatAttack(world, proj.sourceEntityId, proj.targetEntityId, world.calendarDayFloorAtTick());
+              }
 
               const targetAnimalBrain = world.getComponent(proj.targetEntityId, AnimalBrainComponent);
               if (targetAnimalBrain && targetHp.current > 0) {
@@ -78,6 +90,7 @@ export class ProjectileSystem implements System {
 
               if (targetHp.current <= 0) {
                 targetHp.isDead = true;
+                resolveRescueKill(world, proj.sourceEntityId, proj.targetEntityId, hpBeforeHit, rescueCandidates);
                 const targetState = world.getComponent(proj.targetEntityId, CharacterStateComponent);
                 if (targetState) targetState.state = 'dead';
               }

@@ -333,7 +333,7 @@ export class GodToolbar {
       }
     }
     const activeTool = this.engine.activeBrushTerrain
-      ? `Tô ${TERRAIN_CONFIGS[this.engine.activeBrushTerrain as TerrainType].name}`
+      ? `Tô ${TERRAIN_CONFIGS[this.engine.activeBrushTerrain].name}`
       : elevTools.find(tool => tool.mode === this.engine.activeElevationBrushMode)?.label;
     const help = document.createElement('div');
     help.style.cssText = 'flex-basis: 100%; color: #a5b4c5; font-size: 11px; line-height: 1.5;';
@@ -349,7 +349,7 @@ export class GodToolbar {
     // 1. Nhóm chọn số lượng thả (Batch Multiplier)
     const countWrapper = document.createElement('div');
     countWrapper.style.cssText = 'display: flex; gap: 4px; align-items: center; border-right: 1px solid #30363d; padding-right: 8px; margin-right: 4px;';
-    
+
     const countLabel = document.createElement('span');
     countLabel.textContent = 'Số lượng:';
     countLabel.style.cssText = 'color: #8b949e; font-size: 11px; font-weight: 500;';

@@ -88,6 +88,7 @@ import {
   TimeState,
   ALLOWED_TIME_SPEEDS,
   LEGACY_TIME_SPEEDS,
+  calendarDaysAtTick,
 } from '../../core/TimeManager.ts';
 
 export const CURRENT_SAVE_VERSION = '2.0.0';
@@ -410,7 +411,7 @@ export class SaveManager {
       if (history) comps.history = { records: history.records };
 
       const social = engine.world.getComponent(ent, SocialRelationshipComponent);
-      if (social) comps.social = serializeSocialSave(engine.world, social);
+      if (social) comps.social = serializeSocialSave(engine.world, social, ent);
 
       const memory = engine.world.getComponent(ent, MemoryComponent);
       if (memory) comps.memory = { memories: memory.memories.map(record => ({ ...record })) };
@@ -951,7 +952,10 @@ export class SaveManager {
 
       validateSerializedAnimalComponents(ent.id, ent.components);
       validateProfessionSave(ent.id, ent.components);
-      validateSocialSave(ent.id, ent.components);
+      const savedDay = data.time.clockSchema === 2
+        ? calendarDaysAtTick(data.time, data.time.totalTicks)
+        : data.time.totalTicks / (data.time.oldTicksPerDay || 20);
+      validateSocialSave(ent.id, ent.components, { tick: data.time.totalTicks, day: savedDay });
       validateCombatIntentSave(ent.id, ent.components);
 
       const chest = ent.components.treasureChest;
@@ -1800,7 +1804,6 @@ export class SaveManager {
       engine.world?.clearEntities();
       engine.spatialGrid?.clear();
       engine.tribulationSystem?.clear();
-      resetSocialTelemetry(engine.world);
       engine.threeTierAISystem?.reset();
       engine.cultivationSystem?.reset();
       engine.diplomacySystem?.clear();
@@ -1811,13 +1814,13 @@ export class SaveManager {
       AStarPathfinder.invalidateBuildingCache();
     }
 
+    // Reset even when a host supplies its own resetWorldState implementation.
+    resetSocialTelemetry(engine.world);
+
     // 2.3 Cập nhật thuộc tính ngữ cảnh thế giới từ bản lưu (sau khi đã cấp phát và dọn dẹp)
     engine.worldName = data.metadata.name;
     engine.worldTemplate = data.metadata.templateId || 'thap_van_dai_son';
     engine.worldSeed = data.metadata.seed ?? 8888;
-    if ('_worldName' in engine) (engine as any)._worldName = engine.worldName;
-    if ('_worldTemplate' in engine) (engine as any)._worldTemplate = engine.worldTemplate;
-    if ('_worldSeed' in engine) (engine as any)._worldSeed = engine.worldSeed;
 
     // 2.4 Cập nhật gạch WorldMap
     if (engine.worldMap) {

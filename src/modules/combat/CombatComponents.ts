@@ -263,7 +263,7 @@ export class CombatStatsComponent implements Component {
   public combatIntent: CombatIntent | null = null;
   public get targetEntityId(): number | null { return this._combatTarget; }
   public set targetEntityId(value: number | null) {
-    if (value !== this._combatTarget || value === null) this.combatIntent = null;
+    this.combatIntent = null;
     this._combatTarget = value;
   }
   public isHostile: boolean = false; // Có chủ động tấn công không

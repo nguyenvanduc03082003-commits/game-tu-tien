@@ -1,0 +1,148 @@
+Năm 1 · Tháng 2 [Mùa XUÂN · ☀️ Trời Quang]
+👥 Cư dân: 10 (🧘 Tu sĩ: 1) · 🦊 Yêu tộc: 0 · 🐾 Động vật: 25
+⏸
+0.5x
+1x
+2x
+3x
+5x
+👁️ Linh Khí
+🌡️ Nhiệt Độ
+⛰️ Độ Cao
+⚙️ Menu (ESC)
+🗺️ Bản Đồ
+🔍
+▼
+Lý Thanh Phong
+Nhân Tộc
+Linh Căn:
+🌑 Vô Linh Căn (Phàm Nhân)
+Đang nghỉ ngơi
+✕
+📊 Chỉ Số
+⚔️ Trang Bị
+🧠 Não AI
+🤝 Duyên
+🏛️ Thế Lực
+📜 Kỷ
+MẠNG LƯỚI QUAN HỆ (7)
+👤 Người Lạ
+Lâm Mặc Ngân
+🎯 Xem
+Quan hệ với người đang sống
+Hảo Cảm: +7
+Tín nhiệm: 50% • Kính trọng: 50%
+Vòng đời · hai phía · điều kiện · thời gian chờ
+👤 Người Lạ
+Vương Vô Phong
+🎯 Xem
+Quan hệ với người đang sống
+Hảo Cảm: +7
+Tín nhiệm: 50% • Kính trọng: 50%
+Vòng đời · hai phía · điều kiện · thời gian chờ
+👤 Người Lạ
+Bạch Thanh Dạ
+🎯 Xem
+Quan hệ với người đang sống
+Hảo Cảm: +6
+Tín nhiệm: 50% • Kính trọng: 50%
+Vòng đời · hai phía · điều kiện · thời gian chờ
+👤 Người Lạ
+Cố Vô Ngân
+🎯 Xem
+Quan hệ với người đang sống
+Hảo Cảm: +4
+Tín nhiệm: 50% • Kính trọng: 50%
+Vòng đời · hai phía · điều kiện · thời gian chờ
+👤 Người Lạ
+Cố Trường Khuyết
+🎯 Xem
+Quan hệ với người đang sống
+Hảo Cảm: +4
+Tín nhiệm: 50% • Kính trọng: 50%
+Vòng đời · hai phía · điều kiện · thời gian chờ
+👤 Người Lạ
+Lâm Trường Uyên
+🎯 Xem
+Quan hệ với người đang sống
+Hảo Cảm: -1
+Tín nhiệm: 50% • Kính trọng: 50%
+Vòng đời · hai phía · điều kiện · thời gian chờ
+👤 Người Lạ
+Lâm Băng Uyên
+🎯 Xem
+Quan hệ với người đang sống
+Hảo Cảm: 0
+Tín nhiệm: 50% • Kính trọng: 50%
+Vòng đời · hai phía · điều kiện · thời gian chờ
+LỊCH SỬ RÀNG BUỘC (0)
+Công cụ phát triển · theo dõi mô phỏng xã hội
+Tắt thu số liệu
+Toàn thế giới · mặc định tắt · tối đa 128 bộ đếm và 200 mẫu gần nhất. Không lưu vào bản lưu; tạo thế giới hoặc tải lại sẽ xóa. Bảng hiển thị 20 bộ đếm và 10 mẫu. Đây không phải thống kê toàn bộ lịch sử thế giới.
+bond_proposal:attempted:: 128
+bond_proposal:rejected:insufficient_mutual_affinity: 128
+conversation_side:neutral:casual: 27
+conversation:attempted:casual: 14
+conversation:completed:neutral: 13
+conversation:completed:awkward: 1
+conversation_side:awkward:casual: 1
+Ngày 35,06 · #603 → #604: bond_proposal / rejected insufficient_mutual_affinity
+Ngày 35,06 · #603 → #604: bond_proposal / attempted
+Ngày 34,97 · #603 → #604: bond_proposal / rejected insufficient_mutual_affinity
+Ngày 34,97 · #603 → #604: bond_proposal / attempted
+Ngày 34,88 · #603 → #604: bond_proposal / rejected insufficient_mutual_affinity
+Ngày 34,88 · #603 → #604: bond_proposal / attempted
+Ngày 34,79 · #604 → #603: conversation_side / neutral casual
+Ngày 34,79 · #603 → #604: conversation_side / neutral casual
+Ngày 34,79 · #603 → #604: conversation / completed neutral
+Ngày 34,79 · #603 → #604: conversation / attempted casual
+DÒNG KÝ ỨC TÂM THỨC (4)
+🍵 Đàm Đạo
+Ngày 31.635
+⭐
+Cùng [Bạch Thanh Dạ] trò chuyện; cuộc gặp bình dị.
+🍵 Đàm Đạo
+Ngày 30.105
+⭐
+Cùng [Bạch Thanh Dạ] trò chuyện; cuộc gặp bình dị.
+🍵 Đàm Đạo
+Ngày 28.035
+⭐
+Cùng [Cố Vô Ngân] trò chuyện; cuộc gặp bình dị.
+🍵 Đàm Đạo
+Ngày 20.205
+⭐
+Cùng [Lâm Mặc Ngân] trò chuyện; cuộc gặp bình dị.
+🖌️ Địa Hình
+👥 Cư Dân & Yêu Tộc
+🐾 Động Vật (40)
+💊 Linh Đan
+🏛️ Tông Môn & Kiến Trúc
+🌿 Thảo Mộc
+⚡ Thiên Đạo
+📜 Thánh Chỉ
+🌍 Kiến Tạo
+▼ Thu Gọn
+✋ Chế độ xem
+🔺 Nâng Đất
+🔻 Hạ Đất
+〰️ Làm Mượt
+Đồng Bằng
+Đồi Thấp
+Núi Cao
+Đầm Lầy
+Cao Nguyên
+Rừng Rậm
+Sông Ngòi
+Hồ Nước
+Biển Cả
+Đường kính cọ:
+1x1
+3x3
+5x5
+9x9
+Chế độ xem · Nhấp ô đất để xem thông tin. Cao độ là mức tương đối 0–100%. Bật lớp phủ cao độ ở góc trên bên phải để quan sát độ dốc.
+📜 Nhật Ký Thế Giới
+Biến Cố
+▼
+🌐 THIÊN ĐỊA DỊ TƯỢNG: Khai thiên lập địa! Vạn dặm sơn hà khai mở, càn khôn định vị, linh cơ bắt đầu thai nghén...

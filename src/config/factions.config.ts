@@ -2,7 +2,7 @@ export type FactionType = 'hamlet' | 'village' | 'kingdom' | 'sect' | 'holy_land
 export type FactionAlignment = 'righteous' | 'demonic' | 'neutral';
 export type SectRank = 'cuu_pham' | 'luc_pham' | 'tam_pham' | 'nhat_pham' | 'thanh_dia';
 
-export type MemberRole = 
+export type MemberRole =
   | 'sect_master'      // Chưởng Môn / Quốc Vương / Trưởng Thôn / Thánh Chủ
   | 'sect_leader'      // Alias Chưởng Môn
   | 'village_head'     // Thôn Trưởng / Trưởng Làng
@@ -14,7 +14,7 @@ export type MemberRole =
   | 'guard'            // Hộ Vệ / Dân Binh
   | 'villager';        // Thôn Dân / Bình Dân
 
-export type BuildingType = 
+export type BuildingType =
   | 'sect_hall'           // Tông Môn Đại Điện / Phủ Thành Chủ
   | 'meditation_cave'     // Động Phủ Bế Quan
   | 'herb_garden'         // Linh Dược Điền

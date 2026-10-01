@@ -66,15 +66,15 @@ export class ViewportCamera {
 
   public setupInputHandlers(canvas: HTMLCanvasElement): void {
     this.boundCanvas = canvas;
-    
+
     // Bắt đầu kéo bản đồ (Chuột phải hoặc Chuột giữa hoặc giữ phím Space + Chuột trái)
     canvas.addEventListener('mousedown', this.handleMouseDown);
     window.addEventListener('mousemove', this.handleMouseMove);
     window.addEventListener('mouseup', this.handleMouseUp);
-    
+
     // Chặn menu chuột phải mặc định trên canvas để dùng làm thao tác điều khiển
     canvas.addEventListener('contextmenu', this.handleContextMenu);
-    
+
     // Phóng to / Thu nhỏ theo vị trí con trỏ chuột
     canvas.addEventListener('wheel', this.handleWheel, { passive: false });
   }

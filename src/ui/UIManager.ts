@@ -8,6 +8,8 @@ import { MainMenu } from './MainMenu.ts';
 import { PauseMenu } from './PauseMenu.ts';
 
 import { Minimap } from './Minimap.ts';
+import type { WorldTile } from '../modules/world/WorldMap.ts';
+import type { QiTile } from '../modules/energy/QiGrid.ts';
 
 export class UIManager {
   public readonly timeControls: TimeControls;
@@ -70,7 +72,7 @@ export class UIManager {
     });
 
     // Lắng nghe sự kiện click chọn thực thể hoặc ô đất
-    EventBus.getInstance().on<{ entity: number | null; chest?: number | null; plant?: number | null; building?: number | null; tile: any; qiTile?: any }>('ui:inspector_selected', (data) => {
+    EventBus.getInstance().on<{ entity: number | null; chest?: number | null; plant?: number | null; building?: number | null; tile: WorldTile | null; qiTile?: QiTile | null }>('ui:inspector_selected', (data) => {
       if (engine.isMainMenuOpen || engine.isPausedByMenu) return;
 
       if (data.chest !== null && data.chest !== undefined && data.entity === null) {

@@ -1,4 +1,5 @@
 import { recordSocialTelemetry } from './SocialSimulationTelemetry.ts';
+import { evaluateSocialFamiliarity } from './SocialFamiliarityService.ts';
 import { socialEventTime } from './SocialEventTime.ts';
 import { SOCIAL_CONFIG } from '../../config/social.config.ts';
 import { ECSWorld } from '../../ecs/World.ts';
@@ -148,16 +149,26 @@ export function readConversationSnapshot(world: ECSWorld, a: number, b: number,
 /** Một commit đồng bộ; cooldown được chốt trước lời thoại, skipped không có side effect. */
 function commitConversation(world: ECSWorld, a: number, b: number,
   context: ConversationContext = 'casual'): ConversationResult {
-  const eligibility = evaluateConversation(readConversationSnapshot(world, a, b, context));
+  const snapshot = readConversationSnapshot(world, a, b, context);
+  const eligibility = evaluateConversation(snapshot);
   if (eligibility.status === 'skipped') return eligibility;
-  const evaluation = eligibility.evaluation;
+  const time = socialEventTime(world);
+  const progressA = evaluateSocialFamiliarity(world.getComponent(a, SocialRelationshipComponent)?.getRelationship(b)?.familiarity,
+    eligibility.evaluation.a.outcome, snapshot.a.affinity, snapshot.b.affinity, snapshot.a.trust, time);
+  const progressB = evaluateSocialFamiliarity(world.getComponent(b, SocialRelationshipComponent)?.getRelationship(a)?.familiarity,
+    eligibility.evaluation.b.outcome, snapshot.b.affinity, snapshot.a.affinity, snapshot.b.trust, time);
+  const addTrust = (side: ConversationSideEvaluation, delta: number): ConversationSideEvaluation =>
+    ({ ...side, delta: { ...side.delta, trust: side.delta.trust + delta } });
+  const evaluation: ConversationEvaluation = { ...eligibility.evaluation,
+    a: addTrust(eligibility.evaluation.a, progressA.trustDelta), b: addTrust(eligibility.evaluation.b, progressB.trustDelta) };
   const result = performSocialInteraction(world, a, b, 'communication', () => {
     for (const [side, target] of [[evaluation.a, b], [evaluation.b, a]] as const) {
       const name = world.getComponent(target, NameComponent)?.name ?? 'Cư dân';
       const relations = world.getComponent(side.entityId, SocialRelationshipComponent)!;
-      const record = relations.adjustScores(target, name, side.delta.affinity, side.delta.trust, side.delta.respect, socialEventTime(world));
-      record.lastInteractionDay = world.calendarDayFloorAtTick();
-      record.lastInteractionTick = world.getCurrentTick();
+      const record = relations.adjustScores(target, name, side.delta.affinity, side.delta.trust, side.delta.respect, time);
+      const progress = side.entityId === a ? progressA : progressB;
+      if (progress.next) record.familiarity = { ...progress.next }; else delete record.familiarity;
+      if (progress.result !== 'reset') recordSocialTelemetry(world, 'familiarity', progress.result, side.entityId, target);
       relations.updateOrdinaryLabel(target);
       let memory = world.getComponent(side.entityId, MemoryComponent);
       if (!memory) { memory = new MemoryComponent(); world.addComponent(side.entityId, memory); }
@@ -185,5 +196,10 @@ export function performConversation(world: ECSWorld, a: number, b: number, conte
   const result = commitConversation(world, a, b, context);
   recordSocialTelemetry(world, 'conversation', result.status, a, b,
     result.status === 'completed' ? result.evaluation.outcome : result.reason);
+  if (result.status === 'completed') {
+    for (const side of [result.evaluation.a, result.evaluation.b]) {
+      recordSocialTelemetry(world, 'conversation_side', side.outcome, side.entityId, side.entityId === a ? b : a, context);
+    }
+  }
   return result;
 }

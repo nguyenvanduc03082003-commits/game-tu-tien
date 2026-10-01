@@ -9,6 +9,7 @@ import { WorldMap } from '../src/modules/world/WorldMap.ts';
 import { QiGrid } from '../src/modules/energy/QiGrid.ts';
 import { DiplomacySystem } from '../src/modules/factions/DiplomacySystem.ts';
 import { TribulationSystem } from '../src/modules/cultivation/TribulationSystem.ts';
+import { WeatherType } from '../src/config/weather.config.ts';
 
 let passed = 0;
 function test(name: string, fn: () => void | Promise<void>) {
@@ -37,7 +38,7 @@ function createMockTimeEngine() {
     camera: { x: 100, y: 100, zoom: 1.0 },
     worldMap,
     qiGrid,
-    weatherSystem: { currentWeather: 'CLEAR', serializeState: () => ({ currentWeather: 'CLEAR', weatherTimer: 0, tileTimer: 0 }), restoreState: () => {} },
+    weatherSystem: { currentWeather: WeatherType.CLEAR, serializeState: () => ({ currentWeather: WeatherType.CLEAR, weatherTimer: 0, tileTimer: 0 }), restoreState: () => {} },
     tribulationSystem,
     diplomacySystem,
     stepSimulation: function(deltaRealSeconds: number) {

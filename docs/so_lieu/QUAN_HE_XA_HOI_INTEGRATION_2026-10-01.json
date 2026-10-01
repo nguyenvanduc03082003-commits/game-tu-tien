@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "scope": "AI + survival + social + combat + faction + construction + profession + flora + corpse integration; controlled plain map, 80 food plants, no weather/cultivation/reproduction/animals",
+  "runs": [
+    {
+      "seed": 11,
+      "days": 60,
+      "dt": 0.05,
+      "startingResidents": 30,
+      "firstFriendDay": 57,
+      "firstBondDay": null,
+      "firstFactionDay": 30,
+      "snapshots": [
+        {
+          "day": 10,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        },
+        {
+          "day": 30,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "activeBondPairs": 0,
+          "factions": 1,
+          "buildings": 3
+        },
+        {
+          "day": 60,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 3,
+          "activeBondPairs": 0,
+          "factions": 1,
+          "buildings": 9
+        }
+      ],
+      "dailyGoalSamples": {
+        "SURVIVE_VITAL": 1456,
+        "SECLUDED_CULTIVATION": 287,
+        "LABOUR_WORK": 57
+      },
+      "dailyPlannerSamples": {
+        "completed": 1377,
+        "executing": 422,
+        "failed": 1
+      },
+      "counters": {
+        "bond_proposal:attempted:": 20221,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 20221,
+        "conversation:attempted:casual": 1702,
+        "conversation:completed:neutral": 2873,
+        "conversation_side:neutral:casual": 2902,
+        "conversation:attempted:community": 401981,
+        "conversation_side:neutral:community": 2787,
+        "conversation:skipped:cooldown_active": 77241,
+        "conversation:skipped:out_of_range": 322801,
+        "conversation_side:awkward:casual": 457,
+        "conversation_side:awkward:community": 371,
+        "conversation:completed:awkward": 396,
+        "conversation:skipped:unsafe": 379,
+        "conversation:attempted:cultivation": 11,
+        "conversation_side:neutral:cultivation": 17,
+        "conversation_side:awkward:cultivation": 1,
+        "conversation_side:warm:casual": 11,
+        "conversation:completed:warm": 4
+      },
+      "executionMs": 89419
+    },
+    {
+      "seed": 22,
+      "days": 60,
+      "dt": 0.05,
+      "startingResidents": 30,
+      "firstFriendDay": null,
+      "firstBondDay": null,
+      "firstFactionDay": 39,
+      "snapshots": [
+        {
+          "day": 10,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        },
+        {
+          "day": 30,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        },
+        {
+          "day": 60,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "activeBondPairs": 0,
+          "factions": 1,
+          "buildings": 9
+        }
+      ],
+      "dailyGoalSamples": {
+        "SURVIVE_VITAL": 1571,
+        "SECLUDED_CULTIVATION": 167,
+        "LABOUR_WORK": 62
+      },
+      "dailyPlannerSamples": {
+        "completed": 1517,
+        "executing": 283
+      },
+      "counters": {
+        "bond_proposal:attempted:": 22997,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 22997,
+        "conversation:attempted:casual": 1871,
+        "conversation:completed:neutral": 3024,
+        "conversation_side:neutral:casual": 3043,
+        "conversation:attempted:community": 472151,
+        "conversation:skipped:cooldown_active": 88195,
+        "conversation_side:neutral:community": 2970,
+        "conversation:skipped:out_of_range": 382005,
+        "conversation_side:awkward:casual": 621,
+        "conversation:completed:awkward": 530,
+        "conversation_side:awkward:community": 460,
+        "conversation:skipped:unsafe": 277,
+        "conversation:attempted:cultivation": 9,
+        "conversation_side:neutral:cultivation": 10,
+        "conversation_side:awkward:cultivation": 4
+      },
+      "executionMs": 62994
+    },
+    {
+      "seed": 33,
+      "days": 60,
+      "dt": 0.05,
+      "startingResidents": 30,
+      "firstFriendDay": 60,
+      "firstBondDay": null,
+      "firstFactionDay": 31,
+      "snapshots": [
+        {
+          "day": 10,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 0
+        },
+        {
+          "day": 30,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 0,
+          "activeBondPairs": 0,
+          "factions": 0,
+          "buildings": 1
+        },
+        {
+          "day": 60,
+          "living": 30,
+          "isolatedLiving": 0,
+          "directedFriends": 1,
+          "activeBondPairs": 0,
+          "factions": 2,
+          "buildings": 15
+        }
+      ],
+      "dailyGoalSamples": {
+        "SURVIVE_VITAL": 1268,
+        "SECLUDED_CULTIVATION": 423,
+        "LABOUR_WORK": 109
+      },
+      "dailyPlannerSamples": {
+        "completed": 1159,
+        "executing": 640,
+        "failed": 1
+      },
+      "counters": {
+        "bond_proposal:attempted:": 15466,
+        "bond_proposal:rejected:insufficient_mutual_affinity": 15466,
+        "conversation:attempted:casual": 1524,
+        "conversation:completed:neutral": 2374,
+        "conversation_side:neutral:casual": 2528,
+        "conversation:attempted:community": 230868,
+        "conversation_side:neutral:community": 1949,
+        "conversation:skipped:out_of_range": 189077,
+        "conversation:skipped:cooldown_active": 40198,
+        "conversation:completed:awkward": 201,
+        "conversation_side:awkward:casual": 461,
+        "conversation_side:awkward:community": 163,
+        "conversation:skipped:unsafe": 566,
+        "conversation:attempted:cultivation": 24,
+        "conversation_side:neutral:cultivation": 32,
+        "conversation_side:warm:cultivation": 2,
+        "conversation_side:awkward:cultivation": 10,
+        "conversation_side:warm:casual": 5
+      },
+      "executionMs": 55549
+    }
+  ]
+}

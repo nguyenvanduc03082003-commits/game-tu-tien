@@ -49,7 +49,11 @@ export function registerSelfDefense(world: ECSWorld, victim: number, attacker: n
   if (victim === attacker || !hp || hp.isDead || hp.current <= 0 || !stats || stats.combatIntent?.source === 'god_decree') return;
   // Existing animal AI retains control of hunting/fleeing targets.
   if (!world.hasComponent(victim, SocialRelationshipComponent)) return;
-  setCombatIntent(world, victim, attacker, 'self_defense');
+  if (stats.targetEntityId !== attacker || stats.combatIntent?.source !== 'self_defense') {
+    setCombatIntent(world, victim, attacker, 'self_defense');
+    const planner = world.getComponent(victim, AIPlannerComponent);
+    if (planner) { planner.replanRequested = true; planner.planStatus = 'failed'; }
+  }
 }
 export function validateCombatIntentSave(entity: number, components: any): void {
   const stats = components.stats;

@@ -478,19 +478,19 @@ export class MortalNeedsComponent implements Component {
   }
 }
 
-export type MortalActivity = 
-  | 'sleep' 
-  | 'eat' 
-  | 'drink' 
-  | 'cook' 
-  | 'farm' 
-  | 'hunt' 
-  | 'forage' 
-  | 'build' 
-  | 'recreate' 
-  | 'seek_shelter' 
-  | 'care_child' 
-  | 'idle' 
+export type MortalActivity =
+  | 'sleep'
+  | 'eat'
+  | 'drink'
+  | 'cook'
+  | 'farm'
+  | 'hunt'
+  | 'forage'
+  | 'build'
+  | 'recreate'
+  | 'seek_shelter'
+  | 'care_child'
+  | 'idle'
   | 'walk';
 
 export type JobPreference = 'farmer' | 'hunter' | 'builder' | 'cook' | 'forager';

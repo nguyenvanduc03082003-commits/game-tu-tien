@@ -1,0 +1,4 @@
+Công cụ phát triển · theo dõi mô phỏng xã hội
+Bật thu số liệu
+Toàn thế giới · mặc định tắt · tối đa 128 bộ đếm và 200 mẫu gần nhất. Không lưu vào bản lưu; tạo thế giới hoặc tải lại sẽ xóa. Bảng hiển thị 20 bộ đếm và 10 mẫu. Đây không phải thống kê toàn bộ lịch sử thế giới.
+Chưa có số liệu.

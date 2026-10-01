@@ -60,7 +60,7 @@ export class AssetManager {
   public async preloadConfiguredAssets(): Promise<void> {
     if (typeof window === 'undefined' || typeof Image === 'undefined') return;
 
-    const promises: Promise<any>[] = [];
+    const promises: Promise<HTMLImageElement | void>[] = [];
 
     // 1. Tải hoạt ảnh nhân vật từ ANIMATION_CONFIGS
     for (const [key, cfg] of Object.entries(ANIMATION_CONFIGS)) {

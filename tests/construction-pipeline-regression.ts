@@ -195,10 +195,10 @@ test('workers advance work ticks during PERFORM_WORK and ticks persist on worker
   });
   const factionComp = factionRes.comp;
 
-  // Campfire: 1 ngày = 100 ticks
+  // Campfire: one simulation day, derived from the current clock.
   const campfireEnt = FactionFactory.startConstruction(world, 'campfire', factionComp.id, 50, 50);
   const siteComp = world.getComponent(campfireEnt, ConstructionSiteComponent)!;
-  assert.equal(siteComp.requiredWorkTicks, 100);
+  assert.equal(siteComp.requiredWorkTicks, TimeManager.TICKS_PER_DAY);
 
   // Thợ 1 làm 1 giây (ở 20 ticks/sec => 20 work ticks)
   const worker1 = world.createEntity();
@@ -256,14 +256,17 @@ test('workers advance work ticks during PERFORM_WORK and ticks persist on worker
     {
       type: 'PERFORM_WORK',
       description: 'Hoàn thiện đống lửa',
-      duration: 10,
+      duration: 2 * TimeManager.TICKS_PER_DAY / TimeManager.TICKS_PER_SECOND,
       targetEntityId: campfireEnt,
       customData: { workType: 'build' }
     }
   ];
 
-  // Thợ 2 làm tiếp 4.0 giây (4.0 * 20 = 80 ticks) -> hoàn tất tổng 100 ticks
-  BehaviorTreeExecutor.tick(world, worker2, bt2, planner2, map, 4.0);
+  // Work in actual engine-sized ticks until the remaining construction finishes.
+  for (let i = 0; i < TimeManager.TICKS_PER_DAY + 1 && world.hasComponent(campfireEnt, ConstructionSiteComponent); i++) {
+    BehaviorTreeExecutor.beginTick();
+    BehaviorTreeExecutor.tick(world, worker2, bt2, planner2, map, .05);
+  }
 
   // Công trình hoàn tất: không còn isUnderConstruction, không còn ConstructionSiteComponent
   const bCompAfter = world.getComponent(campfireEnt, BuildingComponent);
@@ -359,7 +362,7 @@ test('save and load persistence preserves construction progress and reserved res
   const loadedBComp = newWorld.getComponent(bldEntities[0], BuildingComponent)!;
 
   assert.equal(loadedBComp.isUnderConstruction, true, 'isUnderConstruction must be preserved');
-  assert.equal(loadedSiteComp.requiredWorkTicks, 1200, 'requiredWorkTicks must match 1200');
+  assert.equal(loadedSiteComp.requiredWorkTicks, 12 * TimeManager.TICKS_PER_DAY);
   assert.equal(loadedSiteComp.completedWorkTicks, 450, 'completedWorkTicks must match 450');
   assert.equal(loadedSiteComp.reservedResources.stone, 50, 'reserved stone must match 50');
   assert.equal(loadedSiteComp.reservedResources.spiritStones, 20, 'reserved spiritStones must match 20');

@@ -1,5 +1,8 @@
 import { maintainSocialAssistance, setCombatIntent } from '../../../combat/CombatIntentService.ts';
 import { performConversation } from '../../../social/SocialConversationService.ts';
+import { evaluateSocialMeetingTarget } from '../../../social/SocialDecisionService.ts';
+import { recordSocialPlan } from '../../../social/SocialPlanTelemetry.ts';
+import { SOCIAL_CONFIG } from '../../../../config/social.config.ts';
 import { ECSWorld } from '../../../../ecs/World.ts';
 import { WorldMap } from '../../../world/WorldMap.ts';
 import { EventBus } from '../../../../core/EventBus.ts';
@@ -138,8 +141,18 @@ export class BehaviorTreeExecutor {
     planner.stepElapsedTimer += dt;
 
     let status: BTNodeStatus = 'running';
+    let socialFailureReason: string | undefined;
+    const socialTarget = planner.currentPlanGoal === 'SOCIAL_RECREATE'
+      ? planner.steps.slice(planner.currentStepIndex).find(item => item.customData?.socialWith !== undefined)?.customData.socialWith as number | undefined
+      : undefined;
+    const careForMeeting = world.getComponent(entity, ChildcareComponent);
+    const guardianMeeting = socialTarget !== undefined && careForMeeting?.isChild && careForMeeting.guardianEntityId === socialTarget;
+    if (socialTarget !== undefined && !guardianMeeting && (step.type === 'MOVE_TO' || step.type === 'IDLE_WAIT')) {
+      const meeting = evaluateSocialMeetingTarget(world, entity, socialTarget, step.type === 'IDLE_WAIT');
+      if (meeting.status === 'rejected') { status = 'failure'; socialFailureReason = meeting.reason; }
+    }
 
-    switch (step.type) {
+    if (status !== 'failure') switch (step.type) {
       case 'MOVE_TO':
       case 'FLEE_FROM_TARGET':
         status = this.executeMoveTo(world, entity, pos, stateComp, btComp, planner, step, worldMap, dt);
@@ -188,15 +201,19 @@ export class BehaviorTreeExecutor {
           const target = step.customData.socialWith as number;
           const targetPos = world.getComponent(target, PositionComponent);
           const targetHp = world.getComponent(target, HealthComponent);
-          if (!targetPos || !targetHp || targetHp.isDead || targetHp.current <= 0 || Math.hypot(targetPos.x - pos.x, targetPos.y - pos.y) > 48) {
+          if (!targetPos || !targetHp || targetHp.isDead || targetHp.current <= 0 || Math.hypot(targetPos.x - pos.x, targetPos.y - pos.y) > SOCIAL_CONFIG.conversation.maxDistance) {
+            socialFailureReason = !targetPos || !targetHp || targetHp.isDead || targetHp.current <= 0 ? 'participant_unavailable' : 'out_of_range';
             status = 'failure';
             break;
           }
           if (planner.stepElapsedTimer >= (step.duration ?? 2)) {
             const conversation = performConversation(world, entity, target);
+            recordSocialPlan(world, entity, planner, conversation.status === 'completed' ? 'conversation_completed' : 'conversation_skipped',
+              conversation.status === 'skipped' ? conversation.reason : undefined);
             const care = world.getComponent(entity, ChildcareComponent);
             const withGuardian = care?.isChild && care.guardianEntityId === target;
             if (conversation.status === 'skipped' && conversation.reason !== 'cooldown_active' && !withGuardian) {
+              socialFailureReason = conversation.reason;
               status = 'failure';
               break;
             }
@@ -218,11 +235,18 @@ export class BehaviorTreeExecutor {
       btComp.clearPath();
       planner.nextStep();
       if (planner.isPlanFinished()) {
+        recordSocialPlan(world, entity, planner, 'completed');
         SmartObjectManager.getInstance().release(entity);
         CommunityTaskBoard.getInstance().releaseTask(entity);
         planner.replanCooldown = 0.2 + Math.random() * 0.3;
       }
     } else if (status === 'failure') {
+      recordSocialPlan(world, entity, planner, 'failed', socialFailureReason ??
+        (step.type === 'MOVE_TO' ? planner.stepElapsedTimer > 12 ? 'travel_timeout' : 'movement_failed' : 'step_failed'));
+      if (planner.currentPlanGoal === 'SOCIAL_RECREATE') {
+        pos.targetX = undefined;
+        pos.targetY = undefined;
+      }
       btComp.clearPath();
       planner.replanCooldown = 1.0 + Math.random() * 0.5;
       SmartObjectManager.getInstance().release(entity);

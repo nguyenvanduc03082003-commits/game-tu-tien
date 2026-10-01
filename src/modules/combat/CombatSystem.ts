@@ -324,7 +324,7 @@ export class CombatSystem implements System {
     const attackerBaseAtk = attackerStats?.baseAtk ?? 12;
     const weaponDmg = mainWeapon ? mainWeapon.baseDamage : (equip?.workTool ? equip.workTool.baseDamage : 0);
     const realmDmg = realm ? Math.floor(realm.combatPower * 0.15) : 0;
-    
+
     // Gia trì lực chiến từ công pháp và cấp độ thông thạo
     const attackerTech = world.getComponent(attackerId, CultivationTechniqueComponent);
     let techDmgMult = 1.0;
@@ -423,11 +423,11 @@ export class CombatSystem implements System {
     // 3. GIẢM TRỪ SÁT THƯƠNG QUA PHÒNG THỦ & CHỈ SỐ GIÁP: Sát thương = Sát thương * 50 / (50 + Giáp)
     const targetDefense = Math.max(0, targetStats?.defense ?? 0);
     const targetArmor = Math.max(0, (targetStats?.armor ?? 0) + (targetEquip?.getTotalArmorBonus() ?? 0));
-    
+
     const mainPostDefenseDmg = Math.max(1, totalDmg - targetDefense);
     const offPostDefenseDmg = offHandDmg > 0 ? Math.max(1, offHandDmg - targetDefense) : 0;
     const postDefenseDmg = mainPostDefenseDmg + offPostDefenseDmg;
-    
+
     const finalDmg = Math.max(1, Math.floor(postDefenseDmg * (50 / (50 + targetArmor))));
 
     const hpBeforeHit = targetHp.current;

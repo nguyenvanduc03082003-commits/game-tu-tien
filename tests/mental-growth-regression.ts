@@ -367,6 +367,9 @@ function testCapsCeilingsAndNovelty(): void {
   );
 
   // Save & Load roundtrip
+  // Events above reach day 9; persist the same calendar instead of a day-0 fixture.
+  engNov.timeManager.loadState({ totalTicks: 9 * TimeManager.TICKS_PER_DAY, speed: 1,
+    calendarEpochTick: 0, calendarEpochDays: 0, oldTicksPerDay: TimeManager.TICKS_PER_DAY });
   const savedData = SaveManager.serializeWorld(engNov, 'Novelty Test');
   SaveManager.deserializeWorld(engNov, savedData);
   sysNov.reset(engNov.world);

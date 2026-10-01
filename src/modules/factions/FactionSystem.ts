@@ -1,5 +1,5 @@
 import { isActiveBondBetween } from '../social/RelationshipRules.ts';
-import { performConversation } from '../social/SocialConversationService.ts';
+import { createCommunityConversationScan, performCommunityConversations } from '../social/CommunityConversationService.ts';
 import { System } from '../../ecs/System.ts';
 import { ECSWorld } from '../../ecs/World.ts';
 import { transferProfessionStock } from '../professions/ProfessionService.ts';
@@ -502,6 +502,7 @@ export class FactionSystem implements System {
       freeMortals.push(ent);
     }
 
+    const communityScan = createCommunityConversationScan();
     for (const seedEnt of freeMortals) {
       if (lockedEntities.has(seedEnt)) continue;
       const seedPos = world.getComponent(seedEnt, PositionComponent)!;
@@ -539,14 +540,7 @@ export class FactionSystem implements System {
       }
 
       if (!hasBond) {
-        // Giao lưu đồng hương chỉ hoàn tất khi cặp thực sự ở gần và có thể đáp lại.
-        for (let i = 0; i < cluster.length; i++) {
-          for (let j = i + 1; j < cluster.length; j++) {
-            const a = cluster[i];
-            const b = cluster[j];
-            performConversation(world, a, b, 'community');
-          }
-        }
+        performCommunityConversations(world, cluster, communityScan);
         continue;
       }
 

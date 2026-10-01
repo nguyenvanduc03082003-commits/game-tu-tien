@@ -1,9 +1,10 @@
-import { renderSocialRelationshipDetails, renderSocialBondHistory } from './SocialRelationshipInspector.ts';
+import { readSocialTelemetry, setSocialTelemetryEnabled } from '../modules/social/SocialSimulationTelemetry.ts';
+import { renderSocialRelationshipDetails, renderSocialBondHistory, renderSocialSimulationDebug } from './SocialRelationshipInspector.ts';
 import { calculatePlantGrowth, calculateEnvironmentalPlantGrowth } from '../modules/world/TerrainEnvironment.ts';
 import { TerrainType } from '../config/terrains.config.ts';
 import { AppearanceComponent, lifeStage } from '../modules/appearance/Appearance.ts';
 import { equipArmor } from '../modules/appearance/EquipmentAppearance.ts';
-import { residentPreferences } from '../modules/ai/brain/ResidentPreferences.ts';
+import { readResidentPreferences } from '../modules/ai/brain/ResidentPreferences.ts';
 import { ECSWorld } from '../ecs/World.ts';
 import { WorldTile } from '../modules/world/WorldMap.ts';
 import { QiTile } from '../modules/energy/QiGrid.ts';
@@ -1363,7 +1364,7 @@ export class InspectorPanel {
     }
     // TAB 3: BỘ NÃO AI 3 TẦNG (THREE-TIER AI BRAIN)
     else if (this.activeEntityTab === 'ai') {
-      const preferences = residentPreferences(entityId, this.world);
+      const preferences = readResidentPreferences(entityId, this.world);
       const appearance = this.world.getComponent(entityId, AppearanceComponent);
       const appearanceInfo = appearance ? `Mẫu: ${escapeHtml(appearance.appearanceId)} · Giai đoạn: ${lifeStage(lifeComp?.currentAge ?? 15, lifeComp?.maxLifespan ?? 100)}` : 'Ngoại hình mặc định';
       const scores = brainComp?.utilityScores;
@@ -1592,6 +1593,7 @@ export class InspectorPanel {
           </div>
 
           ${renderSocialBondHistory(relComp, entityId, openSocialDetails.has(`${entityId}:history`), escapeHtml)}
+          ${renderSocialSimulationDebug(this.world, entityId, openSocialDetails.has(`${entityId}:debug`), escapeHtml)}
 
           <!-- DÒNG KÝ ỨC TÂM THỨC -->
           <div style="border-top: 1px solid #30363d; padding-top: 6px;">
@@ -1732,6 +1734,11 @@ export class InspectorPanel {
           this.refreshRelations();
         }
       });
+    });
+
+    this.container.querySelector('[data-social-telemetry-toggle]')?.addEventListener('click', () => {
+      setSocialTelemetryEnabled(this.world, !readSocialTelemetry(this.world).enabled);
+      this.refreshRelations();
     });
 
     // Xử lý nút Chuyển góc nhìn camera tới người trong mạng lưới quan hệ

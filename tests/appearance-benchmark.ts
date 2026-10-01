@@ -50,7 +50,7 @@ export function runBenchmarks(residentCounts: number[] = [100, 300], ticks: numb
     const ids = Array.from({ length: count }, (_, idx) =>
       BeingFactory.spawnFromArchetype(
         world,
-        idx % 3 === 0 ? 'rogue_cultivator' : 'mortal_human',
+        'mortal_human',
         16 + (idx % 48) * 16,
         16 + Math.floor(idx / 48) * 16
       )
@@ -101,4 +101,3 @@ export function runBenchmarks(residentCounts: number[] = [100, 300], ticks: numb
 }
 
 runBenchmarks([100, 250], 30);
-

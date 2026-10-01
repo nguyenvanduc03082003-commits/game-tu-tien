@@ -4,6 +4,8 @@ import { SaveManager } from '../modules/save/SaveManager.ts';
 import { GameSettings } from '../core/GameSettings.ts';
 import { sanitizePositiveTimeSpeed } from '../core/TimeManager.ts';
 
+type NewWorldOptions = Parameters<Engine['initNewWorld']>[0];
+
 const RANDOM_REALM_NAMES = [
   'Thái Sơ Đạo Vực',
   'Hồng Mông Tiên Giới',
@@ -391,11 +393,11 @@ export class MainMenu {
       const selectedQiRadio = modal.querySelector('input[name="qi-density"]:checked') as HTMLInputElement;
       const qiMultiplier = parseFloat(selectedQiRadio?.value || '1.0');
       const sizeSelect = modal.querySelector('#select-world-size') as HTMLSelectElement;
-      const worldSize = (sizeSelect?.value || 'large') as any;
+      const worldSize = (sizeSelect?.value || 'large') as NewWorldOptions['worldSize'];
 
       this.engine.initNewWorld({
         name: nameInput.value.trim() || 'Thái Sơ Đại Lục',
-        template: templateSelect.value as any,
+        template: templateSelect.value as NewWorldOptions['template'],
         seed: parseInt(seedInput.value) || 8888,
         qiMultiplier,
         worldSize

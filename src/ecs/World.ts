@@ -14,7 +14,7 @@ export class ECSWorld {
   private hasExplicitSimulatedTicks: boolean = false;
   private entities: Set<Entity> = new Set();
   // Map<ComponentType, Map<EntityId, ComponentInstance>>
-  private componentStores: Map<ComponentConstructor<any>, Map<Entity, any>> = new Map();
+  private componentStores: Map<ComponentConstructor, Map<Entity, Component>> = new Map();
   private systems: System[] = [];
 
   public getCurrentTick(): number {
@@ -74,7 +74,7 @@ export class ECSWorld {
     const ctor = component.constructor as ComponentConstructor<T>;
     let store = this.componentStores.get(ctor);
     if (!store) {
-      store = new Map<Entity, any>();
+      store = new Map<Entity, Component>();
       this.componentStores.set(ctor, store);
     }
     store.set(entity, component);
@@ -83,7 +83,8 @@ export class ECSWorld {
 
   public getComponent<T extends Component>(entity: Entity, ctor: ComponentConstructor<T>): T | undefined {
     const store = this.componentStores.get(ctor);
-    return store ? store.get(entity) : undefined;
+    // The constructor key fixes the component type; storage itself is heterogeneous.
+    return store?.get(entity) as T | undefined;
   }
 
   public hasComponent<T extends Component>(entity: Entity, ctor: ComponentConstructor<T>): boolean {
@@ -101,11 +102,11 @@ export class ECSWorld {
   /**
    * Truy vấn tất cả các Entity sở hữu đầy đủ danh sách các Component yêu cầu
    */
-  public query(componentTypes: ComponentConstructor<any>[]): Entity[] {
+  public query(componentTypes: ComponentConstructor[]): Entity[] {
     if (componentTypes.length === 0) return Array.from(this.entities);
 
     // Lấy store nhỏ nhất để duyệt tối ưu
-    let smallestStore: Map<Entity, any> | null = null;
+    let smallestStore: Map<Entity, Component> | null = null;
     let minSize = Infinity;
 
     for (const ctor of componentTypes) {
@@ -216,4 +217,3 @@ export class ECSWorld {
     this.timeState = undefined;
   }
 }
-

@@ -19,6 +19,18 @@ export type SocialCandidateEvaluation =
   | { readonly status: 'eligible'; readonly score: number; readonly distance: number }
   | { readonly status: 'rejected'; readonly reason: ConversationRejectionReason | 'outside_search_radius' };
 
+/** Recheck an existing adult meeting plan; waiting on cooldown may still provide rest. */
+export function evaluateSocialMeetingTarget(world: ECSWorld, entity: number, target: number,
+  waiting: boolean): SocialCandidateEvaluation {
+  const snapshot = readConversationSnapshot(world, entity, target);
+  if (waiting) {
+    const result = evaluateConversation({ ...snapshot, cooldownRemainingDays: 0 });
+    return result.status === 'skipped' ? { status: 'rejected', reason: result.reason }
+      : { status: 'eligible', score: 0, distance: snapshot.distance };
+  }
+  return evaluateSocialCandidate(snapshot, false);
+}
+
 /** Prospective meeting: actual distance scores travel; it does not authorize a conversation at that distance. */
 export function evaluateSocialCandidate(snapshot: ConversationSnapshot, sharedActivity: boolean): SocialCandidateEvaluation {
   const config = SOCIAL_CONFIG.socialDecision;

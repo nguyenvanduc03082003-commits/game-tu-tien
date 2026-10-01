@@ -1,16 +1,22 @@
 import { SOCIAL_CONFIG } from '../../config/social.config.ts';
+import { readSocialFamiliarity } from './SocialFamiliarityService.ts';
+import type { SocialEventTime } from './SocialEventTime.ts';
 import { ECSWorld } from '../../ecs/World.ts';
 import { MemoryComponent, SocialRelationshipComponent, cloneRelationshipRecord } from './SocialComponents.ts';
 import { SOCIAL_COOLDOWN_CHANNELS, SocialCooldownChannel, isDirectedCooldown, socialCooldownKey } from './SocialCooldown.ts';
 
-export function serializeSocialSave(world: ECSWorld, social: SocialRelationshipComponent) {
+export function serializeSocialSave(world: ECSWorld, social: SocialRelationshipComponent, owner?: number) {
   const now = world.calendarDaysAtTick();
   return {
-    relationships: Array.from(social.relationships.values(), cloneRelationshipRecord),
+    relationships: Array.from(social.relationships.values(), record => {
+      const copy = cloneRelationshipRecord(record);
+      if (owner !== undefined && !readSocialFamiliarity(world, owner, record.targetEntityId)) delete copy.familiarity;
+      return copy;
+    }),
     rescue: { schemaVersion: 1, episodeCounter: social.rescueEpisodeCounter,
       entries: social.rescueEvidence.filter(e => now >= e.lastThreatDay && now - e.lastThreatDay <= SOCIAL_CONFIG.rescue.evidenceDays).map(e => ({ ...e })) },
     bondEpisodeCounter: social.bondEpisodeCounter,
-    bondHistory: social.bondHistory.map(cloneRelationshipRecord),
+    bondHistory: social.bondHistory.map(record => { const copy = cloneRelationshipRecord(record); delete copy.familiarity; return copy; }),
     cooldowns: {
       schemaVersion: 1,
       entries: [...social.cooldowns.values()].filter(record => record.expiresAtDay > now).map(record => ({ ...record })),
@@ -29,7 +35,7 @@ const id = (value: any): boolean => Number.isSafeInteger(value) && value > 0;
 const count = (value: any): boolean => Number.isSafeInteger(value) && value >= 0;
 
 /** Validate before staging; historical targets may have been removed from the world. */
-export function validateSocialSave(entityId: number, components: any): void {
+export function validateSocialSave(entityId: number, components: any, savedTime?: SocialEventTime): void {
   const fail = (path: string): never => { throw new Error(`Dữ liệu xã hội thực thể #${entityId} không hợp lệ: ${path}`); };
   if (components.corpse?.socialDeathProcessed !== undefined &&
       typeof components.corpse.socialDeathProcessed !== 'boolean') fail('corpse.socialDeathProcessed phải là boolean');
@@ -87,6 +93,14 @@ export function validateSocialSave(entityId: number, components: any): void {
           (record.lastInteractionTick !== undefined && !count(record.lastInteractionTick)) ||
           (record.specialBondDate !== undefined && typeof record.specialBondDate !== 'string')) fail(path);
       const bond = record.bond;
+      if (record.familiarity !== undefined) {
+        const progress = record.familiarity;
+        if (historical || !object(progress) || progress.schemaVersion !== 1 ||
+            !count(progress.neutralCount) || progress.neutralCount >= SOCIAL_CONFIG.familiarity.neutralMeetings ||
+            !range(progress.lastQualifiedDay, 0) || !count(progress.lastQualifiedTick) ||
+            (savedTime && (progress.lastQualifiedTick > savedTime.tick || progress.lastQualifiedDay > savedTime.day)))
+          fail(`${path}.familiarity`);
+      }
       if (historical && bond?.status !== 'ended') fail(`${path}: lịch sử phải là ràng buộc đã kết thúc`);
       if (bond !== undefined) {
         const types = ['dao_companion', 'master', 'disciple', 'sworn_brother', 'kin_parent', 'kin_child'];

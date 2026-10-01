@@ -1,4 +1,5 @@
 import { selectSocialCandidate } from '../../../social/SocialDecisionService.ts';
+import { recordSocialPlan } from '../../../social/SocialPlanTelemetry.ts';
 import { SpatialGrid } from '../../../../core/SpatialGrid.ts';
 import { ECSWorld } from '../../../../ecs/World.ts';
 import { WorldMap } from '../../../world/WorldMap.ts';
@@ -57,6 +58,8 @@ export class AIPlanner {
   ): void {
     const pos = world.getComponent(entity, PositionComponent);
     if (!pos) return;
+    if (planner.planStatus === 'executing')
+      recordSocialPlan(world, entity, planner, 'interrupted', planner.currentPlanGoal === goal ? 'replanned' : 'goal_changed');
 
     // Tự động giải phóng đặt chỗ Smart Object cũ và task cũ nếu đổi mục tiêu
     const smartObjects = SmartObjectManager.getInstance();
@@ -876,6 +879,7 @@ export class AIPlanner {
     planner.planRevision = (planner.planRevision || 0) + 1;
     planner.steps = steps;
     planner.planStatus = 'executing';
+    recordSocialPlan(world, entity, planner, 'started');
   }
 
   // ===========================================================================

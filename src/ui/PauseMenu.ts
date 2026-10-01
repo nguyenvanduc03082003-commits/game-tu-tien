@@ -71,7 +71,7 @@ export class PauseMenu {
 
   private render(): void {
     const date = this.engine.timeManager.getDate();
-    const worldName = (this.engine as any)._worldName || this.engine.worldName || 'Thái Cổ Giới';
+    const worldName = this.engine.worldName || 'Thái Cổ Giới';
 
     this.container.innerHTML = `
       <div style="
